@@ -1,0 +1,48 @@
+ 
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.boxItems{
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    width: calc( 100% - 640px);
+    height: 88px;
+    align-items: center;
+    box-sizing: border-box;
+}
+.boxItemsLeft{
+    display: flex;
+}
+.ItemsRight{
+ 
+    composes: center;
+    color: #8585AD;
+    width: 207px;
+    height: 56px;
+ 
+    /* interface/modal-bg */
+    
+    background: #1C1C21;
+    /* interface/accent */
+ 
+}
+.ItemsInnerText{ 
+    height: 25px;
+    margin-left: 5px;
+    font-size: 16px;
+    composes: center;
+}
+.profileIcon{
+    composes: ItemsInnerText;
+    composes: center;
+    margin: 0;
+}
+.boxItemsLeftChild{
+    composes: ItemsRight;
+}
+.ItemsRight:hover{
+    color: white;
+}

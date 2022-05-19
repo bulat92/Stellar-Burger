@@ -1,0 +1,15 @@
+.BurgerIngredients{
+    /* left */
+    max-width: 600px;
+    box-sizing: border-box;
+    
+    height: 65vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    /* interface/bg */
+    margin-right: 40px;
+
+    background: #131316;
+    /* interface/accent */
+}
+ 
