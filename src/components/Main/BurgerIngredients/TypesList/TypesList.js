@@ -18,6 +18,6 @@ const TypesList = props => {
 }
 
 TypesList.propTypes = {
-    props: PropTypes.arrayOf(littleProps.isRequired).isRequired
+    list: PropTypes.arrayOf(littleProps.isRequired).isRequired
 }
 export default TypesList;
