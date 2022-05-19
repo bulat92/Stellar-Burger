@@ -1,17 +1,22 @@
 import React from "react";
 import style from "./Main.module.css";
+import {arr} from '../utils/data';
 import BurgerConstructor from './BurgerConstructor/BurgerConstructor';
 import BurgerIngredients from './BurgerIngredients/BurgerIngredients'
+import PropTypes from 'prop-types';
+import {ingredientPropType} from '../../prop-types'
 
-class Main extends React.Component {
-    render() {
+const Main = () =>{
       return (
         <main style={style.main}>
-            <BurgerIngredients />
+            <BurgerIngredients arr = {arr}/>
             <BurgerConstructor />
         </main>
       );
-    }
 }
+ 
+BurgerIngredients.propTypes = {
+  arr: PropTypes.arrayOf(ingredientPropType.isRequired).isRequired,
+} 
 
 export default Main;

@@ -1,14 +1,13 @@
-import React from "react";
+import {useState} from "react";
 import style from "./BurgerConstructor.module.css";
 import Total from './Total/Total'
 import {ConstructorElement, DragIcon} from '@ya.praktikum/react-developer-burger-ui-components';
+import PropTypes from 'prop-types';
+import {ingredientPropType} from '../../../prop-types'
 
-class BurgerConstructor extends React.Component {
-
-  constructor(props){
-    super(props);
-    this.state = {
-      arr:[
+const BurgerConstructor = () => {
+ 
+  const [arr, setArr] = useState([
         {
           "_id":"60666c42cc7b410027a1a9b1",
           "name":"Краторная булка N-200i",
@@ -121,14 +120,11 @@ class BurgerConstructor extends React.Component {
         "image_large":"https://code.s3.yandex.net/react/code/mineral_rings-large.png",
         "__v":0
      }  
-      ]
-    }
-  }
+      ])
+    
 
-    render() {
-
-      const filterBun = this.state.arr.filter((el => { if(el.type != 'bun') return el}));
-      const totalNumber = this.state.arr.reduce((sum, el) => sum = Number(el.price) + sum, 0);
+      const filterBun = arr.filter((el => { if(el.type != 'bun') return el}));
+      const totalNumber = arr.reduce((sum, el) => sum = Number(el.price) + sum, 0);
       
  
       return (
@@ -136,11 +132,11 @@ class BurgerConstructor extends React.Component {
             <div className={`${style.outDotsConstructorElement} mr-4`}>
               <ConstructorElement
                 type="top"
-                key={this.state.arr[0]._id}
+                key={arr[0]._id}
                 isLocked={true}
-                text={this.state.arr[0].name}
-                price={this.state.arr[0].price}
-                thumbnail={this.state.arr[0].image_mobile}
+                text={`${arr[0].name} (верх)`}
+                price={arr[0].price}
+                thumbnail={arr[0].image_mobile}
                 />
             </div>
           <div className={`${style.scrollWindow} mt-4 mb-4`}>
@@ -161,18 +157,19 @@ class BurgerConstructor extends React.Component {
           </div> 
           <div className={`${style.outDotsConstructorElement} mr-4`}>
             <ConstructorElement 
-              key={`${this.state.arr[0]._id}Bottom`}
+              key={`${arr[0]._id}Bottom`}
               type="bottom"
               isLocked={true}
-              text={this.state.arr[0].name}
-              price={this.state.arr[0].price}
-              thumbnail={this.state.arr[0].image_mobile}
+              text={`${arr[0].name} (низ)`}
+              price={arr[0].price}
+              thumbnail={arr[0].image_mobile}
               />
           </div> 
           <Total totalNumber = {totalNumber}/>     
         </section>
       );
-    }
 }
- 
+BurgerConstructor.propTypes = {
+  arr: PropTypes.arrayOf(ingredientPropType.isRequired).isRequired,
+} 
 export default BurgerConstructor;

@@ -1,9 +1,11 @@
 import style from "./TypesList.module.css";
-import React from 'react';
+import {useState} from 'react';
 import {Tab} from '@ya.praktikum/react-developer-burger-ui-components';
+import PropTypes from 'prop-types';
+import {littleProps} from '../../../../little-props';
 
 const TypesList = props => {
-    const [current, setCurrent] = React.useState('bun')
+    const [current, setCurrent] = useState('bun')
     return(
         <div style={{ display: 'flex' }} className={style.list}>
             {props.list.map(el => (
@@ -15,4 +17,7 @@ const TypesList = props => {
     )
 }
 
+TypesList.propTypes = {
+    props: PropTypes.arrayOf(littleProps.isRequired).isRequired
+}
 export default TypesList;

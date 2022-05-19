@@ -1,6 +1,8 @@
 import style from '../header-Items.module.css';
+import PropTypes from 'prop-types';
+import {littleProps} from '../../../../little-props';
 
-export default function ButonsWithIcons(props){
+const ButonsWithIcons = (props) => {
     return(    
         <div className = {style.boxItemsLeftChild} onMouseOver={props.onMouseOver} onMouseOut={props.onMouseOut}>
             <i className={style.profileIcon}>    
@@ -10,3 +12,9 @@ export default function ButonsWithIcons(props){
         </div>
     );
 }
+
+ButonsWithIcons.propTypes = {
+    props: PropTypes.arrayOf(littleProps)
+}
+
+export default ButonsWithIcons;

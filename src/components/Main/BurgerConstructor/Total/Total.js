@@ -1,6 +1,8 @@
 import React from 'react';
 import style from './Total.module.css'
 import {Button, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
+import PropTypes from 'prop-types';
+import {littleProps} from '../../../../little-props';
 
 const Total = (props) => {
     return(
@@ -14,6 +16,10 @@ const Total = (props) => {
             </Button>
         </div>
     )
+}
+
+Total.propTypes = {
+    props: PropTypes.arrayOf(littleProps)
 }
 
 export default Total;
