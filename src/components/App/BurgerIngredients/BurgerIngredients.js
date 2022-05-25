@@ -4,12 +4,11 @@ import TypesOfIngredients from "./TypesOfIngredients/TypesOfIngredients";
 import TypesList from "./TypesList/TypesList";
 import PropTypes from 'prop-types';
 import {ingredientPropType} from '../../../prop-types';
-import {littleProps} from '../../../little-props';
 
 const BurgerIngredients = (props) => {
 
     const [arrOfTypes, setArrOfTypes] = useState([{
-        'id': 0,
+        'id': '0',
         'nameRu': 'Булки',
         'name':'bun'},
         {
@@ -25,13 +24,13 @@ const BurgerIngredients = (props) => {
         <section>
             <TypesList list={arrOfTypes}/>
             <section className={style.BurgerIngredients}>
-                <TypesOfIngredients arr={props.arr.filter(el => {if(el.type == 'bun') return el})}>
+                <TypesOfIngredients onClick={props.onClick} arr={props.arr.filter(el => {if(el.type == 'bun') return el})}>
                     Булки
                 </TypesOfIngredients>
-                <TypesOfIngredients arr={props.arr.filter(el => {if(el.type == 'sauce') return el})}>
+                <TypesOfIngredients onClick={props.onClick} arr={props.arr.filter(el => {if(el.type == 'sauce') return el})}>
                     Соусы
                 </TypesOfIngredients>
-                <TypesOfIngredients arr={props.arr.filter(el => {if(el.type == 'main') return el})}>
+                <TypesOfIngredients onClick={props.onClick} arr={props.arr.filter(el => {if(el.type == 'main') return el})}>
                     Начинки
                 </TypesOfIngredients>
             </section>

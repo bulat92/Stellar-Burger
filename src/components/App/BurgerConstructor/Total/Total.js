@@ -11,7 +11,7 @@ const Total = (props) => {
                 <p className="text text_type_digits-medium mr-2">{props.totalNumber}</p>
                 <CurrencyIcon type="primary" />
             </div> 
-            <Button>
+            <Button onClick={props.onClick}>
                 <pre>Оформить заказ</pre>
             </Button>
         </div>
