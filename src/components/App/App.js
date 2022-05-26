@@ -2,16 +2,16 @@ import React, {useEffect, useState} from "react";
 import style from "./App.module.css";
 import BurgerConstructor from './BurgerConstructor/BurgerConstructor';
 import BurgerIngredients from './BurgerIngredients/BurgerIngredients';
-import ModalOverlay from '../ModalOverlay/ModalOverlay';
-import IngredientDetails from '../ModalOverlay/Modal/IngredientDetails/IngredientDetails';
-import OrderDetails from '../ModalOverlay/Modal/OrderDetails/OrderDetails';
+import Modal from '../Modal/Modal';
+import IngredientDetails from '../Modal/ModalOverlay/IngredientDetails/IngredientDetails';
+import OrderDetails from '../Modal/ModalOverlay/OrderDetails/OrderDetails';
 import PropTypes from 'prop-types';
 import {ingredientPropType} from '../../prop-types';
 
 const App = () =>{
  
   const [IngredientDetailModalIsOpen, setModalIsOpen] = useState(false),
-        [orderDetailsModalIsOpen, setOrderDetailsModalIsOpen] = useState(true),
+        [orderDetailsModalIsOpen, setOrderDetailsModalIsOpen] = useState(false),
         [isLoading, setIsLoading] = useState(true),
         [hasError, setHasError] = useState(false),
         [arr, setArr] = useState([]),
@@ -24,6 +24,7 @@ const App = () =>{
   }     
   const escapeKeyFunc = (e) => {
     e.code === 'Escape' && setModalIsOpen(false);
+    e.code === 'Escape' && setOrderDetailsModalIsOpen(false);
   }
   const OrderDetailsModalIsOpenFunc = () => {
     setOrderDetailsModalIsOpen(!orderDetailsModalIsOpen)
@@ -35,26 +36,38 @@ const App = () =>{
   useEffect(() => {
     setIsLoading(true)
     fetch(url)
-    .then(response => response.json())
+    .then(response =>{ 
+      if(response.ok === true){
+        return response.json()
+      }
+    })
     .then(response => setArr(response.data), setIsLoading(false))
     .catch(e=> setHasError(true), setIsLoading(false));
 
     window.addEventListener('keydown', escapeKeyFunc);
+
+    return() => {
+      window.removeEventListener('keydown', escapeKeyFunc);
+    }
   },[url])
+
+
+
+  
 
       return (
         !isLoading &&
         !hasError &&
         <main style={style.App}>
             {IngredientDetailModalIsOpen && 
-              <ModalOverlay onClick={IngredientDetailModalIsOpenFunc} details={IngredientDetailModalIsOpen}>
+              <Modal onClick={IngredientDetailModalIsOpenFunc} details={IngredientDetailModalIsOpen}>
                 <IngredientDetails details={IngredientDetailModalIsOpen}/>
-              </ModalOverlay>
+              </Modal>
             }
             {orderDetailsModalIsOpen && 
-              <ModalOverlay onClick={OrderDetailsModalIsOpenFunc} details={orderDetailsModalIsOpen}>
+              <Modal onClick={OrderDetailsModalIsOpenFunc} details={orderDetailsModalIsOpen}>
                 <OrderDetails details={orderDetailsModalIsOpen}/>
-              </ModalOverlay>
+              </Modal>
             }
             <BurgerIngredients arr = {arr} onClick={IngredientDetailModalIsOpenFunc}/>{/* left */}
             <BurgerConstructor onClick={OrderDetailsModalIsOpenFunc} />{/* right */}

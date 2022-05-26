@@ -1,7 +1,7 @@
 import style from "./BurgerConstructor.module.css";
 import Total from './Total/Total'
 import {ConstructorElement, DragIcon} from '@ya.praktikum/react-developer-burger-ui-components';
-import {arr} from '../../utils/data';
+import {arr} from '../../../utils/data';
 
 const BurgerConstructor = (props) => {
  

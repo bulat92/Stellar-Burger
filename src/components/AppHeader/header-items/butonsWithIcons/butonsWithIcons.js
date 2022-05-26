@@ -8,7 +8,7 @@ const ButonsWithIcons = (props) => {
             <i className={style.profileIcon}>    
                 {props.icon}
             </i>
-            <p className = {style.ItemsInnerText}>{props.children}</p>
+            <a className = {style.ItemsInnerText}>{props.children}</a>
         </div>
     );
 }

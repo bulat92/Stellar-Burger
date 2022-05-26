@@ -1,18 +1,18 @@
 import ReactDOM from 'react-dom';
-import style from './ModalOverlay.module.css';
-import Modal from './Modal/Modal'
+import style from './Modal.module.css';
+import ModalOverlay from './ModalOverlay/ModalOverlay'
 
-const ModalOverlay = (props) => {
+const Modal = (props) => {
 
     const reactModals = document.getElementById('react-modals');
     return ReactDOM.createPortal(
         <div className={style.background} onClick={props.onClick}>
-           <Modal details={props.details} onClick={props.onClick}>
+           <ModalOverlay details={props.details} onClick={props.onClick}>
                 {props.children}
-            </Modal>
+            </ModalOverlay>
         </div>,
         reactModals
     )
 }
 
-export default ModalOverlay;
+export default Modal;

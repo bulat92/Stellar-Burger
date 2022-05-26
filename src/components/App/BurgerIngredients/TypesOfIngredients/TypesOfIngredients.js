@@ -16,8 +16,8 @@ const TypesOfIngredients = props => {
             </h2>
             
             <div className={style.typesBox}>
-                {props.arr.map(el=>(
-                    <div key={el._id} className={style.type} onClick={() => props.onClick(el)}>
+                {props.arr.map((el, index)=>(
+                    <div key={index} className={style.type} onClick={() => props.onClick(el)}>
                         {/* <Counter className={style.Counter} count={1} size="small" /> */}
                         <img className={style.typesImg} src={el.image_mobile} alt="" />
                         <div className={style.priceBox}>
