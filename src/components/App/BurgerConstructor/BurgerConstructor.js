@@ -2,6 +2,8 @@ import style from "./BurgerConstructor.module.css";
 import Total from './Total/Total'
 import {ConstructorElement, DragIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import {arr} from '../../../utils/data';
+import PropTypes from 'prop-types';
+import {ingredientPropType} from '../../../prop-types';
 
 const BurgerConstructor = (props) => {
  
@@ -50,6 +52,10 @@ const BurgerConstructor = (props) => {
           <Total totalNumber = {totalNumber} onClick={props.onClick}/>     
         </section>
       );
+}
+
+BurgerConstructor.propTypes = {
+  arr: PropTypes.arrayOf(ingredientPropType.isRequired).isRequired,
 }
  
 export default BurgerConstructor;
