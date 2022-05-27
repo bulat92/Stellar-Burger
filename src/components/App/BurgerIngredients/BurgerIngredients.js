@@ -20,10 +20,14 @@ const BurgerIngredients = (props) => {
         'nameRu': 'Начинки',
         'name':'main'}]);
  
+    const ScrolFunc = () => {
+        
+    }        
+
     return(
         <section>
             <TypesList list={arrOfTypes}/>
-            <section className={style.BurgerIngredients}>
+            <section className={style.BurgerIngredients} >
                 <TypesOfIngredients onClick={props.onClick} arr={props.arr.filter(el => {if(el.type == 'bun') return el})}>
                     Булки
                 </TypesOfIngredients>

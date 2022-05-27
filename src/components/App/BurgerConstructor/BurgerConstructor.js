@@ -25,8 +25,8 @@ const BurgerConstructor = (props) => {
             </div>
           <div className={`${style.scrollWindow} mt-4 mb-4`}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }} className='mr-2'>
-                {filterBun.map(el=>(
-                  <div className={style.dotsAndConstructorElement} key={el._id}>
+                {filterBun.map((el, index)=>(
+                  <div className={style.dotsAndConstructorElement} key={index}>
                     <DragIcon type="primary" />
                     <ConstructorElement
                     isLocked={false}

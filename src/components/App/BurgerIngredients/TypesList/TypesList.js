@@ -5,7 +5,12 @@ import PropTypes from 'prop-types';
 import {littleProps} from '../../../../little-props';
 
 const TypesList = props => {
-    const [current, setCurrent] = useState('bun')
+    const [current, setCurrent] = useState('bun');
+
+    const clickFunc = () => {
+        
+    }
+
     return(
         <div style={{ display: 'flex' }} className={style.list}>
             {props.list.map(el => (

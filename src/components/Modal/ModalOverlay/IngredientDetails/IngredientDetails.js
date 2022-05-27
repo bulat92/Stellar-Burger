@@ -1,4 +1,6 @@
 import style from './IngredientDetails.module.css';
+import {ingredientPropType} from '../../../../prop-types';
+import PropTypes from 'prop-types';
 
 const IngredientDetails = (props) => {
     return(
@@ -42,5 +44,9 @@ const IngredientDetails = (props) => {
         </div>
     )
 }
+
+IngredientDetails.propTypes = {
+    arr: PropTypes.arrayOf(ingredientPropType.isRequired).isRequired,
+} 
 
 export default IngredientDetails;

@@ -12,7 +12,7 @@ const url = 'https://norma.nomoreparties.space/api/ingredients';
 
 const App = () =>{
  
-  const [IngredientDetailModalIsOpen, setModalIsOpen] = useState(false),
+  const [IngredientDetailModalIsOpen, setIngredientDetailModalIsOpen] = useState(false),
         [orderDetailsModalIsOpen, setOrderDetailsModalIsOpen] = useState(false),
         [isLoading, setIsLoading] = useState(true),
         [hasError, setHasError] = useState(false),
@@ -21,10 +21,10 @@ const App = () =>{
 
 
   const ToggleIngredientDetailModal = (backProp) => {
-    IngredientDetailModalIsOpen ? setModalIsOpen(false) : setModalIsOpen(backProp);
+    IngredientDetailModalIsOpen ? setIngredientDetailModalIsOpen(false) : setIngredientDetailModalIsOpen(backProp);
   }     
   const escapeKeyFunc = (e) => {
-    e.code === 'Escape' && setModalIsOpen(false);
+    e.code === 'Escape' && setIngredientDetailModalIsOpen(false);
     e.code === 'Escape' && setOrderDetailsModalIsOpen(false);
   }
   const ToggleOrderDetailsModal = () => {

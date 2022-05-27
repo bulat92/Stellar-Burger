@@ -1,22 +1,16 @@
 .ModalOverlay{
-    width: 720px;
-    border-radius: 40px;
-    background: #1C1C21;
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.modalHeader{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    height: 100%;
     width: 100%;
- 
-    font-weight: 700;
-    font-size: 26px;
-}
-.h2{
-    max-width: 600px;
-    height: 64px;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    z-index: 2;
+    overflow: hidden;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
 }
