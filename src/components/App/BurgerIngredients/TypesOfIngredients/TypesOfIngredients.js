@@ -1,5 +1,5 @@
 import style from "./TypesOfIngredients.module.css";
-import React from 'react';
+import {useEffect, useRef} from 'react';
 import {CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import {ingredientPropType} from '../../../../prop-types'
 import PropTypes from 'prop-types';
@@ -8,9 +8,16 @@ import PropTypes from 'prop-types';
 
 
 const TypesOfIngredients = props => {
+
+    const heightRef = useRef(null);
  
+    useEffect(()=> {
+        props.recordcoordinates(props.children, heightRef.current.offsetHeight)
+    })
+
+
     return(
-        <div className={style.TypesOfIngredients}>
+        <div className={style.TypesOfIngredients} ref={heightRef}>
             <h2 className={style.h2}>
                 {props.children}
             </h2>

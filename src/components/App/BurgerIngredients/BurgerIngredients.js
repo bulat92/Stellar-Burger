@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import style from "./BurgerIngredients.module.css";
 import TypesOfIngredients from "./TypesOfIngredients/TypesOfIngredients";
 import TypesList from "./TypesList/TypesList";
@@ -7,36 +7,50 @@ import {ingredientPropType} from '../../../prop-types';
 
 const BurgerIngredients = (props) => {
 
-    const [arrOfTypes, setArrOfTypes] = useState([{
-        'id': '0',
-        'nameRu': 'Булки',
-        'name':'bun'},
-        {
-        'id': '1',
-        'nameRu': 'Соусы',
-        'name':'sauce'},
-        {
-        'id': '2',
-        'nameRu': 'Начинки',
-        'name':'main'}]);
+    const mainSection = useRef(null);
  
-    const ScrolFunc = () => {
-        
-    }        
+    const [tabList, setTabList] = useState([{
+    'id': '0',
+    'nameRu': 'Булки',
+    'name':'bun',
+    'coordinates' : 0},
+    {
+    'id': '1',
+    'nameRu': 'Соусы',
+    'name':'sauce',
+    'coordinates' : 200},
+    {
+    'id': '2',
+    'nameRu': 'Начинки',
+    'name':'main',
+    'coordinates' : 400}]);
 
+    const recordcoordinates = (name, value) =>{
+
+         const index = tabList.findIndex( tab => tab.nameRu === name);
+
+         if(index === -1) {
+             return
+         }
+         
+        tabList[index].coordinates = value;
+        setTabList(tabList);
+    }
+
+    const sectuionScrollFunc = () => {
+        mainSection.scrollIntoView({ behavior: "smooth" })
+    }
+
+ 
     return(
         <section>
-            <TypesList list={arrOfTypes}/>
-            <section className={style.BurgerIngredients} >
-                <TypesOfIngredients onClick={props.onClick} arr={props.arr.filter(el => {if(el.type == 'bun') return el})}>
-                    Булки
-                </TypesOfIngredients>
-                <TypesOfIngredients onClick={props.onClick} arr={props.arr.filter(el => {if(el.type == 'sauce') return el})}>
-                    Соусы
-                </TypesOfIngredients>
-                <TypesOfIngredients onClick={props.onClick} arr={props.arr.filter(el => {if(el.type == 'main') return el})}>
-                    Начинки
-                </TypesOfIngredients>
+            <TypesList tabList={tabList} />
+            <section className={style.BurgerIngredients} ref={mainSection}>
+                {tabList.map((tab, index) => (
+                    <TypesOfIngredients recordcoordinates={recordcoordinates} key={index} onClick={props.onClick}  arr={props.arr.filter(el => {if(el.type === tab.name) return el})}>
+                        {tab.nameRu}
+                    </TypesOfIngredients>
+                ))}
             </section>
         </section>
     );
