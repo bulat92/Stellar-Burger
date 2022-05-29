@@ -3,7 +3,7 @@ import style from './header-Items.module.css';
 import ButonsWithIcons from './butonsWithIcons/butonsWithIcons';
 import {ProfileIcon, ListIcon, BurgerIcon}  from '@ya.praktikum/react-developer-burger-ui-components';
  
-function HeaderItems(){
+const HeaderItems = () => {
 
     const [BurgerIconType, setBurgerIconType] = useState("secondary");
     const [ListIconType, setListIconType] = useState("secondary");

@@ -1,5 +1,5 @@
 import style from "./TypesOfIngredients.module.css";
-import React from 'react';
+import {useEffect, useRef} from 'react';
 import {CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import {ingredientPropType} from '../../../../prop-types'
 import PropTypes from 'prop-types';
@@ -8,16 +8,23 @@ import PropTypes from 'prop-types';
 
 
 const TypesOfIngredients = props => {
+
+    const heightRef = useRef(null);
  
+    useEffect(()=> {
+        props.recordcoordinates(props.children, heightRef.current.offsetHeight)
+    })
+
+
     return(
-        <div className={style.TypesOfIngredients}>
+        <div className={style.TypesOfIngredients} ref={heightRef}>
             <h2 className={style.h2}>
                 {props.children}
             </h2>
             
             <div className={style.typesBox}>
-                {props.arr.map(el=>(
-                    <div key={el._id} className={style.type}>
+                {props.arr.map((el, index)=>(
+                    <div key={index} className={style.type} onClick={() => props.onClick(el)}>
                         {/* <Counter className={style.Counter} count={1} size="small" /> */}
                         <img className={style.typesImg} src={el.image_mobile} alt="" />
                         <div className={style.priceBox}>
