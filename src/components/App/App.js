@@ -10,7 +10,7 @@ import {ingredientPropType} from '../../prop-types';
 
 const url = 'https://norma.nomoreparties.space/api/ingredients';
 
-const App = () =>{
+const App = () => {
  
   const [IngredientDetailModalIsOpen, setIngredientDetailModalIsOpen] = useState(false),
         [orderDetailsModalIsOpen, setOrderDetailsModalIsOpen] = useState(false),

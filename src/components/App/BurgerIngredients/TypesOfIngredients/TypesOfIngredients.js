@@ -1,5 +1,5 @@
 import style from "./TypesOfIngredients.module.css";
-import {useEffect, useRef} from 'react';
+import {forwardRef} from 'react';
 import {CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import {ingredientPropType} from '../../../../prop-types'
 import PropTypes from 'prop-types';
@@ -7,17 +7,11 @@ import PropTypes from 'prop-types';
 
 
 
-const TypesOfIngredients = props => {
+const TypesOfIngredients = forwardRef((props, ref) => {
 
-    const heightRef = useRef(null);
- 
-    useEffect(()=> {
-        props.recordcoordinates(props.children, heightRef.current.offsetHeight)
-    })
-
-
+     
     return(
-        <div className={style.TypesOfIngredients} ref={heightRef}>
+        <div className={style.TypesOfIngredients} id={props.id} ref={ref}>
             <h2 className={style.h2}>
                 {props.children}
             </h2>
@@ -38,7 +32,7 @@ const TypesOfIngredients = props => {
             </div>
         </div>
     );
-};
+})
 
 TypesOfIngredients.propTypes = {
     arr: PropTypes.arrayOf(ingredientPropType.isRequired).isRequired,
