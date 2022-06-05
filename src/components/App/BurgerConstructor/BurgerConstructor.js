@@ -5,7 +5,7 @@ import {ConstructorElement, DragIcon} from '@ya.praktikum/react-developer-burger
 import PropTypes from 'prop-types';
 import {ingredientPropType} from '../../../prop-types';
 import { v4 as uuidv4 } from 'uuid';
-import {BurgerConstructorContext} from '../BurgerConstructorContext';
+import {BurgerConstructorContext} from '../../../services/BurgerContext';
 
 const BurgerConstructor = () => {
  
@@ -30,8 +30,8 @@ const BurgerConstructor = () => {
             </div>
           <div className={`${style.scrollWindow} mt-4 mb-4`}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }} className='mr-2'>
-                {filterBun.map(el =>(
-                  <div className={style.dotsAndConstructorElement} key={uuidv4()}>
+                {filterBun.map((el, index) =>(
+                  <div className={style.dotsAndConstructorElement} key={index}>
                     <DragIcon type="primary" />
                     <ConstructorElement
                     isLocked={false}

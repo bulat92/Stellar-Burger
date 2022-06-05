@@ -5,29 +5,16 @@ import TabList from "./TabList/TabList";
 import PropTypes from 'prop-types';
 import {ingredientPropType} from '../../../prop-types';
 import { useInView } from 'react-intersection-observer';
-import {BurgerIngredientsContext} from '../BurgerConstructorContext';
-
-
+import {BurgerIngredientsContext} from '../../../services/BurgerContext';
+import {tabListArray} from '../../../services/TotalConsts'
+ 
 const BurgerIngredients = () => {
 
   const 
     mainSection = useRef(null),
     [currentTab, setCurrentTab] = useState('bun'),
     {fromFetch} = useContext(BurgerIngredientsContext);
- 
-    const tabListArray = [{
-        'nameRu': 'Булки',
-        'name':'bun'},
-      {
-        'nameRu': 'Соусы',
-        'name':'sauce'},
-      {
-        'nameRu': 'Начинки',
-        'name':'main'
-      }
-    ];
- 
-    
+  
     const sectuionScrollFunc = (tab) => { 
          
         const element = document.getElementById(tab);
@@ -36,9 +23,7 @@ const BurgerIngredients = () => {
             element.scrollIntoView({behavior: "smooth" });
         }
     }
-  
-
-
+ 
     const [bunsRef, inViewBuns] = useInView({
         threshold: 0.8,
     });

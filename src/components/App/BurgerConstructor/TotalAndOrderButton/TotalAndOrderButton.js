@@ -3,7 +3,7 @@ import style from './TotalAndOrderButton.module.css'
 import {Button, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import PropTypes from 'prop-types';
 import {littleProps} from '../../../../little-props';
-import {BurgerConstructorContext} from '../../BurgerConstructorContext';
+import {BurgerConstructorContext} from '../../../../services/BurgerContext';
 
 const TotalAndOrderButton = () => {
 

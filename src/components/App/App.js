@@ -7,79 +7,41 @@ import IngredientDetails from '../Modal/ModalOverlay/IngredientDetails/Ingredien
 import OrderDetails from '../Modal/ModalOverlay/OrderDetails/OrderDetails';
 import PropTypes from 'prop-types';
 import {ingredientPropType} from '../../prop-types';
-import {BurgerConstructorContext, BurgerIngredientsContext} from './BurgerConstructorContext';
+import {BurgerConstructorContext, BurgerIngredientsContext} from '../../services/BurgerContext';
 import {OrderIngredients} from '../../utils/data';
-
-
-const 
-  urlGET = 'https://norma.nomoreparties.space/api/ingredients',
-  urlPOST = 'https://norma.nomoreparties.space/api/orders';
+import {urlGET} from '../../services/TotalConsts';
+import {fetchFunc} from '../../fetch/fetchFunc';
 
 
 const App = () => {
-
  
   const 
     [IngredientDetailModalIsOpen, setIngredientDetailModalIsOpen] = useState(false),
     [orderDetailsModalIsOpen, setOrderDetailsModalIsOpen] = useState(false),
     [fromFetch, setFromFetch] = useState([]),
-    [fromFetchOrderInfo, setFromFetchOrderInfo] = useState(false);
+    [fromFetchOrderNumber, setFromFetchOrderInfo] = useState(null);
 
 
 
   const ToggleIngredientDetailModal = (backProp) => {
     IngredientDetailModalIsOpen ? setIngredientDetailModalIsOpen(false) : setIngredientDetailModalIsOpen(backProp);
   }     
-  const escapeKeyFunc = (e) => {
-    e.code === 'Escape' && setIngredientDetailModalIsOpen(false);
-    e.code === 'Escape' && setOrderDetailsModalIsOpen(false);
-  }
   const ToggleOrderDetailsModal = () => {
-    sendOrderIngredients();
+    fetchFunc(OrderIngredients).then(number => setFromFetchOrderInfo(number));
     setOrderDetailsModalIsOpen(!orderDetailsModalIsOpen)
   }
   
-  
-  const sendOrderIngredients = () => {
-
-     const idIngredients = OrderIngredients.map((el) => { return el._id});
-     
-     fetch(urlPOST, {
-       method: 'POST',
-         headers: {
-           "Content-Type": "application/json;charset=utf-8",
-         },
-         body: JSON.stringify({
-           ingredients: idIngredients
-         })
-     })
-     .then(response =>{ 
-       if(response.ok === true){
-         return response.json()
-       }
-     }) 
-     .then(response => 
-         setFromFetchOrderInfo(response)
-     )
-     .catch(e=> setFromFetchOrderInfo(false));
-  }
-
-
   useEffect(() => {
     fetch(urlGET)
     .then(response =>{ 
       if(response.ok === true){
         return response.json()
+      } else {
+        throw new Error("Ошибка HTTP: " + response.status);
       }
     })
     .then(response => setFromFetch(response.data))
     .catch(e=> setFromFetch(false));
-
-    window.addEventListener('keydown', escapeKeyFunc);
-
-    return() => {
-      window.removeEventListener('keydown', escapeKeyFunc);
-    }
   },[urlGET])
 
 
@@ -91,15 +53,25 @@ const App = () => {
         <main style={style.App}>
 
             {IngredientDetailModalIsOpen && 
-              <Modal onClick={ToggleIngredientDetailModal} details={IngredientDetailModalIsOpen}>
-                <IngredientDetails details={IngredientDetailModalIsOpen}/>
+              <Modal 
+                onClick={ToggleIngredientDetailModal} 
+                details={IngredientDetailModalIsOpen} 
+                setIngredientDetailModalIsOpen={setIngredientDetailModalIsOpen}
+                setOrderDetailsModalIsOpen={setOrderDetailsModalIsOpen}
+                >
+                  <IngredientDetails details={IngredientDetailModalIsOpen}/>
               </Modal>
             }
 
             {orderDetailsModalIsOpen && 
-                  fromFetchOrderInfo &&
-              <Modal onClick={ToggleOrderDetailsModal} details={orderDetailsModalIsOpen}>
-                <OrderDetails orderInfo={fromFetchOrderInfo.order.number}/>
+                  fromFetchOrderNumber &&
+              <Modal 
+                onClick={ToggleOrderDetailsModal} 
+                details={orderDetailsModalIsOpen}
+                setIngredientDetailModalIsOpen={setIngredientDetailModalIsOpen}
+                setOrderDetailsModalIsOpen={setOrderDetailsModalIsOpen}
+                >
+                  <OrderDetails orderInfo={fromFetchOrderNumber} />
               </Modal>
             }
 
