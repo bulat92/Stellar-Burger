@@ -7,16 +7,23 @@ import IngredientDetails from '../Modal/ModalOverlay/IngredientDetails/Ingredien
 import OrderDetails from '../Modal/ModalOverlay/OrderDetails/OrderDetails';
 import PropTypes from 'prop-types';
 import {ingredientPropType} from '../../prop-types';
+import {BurgerConstructorContext, BurgerIngredientsContext} from './BurgerConstructorContext';
+import {OrderIngredients} from '../../utils/data';
 
-const url = 'https://norma.nomoreparties.space/api/ingredients';
+
+const 
+  urlGET = 'https://norma.nomoreparties.space/api/ingredients',
+  urlPOST = 'https://norma.nomoreparties.space/api/orders';
+
 
 const App = () => {
+
  
-  const [IngredientDetailModalIsOpen, setIngredientDetailModalIsOpen] = useState(false),
-        [orderDetailsModalIsOpen, setOrderDetailsModalIsOpen] = useState(false),
-        [isLoading, setIsLoading] = useState(true),
-        [hasError, setHasError] = useState(false),
-        [fromFetch, setFromFetch] = useState([]);
+  const 
+    [IngredientDetailModalIsOpen, setIngredientDetailModalIsOpen] = useState(false),
+    [orderDetailsModalIsOpen, setOrderDetailsModalIsOpen] = useState(false),
+    [fromFetch, setFromFetch] = useState([]),
+    [fromFetchOrderInfo, setFromFetchOrderInfo] = useState(false);
 
 
 
@@ -28,56 +35,88 @@ const App = () => {
     e.code === 'Escape' && setOrderDetailsModalIsOpen(false);
   }
   const ToggleOrderDetailsModal = () => {
+    sendOrderIngredients();
     setOrderDetailsModalIsOpen(!orderDetailsModalIsOpen)
+  }
+  
+  
+  const sendOrderIngredients = () => {
+
+     const idIngredients = OrderIngredients.map((el) => { return el._id});
+     
+     fetch(urlPOST, {
+       method: 'POST',
+         headers: {
+           "Content-Type": "application/json;charset=utf-8",
+         },
+         body: JSON.stringify({
+           ingredients: idIngredients
+         })
+     })
+     .then(response =>{ 
+       if(response.ok === true){
+         return response.json()
+       }
+     }) 
+     .then(response => 
+         setFromFetchOrderInfo(response)
+     )
+     .catch(e=> setFromFetchOrderInfo(false));
   }
 
 
   useEffect(() => {
-    setIsLoading(true)
-    fetch(url)
+    fetch(urlGET)
     .then(response =>{ 
       if(response.ok === true){
         return response.json()
       }
     })
-    .then(response => setFromFetch(response.data), setIsLoading(false))
-    .catch(e=> setHasError(true), setIsLoading(false));
+    .then(response => setFromFetch(response.data))
+    .catch(e=> setFromFetch(false));
 
     window.addEventListener('keydown', escapeKeyFunc);
 
     return() => {
       window.removeEventListener('keydown', escapeKeyFunc);
     }
-  },[url])
+  },[urlGET])
 
 
 
   
 
       return (
-        !isLoading &&
-        !hasError &&
+        setFromFetch &&
         <main style={style.App}>
+
             {IngredientDetailModalIsOpen && 
               <Modal onClick={ToggleIngredientDetailModal} details={IngredientDetailModalIsOpen}>
                 <IngredientDetails details={IngredientDetailModalIsOpen}/>
               </Modal>
             }
+
             {orderDetailsModalIsOpen && 
+                  fromFetchOrderInfo &&
               <Modal onClick={ToggleOrderDetailsModal} details={orderDetailsModalIsOpen}>
-                <OrderDetails details={orderDetailsModalIsOpen}/>
+                <OrderDetails orderInfo={fromFetchOrderInfo.order.number}/>
               </Modal>
             }
-            <BurgerIngredients arr = {fromFetch} onClick={ToggleIngredientDetailModal}/>{/* left */}
-            <BurgerConstructor onClick={ToggleOrderDetailsModal} />{/* right */}
+
+            <BurgerIngredientsContext.Provider value={{fromFetch, ToggleIngredientDetailModal}}>
+              <BurgerIngredients/>{/* left */}
+            </BurgerIngredientsContext.Provider>
+
+            <BurgerConstructorContext.Provider value = {{ ToggleOrderDetailsModal, OrderIngredients}}>
+              <BurgerConstructor/>{/* right */}
+            </BurgerConstructorContext.Provider>
+
         </main>
       );
 }
  
-App.propTypes = {
+/* App.propTypes = {
   fromFetch: PropTypes.arrayOf(ingredientPropType.isRequired).isRequired,
-} 
+}  */
 
 export default App;
-
-/* react-modals */

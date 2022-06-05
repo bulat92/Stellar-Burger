@@ -1,14 +1,19 @@
 import style from "./BurgerConstructor.module.css";
-import Total from './Total/Total'
+import { useContext } from "react";
+import TotalAndOrderButton from './TotalAndOrderButton/TotalAndOrderButton'
 import {ConstructorElement, DragIcon} from '@ya.praktikum/react-developer-burger-ui-components';
-import {arr} from '../../../utils/data';
 import PropTypes from 'prop-types';
 import {ingredientPropType} from '../../../prop-types';
+import { v4 as uuidv4 } from 'uuid';
+import {BurgerConstructorContext} from '../BurgerConstructorContext';
 
-const BurgerConstructor = (props) => {
+const BurgerConstructor = () => {
  
-      const filterBun = arr.filter((el => { if(el.type != 'bun') return el}));
-      const totalNumber = arr.reduce((sum, el) => sum = Number(el.price) + sum, 0);
+  const 
+    {OrderIngredients} = useContext(BurgerConstructorContext),
+    filterBun = OrderIngredients.filter(el => { if(el.type !== 'bun') return el}),
+    objectBun = OrderIngredients.find(el => { return el.type === 'bun'});
+            
       
  
       return (
@@ -16,17 +21,17 @@ const BurgerConstructor = (props) => {
             <div className={`${style.outDotsConstructorElement} mr-4`}>
               <ConstructorElement
                 type="top"
-                key={arr[0]._id}
+                key={uuidv4()}
                 isLocked={true}
-                text={`${arr[0].name} (верх)`}
-                price={arr[0].price}
-                thumbnail={arr[0].image_mobile}
+                text={`${objectBun.name} (верх)`}
+                price={objectBun.price}
+                thumbnail={objectBun.image_mobile}
                 />
             </div>
           <div className={`${style.scrollWindow} mt-4 mb-4`}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }} className='mr-2'>
-                {filterBun.map((el, index)=>(
-                  <div className={style.dotsAndConstructorElement} key={index}>
+                {filterBun.map(el =>(
+                  <div className={style.dotsAndConstructorElement} key={uuidv4()}>
                     <DragIcon type="primary" />
                     <ConstructorElement
                     isLocked={false}
@@ -41,21 +46,21 @@ const BurgerConstructor = (props) => {
           </div> 
           <div className={`${style.outDotsConstructorElement} mr-4`}>
             <ConstructorElement 
-              key={`${arr[0]._id}Bottom`}
+              key={uuidv4()}
               type="bottom"
               isLocked={true}
-              text={`${arr[0].name} (низ)`}
-              price={arr[0].price}
-              thumbnail={arr[0].image_mobile}
+              text={`${objectBun.name} (низ)`}
+              price={objectBun.price}
+              thumbnail={objectBun.image_mobile}
               />
           </div> 
-          <Total totalNumber = {totalNumber} onClick={props.onClick}/>     
+          <TotalAndOrderButton />     
         </section>
       );
 }
 
-BurgerConstructor.propTypes = {
-  arr : PropTypes.arrayOf(ingredientPropType.isRequired).isRequired,
-}
+/* BurgerConstructor.contextTypes = {
+  OrderIngredients : PropTypes.arrayOf(ingredientPropType.isRequired).isRequired,
+} */
  
 export default BurgerConstructor;
