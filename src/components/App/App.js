@@ -7,77 +7,88 @@ import IngredientDetails from '../Modal/ModalOverlay/IngredientDetails/Ingredien
 import OrderDetails from '../Modal/ModalOverlay/OrderDetails/OrderDetails';
 import PropTypes from 'prop-types';
 import {ingredientPropType} from '../../prop-types';
+import {BurgerConstructorContext, BurgerIngredientsContext} from '../../services/BurgerContext';
+import {OrderIngredients} from '../../utils/data';
+import {urlGET} from '../../services/TotalConsts';
+import {fetchFunc} from '../../fetch/fetchFunc';
 
-const url = 'https://norma.nomoreparties.space/api/ingredients';
 
 const App = () => {
  
-  const [IngredientDetailModalIsOpen, setIngredientDetailModalIsOpen] = useState(false),
-        [orderDetailsModalIsOpen, setOrderDetailsModalIsOpen] = useState(false),
-        [isLoading, setIsLoading] = useState(true),
-        [hasError, setHasError] = useState(false),
-        [fromFetch, setFromFetch] = useState([]);
+  const 
+    [IngredientDetailModalIsOpen, setIngredientDetailModalIsOpen] = useState(false),
+    [orderDetailsModalIsOpen, setOrderDetailsModalIsOpen] = useState(false),
+    [fromFetch, setFromFetch] = useState([]),
+    [fromFetchOrderNumber, setFromFetchOrderInfo] = useState(null);
 
 
 
   const ToggleIngredientDetailModal = (backProp) => {
     IngredientDetailModalIsOpen ? setIngredientDetailModalIsOpen(false) : setIngredientDetailModalIsOpen(backProp);
   }     
-  const escapeKeyFunc = (e) => {
-    e.code === 'Escape' && setIngredientDetailModalIsOpen(false);
-    e.code === 'Escape' && setOrderDetailsModalIsOpen(false);
-  }
   const ToggleOrderDetailsModal = () => {
+    fetchFunc(OrderIngredients).then(number => setFromFetchOrderInfo(number));
     setOrderDetailsModalIsOpen(!orderDetailsModalIsOpen)
   }
-
-
+  
   useEffect(() => {
-    setIsLoading(true)
-    fetch(url)
+    fetch(urlGET)
     .then(response =>{ 
       if(response.ok === true){
         return response.json()
+      } else {
+        throw new Error("Ошибка HTTP: " + response.status);
       }
     })
-    .then(response => setFromFetch(response.data), setIsLoading(false))
-    .catch(e=> setHasError(true), setIsLoading(false));
-
-    window.addEventListener('keydown', escapeKeyFunc);
-
-    return() => {
-      window.removeEventListener('keydown', escapeKeyFunc);
-    }
-  },[url])
+    .then(response => setFromFetch(response.data))
+    .catch(e=> setFromFetch(false));
+  },[urlGET])
 
 
 
   
 
       return (
-        !isLoading &&
-        !hasError &&
+        setFromFetch &&
         <main style={style.App}>
+
             {IngredientDetailModalIsOpen && 
-              <Modal onClick={ToggleIngredientDetailModal} details={IngredientDetailModalIsOpen}>
-                <IngredientDetails details={IngredientDetailModalIsOpen}/>
+              <Modal 
+                onClick={ToggleIngredientDetailModal} 
+                details={IngredientDetailModalIsOpen} 
+                setIngredientDetailModalIsOpen={setIngredientDetailModalIsOpen}
+                setOrderDetailsModalIsOpen={setOrderDetailsModalIsOpen}
+                >
+                  <IngredientDetails details={IngredientDetailModalIsOpen}/>
               </Modal>
             }
+
             {orderDetailsModalIsOpen && 
-              <Modal onClick={ToggleOrderDetailsModal} details={orderDetailsModalIsOpen}>
-                <OrderDetails details={orderDetailsModalIsOpen}/>
+                  fromFetchOrderNumber &&
+              <Modal 
+                onClick={ToggleOrderDetailsModal} 
+                details={orderDetailsModalIsOpen}
+                setIngredientDetailModalIsOpen={setIngredientDetailModalIsOpen}
+                setOrderDetailsModalIsOpen={setOrderDetailsModalIsOpen}
+                >
+                  <OrderDetails orderInfo={fromFetchOrderNumber} />
               </Modal>
             }
-            <BurgerIngredients arr = {fromFetch} onClick={ToggleIngredientDetailModal}/>{/* left */}
-            <BurgerConstructor onClick={ToggleOrderDetailsModal} />{/* right */}
+
+            <BurgerIngredientsContext.Provider value={{fromFetch, ToggleIngredientDetailModal}}>
+              <BurgerIngredients/>{/* left */}
+            </BurgerIngredientsContext.Provider>
+
+            <BurgerConstructorContext.Provider value = {{ ToggleOrderDetailsModal, OrderIngredients}}>
+              <BurgerConstructor/>{/* right */}
+            </BurgerConstructorContext.Provider>
+
         </main>
       );
 }
  
-App.propTypes = {
+/* App.propTypes = {
   fromFetch: PropTypes.arrayOf(ingredientPropType.isRequired).isRequired,
-} 
+}  */
 
 export default App;
-
-/* react-modals */
