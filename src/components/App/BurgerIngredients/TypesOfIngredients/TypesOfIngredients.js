@@ -1,30 +1,27 @@
+import {useContext} from 'react';
 import style from "./TypesOfIngredients.module.css";
-import {useEffect, useRef} from 'react';
+import {forwardRef} from 'react';
 import {CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import {ingredientPropType} from '../../../../prop-types'
 import PropTypes from 'prop-types';
+import {BurgerIngredientsContext} from '../../../../services/BurgerContext';
 /* import {Counter} from '@ya.praktikum/react-developer-burger-ui-components'; */
 
 
 
-const TypesOfIngredients = props => {
+const TypesOfIngredients = forwardRef((props, ref) => {
 
-    const heightRef = useRef(null);
- 
-    useEffect(()=> {
-        props.recordcoordinates(props.children, heightRef.current.offsetHeight)
-    })
-
-
+    const {ToggleIngredientDetailModal} = useContext(BurgerIngredientsContext);
+     
     return(
-        <div className={style.TypesOfIngredients} ref={heightRef}>
+        <div className={style.TypesOfIngredients} id={props.id} ref={ref}>
             <h2 className={style.h2}>
                 {props.children}
             </h2>
             
             <div className={style.typesBox}>
-                {props.arr.map((el, index)=>(
-                    <div key={index} className={style.type} onClick={() => props.onClick(el)}>
+                {props.arr.map( (el, index) =>(
+                    <div key={index} className={style.type} onClick={() => ToggleIngredientDetailModal(el)}>
                         {/* <Counter className={style.Counter} count={1} size="small" /> */}
                         <img className={style.typesImg} src={el.image_mobile} alt="" />
                         <div className={style.priceBox}>
@@ -38,7 +35,7 @@ const TypesOfIngredients = props => {
             </div>
         </div>
     );
-};
+})
 
 TypesOfIngredients.propTypes = {
     arr: PropTypes.arrayOf(ingredientPropType.isRequired).isRequired,
