@@ -1,4 +1,4 @@
-const urlGET = 'https://norma.nomoreparties.space/api/ingredients';
+import { ingredientsURL } from '../url';
 
 export const
     GET_INGREDIENTS = 'GET_INGREDIENTS',
@@ -18,7 +18,7 @@ export const fetchGetIngredients = () => {
             type: GET_INGREDIENTS_REQUEST
         }) 
 
-        fetch(urlGET)
+        fetch(`https://norma.nomoreparties.space/api/${ingredientsURL}`)
         .then(response => { 
           if(response.ok === true){
             return response.json();

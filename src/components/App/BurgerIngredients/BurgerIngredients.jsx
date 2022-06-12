@@ -8,7 +8,7 @@ import { useInView } from "react-intersection-observer";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchGetIngredients } from "../../../services/action/burgerIngredients";
 
-const BurgerIngredients = () => {
+export const BurgerIngredients = () => {
   const { ingredients } = useSelector((store) => store.burgers);
 
   const dispatch = useDispatch();
@@ -56,8 +56,6 @@ const BurgerIngredients = () => {
       />
       {ingredients && (
         <section className={style.BurgerIngredients} ref={mainSection}>
-
-
           <TypesOfIngredients
             ref={bunsRef}
             id="bun"
@@ -67,7 +65,6 @@ const BurgerIngredients = () => {
           >
             Булки
           </TypesOfIngredients>
-
 
           <TypesOfIngredients
             ref={saucesRef}
@@ -79,7 +76,6 @@ const BurgerIngredients = () => {
             Соусы
           </TypesOfIngredients>
 
-
           <TypesOfIngredients
             ref={mainsRef}
             id="main"
@@ -89,8 +85,6 @@ const BurgerIngredients = () => {
           >
             Начинки
           </TypesOfIngredients>
-
-          
         </section>
       )}
     </section>
@@ -99,5 +93,3 @@ const BurgerIngredients = () => {
 /* BurgerIngredients.propTypes = {
     arr: PropTypes.arrayOf(ingredientPropType.isRequired).isRequired,
 }  */
-
-export default BurgerIngredients;

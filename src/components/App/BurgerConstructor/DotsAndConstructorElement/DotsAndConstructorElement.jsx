@@ -1,6 +1,7 @@
 import style from "./DotsAndConstructorElement.module.css";
 import { useRef } from "react";
 import { useDispatch } from "react-redux";
+import { v4 as uuidv4 } from "uuid";
 import {
   ConstructorElement,
   DragIcon,
@@ -16,13 +17,8 @@ export const DotsAndConstructorElement = ({ el, index }) => {
 
   const dispatch = useDispatch();
 
-  const [{ handlerId }, drop] = useDrop({
+  const [, drop] = useDrop({
     accept: "inConstructor",
-    collect(monitor) {
-      return {
-        handlerId: monitor.getHandlerId,
-      };
-    },
     hover(item, monitor) {
       if (!ref.current) {
         return;
@@ -59,8 +55,8 @@ export const DotsAndConstructorElement = ({ el, index }) => {
       dispatch({
         type: SORT_INGREDIENT,
         dragIndex: dragIndex,
-        hoverIndex: hoverIndex
-      })
+        hoverIndex: hoverIndex,
+      });
       // Примечание: здесь мы изменяем элемент монитора!
       // Вообще лучше избегать мутаций,
       // но здесь хорошо ради производительности
@@ -72,19 +68,14 @@ export const DotsAndConstructorElement = ({ el, index }) => {
   const [, drag] = useDrag({
     type: "inConstructor",
     item: () => {
-      return {id:el._id, index};
+      return { id: el._id, index };
     },
   });
 
   drag(drop(ref));
 
   return (
-    <div
-      className={style.dotsAndConstructorElement}
-      ref={ref}
-      key={index}
-      data-handler-id={handlerId}
-    >
+    <div className={style.dotsAndConstructorElement} ref={ref} key={uuidv4}>
       <DragIcon type="primary" />
       <ConstructorElement
         isLocked={false}

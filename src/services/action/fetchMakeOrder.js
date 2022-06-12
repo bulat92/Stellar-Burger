@@ -1,4 +1,4 @@
-const urlPOST = 'https://norma.nomoreparties.space/api/orders';
+import { ordersURL } from '../url';
 
 export const
     POST_ORDER_SUCCESS = 'POST_ORDER',
@@ -14,7 +14,7 @@ export const fetchMakeOrder = (idIngredients) => {
         dispatch({
             type: POST_ORDER_REQUEST
         })
-        fetch(urlPOST, {
+        fetch(`https://norma.nomoreparties.space/api/${ordersURL}`, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json;charset=utf-8",

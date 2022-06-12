@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { fetchMakeOrder } from "../../../../services/action/fetchMakeOrder";
 import { useSelector } from "react-redux";
 
-const TotalAndOrderButton = () => {
+export const TotalAndOrderButton = () => {
   const { OrderIngredients, bun } = useSelector(
     (store) => store.BurgerConstructor
   );
@@ -36,5 +36,3 @@ const TotalAndOrderButton = () => {
     </div>
   );
 };
-
-export default TotalAndOrderButton;

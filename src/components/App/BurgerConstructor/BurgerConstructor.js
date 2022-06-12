@@ -1,5 +1,5 @@
 import style from "./BurgerConstructor.module.css";
-import TotalAndOrderButton from "./TotalAndOrderButton/TotalAndOrderButton";
+import { TotalAndOrderButton }from "./TotalAndOrderButton/TotalAndOrderButton";
 import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
 import { ingredientPropType } from "../../../prop-types";
@@ -8,18 +8,11 @@ import { useDrop } from "react-dnd";
 import { useSelector, useDispatch } from "react-redux";
 import {
   ADD_INGREDIENT,
-  ADD_BUN,
-  DELETE_INGREDIENT,
-  SORT_INGREDIENT,
+  ADD_BUN
 } from "../../../services/action/BurgerConstructor";
-import {
-  INCREASE_INGREDIENT,
-  DECREASE_INGREDIENT,
-} 
-from "../../../services/action/burgerIngredients";
 import { DotsAndConstructorElement } from "./DotsAndConstructorElement/DotsAndConstructorElement";
 
-const BurgerConstructor = () => {
+export const BurgerConstructor = () => {
   const dispatch = useDispatch();
 
   const [, ref] = useDrop({
@@ -29,10 +22,6 @@ const BurgerConstructor = () => {
         dispatch({
           type: ADD_INGREDIENT,
           item: item,
-        });
-        dispatch({
-          type: INCREASE_INGREDIENT,
-          id: item._id,
         });
       } else {
         dispatch({
@@ -87,5 +76,3 @@ const BurgerConstructor = () => {
 /* BurgerConstructor.contextTypes = {
   OrderIngredients : PropTypes.arrayOf(ingredientPropType.isRequired).isRequired,
 } */
-
-export default BurgerConstructor;
