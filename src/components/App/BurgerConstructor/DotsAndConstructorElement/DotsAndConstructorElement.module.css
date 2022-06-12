@@ -9,10 +9,8 @@
     background: #131316;
     max-width: 600px;
 }
- 
-.scrollWindow{
-    width: 600px;
-    max-height: 46vh;
-    overflow-y: scroll;
-    overflow-x: hidden;
+.dotsAndConstructorElement{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

@@ -1,9 +1,6 @@
 import style from "./BurgerConstructor.module.css";
 import TotalAndOrderButton from "./TotalAndOrderButton/TotalAndOrderButton";
-import {
-  ConstructorElement,
-  DragIcon,
-} from "@ya.praktikum/react-developer-burger-ui-components";
+import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
 import { ingredientPropType } from "../../../prop-types";
 import { v4 as uuidv4 } from "uuid";
@@ -13,11 +10,14 @@ import {
   ADD_INGREDIENT,
   ADD_BUN,
   DELETE_INGREDIENT,
+  SORT_INGREDIENT,
 } from "../../../services/action/BurgerConstructor";
 import {
   INCREASE_INGREDIENT,
-  DECREASE_INGREDIENT
-} from '../../../services/action/burgerIngredients'
+  DECREASE_INGREDIENT,
+} 
+from "../../../services/action/burgerIngredients";
+import { DotsAndConstructorElement } from "./DotsAndConstructorElement/DotsAndConstructorElement";
 
 const BurgerConstructor = () => {
   const dispatch = useDispatch();
@@ -32,8 +32,8 @@ const BurgerConstructor = () => {
         });
         dispatch({
           type: INCREASE_INGREDIENT,
-          id: item._id
-        })
+          id: item._id,
+        });
       } else {
         dispatch({
           type: ADD_BUN,
@@ -65,18 +65,7 @@ const BurgerConstructor = () => {
           className="mr-2"
         >
           {OrderIngredients.map((el, index) => (
-            <div className={style.dotsAndConstructorElement} key={index}>
-              <DragIcon type="primary" />
-              <ConstructorElement
-                isLocked={false}
-                text={el.name}
-                price={el.price}
-                thumbnail={el.image_mobile}
-                handleClose={() => {
-                  dispatch({ type: DELETE_INGREDIENT, index: index });
-                }}
-              />
-            </div>
+            <DotsAndConstructorElement el={el} key={index} index={index} />
           ))}
         </div>
       </div>
