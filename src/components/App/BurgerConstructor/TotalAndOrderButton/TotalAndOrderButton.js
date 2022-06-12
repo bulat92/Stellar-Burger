@@ -1,31 +1,40 @@
-import React, {useContext} from 'react';
-import style from './TotalAndOrderButton.module.css'
-import {Button, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
-import PropTypes from 'prop-types';
-import {littleProps} from '../../../../little-props';
-import {BurgerConstructorContext} from '../../../../services/BurgerContext';
+import style from "./TotalAndOrderButton.module.css";
+import {
+  Button,
+  CurrencyIcon,
+} from "@ya.praktikum/react-developer-burger-ui-components";
+import { useDispatch } from "react-redux";
+import { fetchMakeOrder } from "../../../../services/action/fetchMakeOrder";
+import { useSelector } from "react-redux";
 
 const TotalAndOrderButton = () => {
+  const { OrderIngredients, bun } = useSelector(
+    (store) => store.BurgerConstructor
+  );
 
-    const   {OrderIngredients, ToggleOrderDetailsModal} = useContext(BurgerConstructorContext),
-            priceBun = OrderIngredients.find(el =>{ return el.type === 'bun'}).price,
-            totalNumber = OrderIngredients.reduce((sum, el) => sum = Number(el.price) + sum, 0) + Number(priceBun);
+  const dispatch = useDispatch();
 
-    return(
-        <div className={`${style.Total}`}>
-            <div className={`${style.priceBox}`}>
-                <p className="text text_type_digits-medium mr-2">{totalNumber}</p>
-                <CurrencyIcon type="primary" />
-            </div> 
-            <Button onClick={ToggleOrderDetailsModal}>
-                <pre>Оформить заказ</pre>
-            </Button>
-        </div>
-    )
-}
+  const totalNumber =
+    OrderIngredients.reduce((sum, el) => (sum = Number(el.price) + sum), 0) +
+    Number(bun.price) * 2;
+    
+  const idIngredients = [...OrderIngredients.map((el) => { return el._id }), bun._id];
 
-TotalAndOrderButton.propTypes = {
-    props: PropTypes.arrayOf(littleProps)
-}
+  return (
+    <div className={`${style.Total}`}>
+      <div className={`${style.priceBox}`}>
+        <p className="text text_type_digits-medium mr-2">{totalNumber}</p>
+        <CurrencyIcon type="primary" />
+      </div>
+      <Button
+        onClick={() => {
+          dispatch(fetchMakeOrder(idIngredients));
+        }}
+      >
+        <pre>Оформить заказ</pre>
+      </Button>
+    </div>
+  );
+};
 
 export default TotalAndOrderButton;

@@ -9,6 +9,4 @@ export const tabListArray = [{
     'name':'main'
   }
 ];
-export const 
-  urlGET = 'https://norma.nomoreparties.space/api/ingredients',
-  urlPOST = 'https://norma.nomoreparties.space/api/orders';
+

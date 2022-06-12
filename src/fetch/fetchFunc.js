@@ -1,4 +1,4 @@
-const 
+/* const 
     urlGET = 'https://norma.nomoreparties.space/api/ingredients',
     urlPOST = 'https://norma.nomoreparties.space/api/orders';
 
@@ -44,4 +44,4 @@ export const fetchFunc = async (arrayId) => {
                 }
             );
     }
-}
+} */

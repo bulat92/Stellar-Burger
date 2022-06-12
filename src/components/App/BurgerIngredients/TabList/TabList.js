@@ -1,9 +1,8 @@
 import style from "./TabList.module.css";
-import {Tab} from '@ya.praktikum/react-developer-burger-ui-components';
-import PropTypes from 'prop-types';
-import {littleProps} from '../../../../little-props';
+import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
+import { tabListArray } from '../../../../consts/tabListArray';
 
-const TabList = ({ tabListArray, currentTab, sectuionScrollFunc}) => {
+const TabList = ({ currentTab, sectuionScrollFunc}) => {
  
     return(
         <div style={{ display: 'flex' }} className={style.list}>
@@ -15,8 +14,5 @@ const TabList = ({ tabListArray, currentTab, sectuionScrollFunc}) => {
         </div>
     )
 }
-
-TabList.propTypes = {
-    tabListArray: PropTypes.arrayOf(littleProps.isRequired).isRequired
-}
+ 
 export default TabList;
