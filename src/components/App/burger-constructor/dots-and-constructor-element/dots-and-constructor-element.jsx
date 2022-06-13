@@ -1,4 +1,4 @@
-import style from "./DotsAndConstructorElement.module.css";
+import style from "./dots-and-constructor-element.module.css";
 import { useRef } from "react";
 import { useDispatch } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
@@ -9,7 +9,7 @@ import {
 import {
   DELETE_INGREDIENT,
   SORT_INGREDIENT,
-} from "../../../../services/action/burgerConstructor";
+} from "../../../../services/action/burger-constructor";
 import { useDrag, useDrop } from "react-dnd";
 
 export const DotsAndConstructorElement = ({ el, index }) => {

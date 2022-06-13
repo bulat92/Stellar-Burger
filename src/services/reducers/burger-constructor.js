@@ -3,7 +3,7 @@ import {
   DELETE_INGREDIENT,
   ADD_BUN,
   SORT_INGREDIENT,
-} from "../action/burgerConstructor";
+} from "../action/burger-constructor";
 
 const initialState = {
   OrderIngredients: [],

@@ -1,10 +1,10 @@
-import style from "./TotalAndOrderButton.module.css";
+import style from "./total-and-order-button.module.css";
 import {
   Button,
   CurrencyIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useDispatch } from "react-redux";
-import { fetchMakeOrder } from "../../../../services/action/fetchMakeOrder";
+import { fetchMakeOrder } from "../../../../services/action/fetch-make-order";
 import { useSelector } from "react-redux";
 
 export const TotalAndOrderButton = () => {

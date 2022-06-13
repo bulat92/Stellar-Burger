@@ -1,5 +1,5 @@
-import style from "./BurgerConstructor.module.css";
-import { TotalAndOrderButton }from "./TotalAndOrderButton/TotalAndOrderButton";
+import style from "./burger-constructor.module.css";
+import { TotalAndOrderButton }from "./total-and-order-button/total-and-order-button";
 import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
 import { ingredientPropType } from "../../../prop-types";
@@ -9,8 +9,8 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   ADD_INGREDIENT,
   ADD_BUN
-} from "../../../services/action/burgerConstructor";
-import { DotsAndConstructorElement } from "./DotsAndConstructorElement/DotsAndConstructorElement";
+} from "../../../services/action/burger-constructor";
+import { DotsAndConstructorElement } from "./dots-and-constructor-element/dots-and-constructor-element";
 
 export const BurgerConstructor = () => {
   const dispatch = useDispatch();

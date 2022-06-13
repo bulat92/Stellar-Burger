@@ -4,7 +4,7 @@ import {
   GET_INGREDIENTS_REQUEST,
   SET_INGREDIENTS_FOR_DETAILS,
   INGREDIENTS_DETAILS_MUST_BE_CLOSED
-} from "../action/burgerIngredients";
+} from "../action/burger-ingredients";
 
 const initialState = {
   ingredients: [],

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import style from './header-Items.module.css';
-import ButonsWithIcons from './butonsWithIcons/butonsWithIcons';
+import { ButtonsWithIcons } from './buttons-with-icons/buttons-with-icons';
 import {ProfileIcon, ListIcon, BurgerIcon}  from '@ya.praktikum/react-developer-burger-ui-components';
  
 export const HeaderItems = () => {
@@ -12,17 +12,17 @@ export const HeaderItems = () => {
     return(
         <nav className={style.boxItems}>
             <div className = {style.boxItemsLeft}>
-                <ButonsWithIcons icon={<BurgerIcon type={BurgerIconType} />} onMouseOver={()=> setBurgerIconType('primary')} onMouseOut={()=> setBurgerIconType('secondary')}>
+                <ButtonsWithIcons icon={<BurgerIcon type={BurgerIconType} />} onMouseOver={()=> setBurgerIconType('primary')} onMouseOut={()=> setBurgerIconType('secondary')}>
                     Конструктор
-                </ButonsWithIcons>
+                </ButtonsWithIcons>
              
-                <ButonsWithIcons icon={<ListIcon type={ListIconType}/>} onMouseOver={()=> setListIconType('primary')} onMouseOut={()=> setListIconType('secondary')}>
+                <ButtonsWithIcons icon={<ListIcon type={ListIconType}/>} onMouseOver={()=> setListIconType('primary')} onMouseOut={()=> setListIconType('secondary')}>
                     Лента заказов
-                </ButonsWithIcons>
+                </ButtonsWithIcons>
             </div>
-                <ButonsWithIcons icon={<ProfileIcon type={ProfileIconType}/>} onMouseOver={()=> setProfileIconType('primary')} onMouseOut={()=> setProfileIconType('secondary')}>
+                <ButtonsWithIcons icon={<ProfileIcon type={ProfileIconType}/>} onMouseOver={()=> setProfileIconType('primary')} onMouseOut={()=> setProfileIconType('secondary')}>
                 Личный кабинет
-                </ButonsWithIcons>
+                </ButtonsWithIcons>
         </nav>
     );
 }

@@ -1,5 +1,5 @@
-import style from "./Ingredients.module.css";
-import { SET_INGREDIENTS_FOR_DETAILS } from "../../../../../services/action/burgerIngredients";
+import style from "./ingredients.module.css";
+import { SET_INGREDIENTS_FOR_DETAILS } from "../../../../../services/action/burger-ingredients";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useDispatch } from "react-redux";
 import { useDrag } from "react-dnd";

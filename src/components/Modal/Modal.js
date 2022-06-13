@@ -1,7 +1,7 @@
 import ReactDOM from "react-dom";
 import { useEffect } from "react";
-import style from "./Modal.module.css";
-import { ModalOverlay } from "./ModalOverlay/ModalOverlay";
+import style from "./modal.module.css";
+import { ModalOverlay } from "./modal-overlay/modal-overlay";
 import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 
 const Modal = ({ children, onCloseKey, onClose, type }) => {

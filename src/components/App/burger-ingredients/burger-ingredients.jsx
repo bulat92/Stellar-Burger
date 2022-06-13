@@ -1,12 +1,12 @@
 import { useState, useRef, useEffect } from "react";
-import style from "./BurgerIngredients.module.css";
-import { TypesOfIngredients } from "./TypesOfIngredients/TypesOfIngredients";
-import { TabList } from "./TabList/TabList";
+import style from "./burger-ingredients.module.css";
+import { TypesOfIngredients } from "./types-of-ingredients/types-of-ingredients";
+import { TabList } from "./tab-list/tab-list";
 import PropTypes from "prop-types";
 import { ingredientPropType } from "../../../prop-types";
 import { useInView } from "react-intersection-observer";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchGetIngredients } from "../../../services/action/burgerIngredients";
+import { fetchGetIngredients } from "../../../services/action/burger-ingredients";
 
 export const BurgerIngredients = () => {
   const { ingredients } = useSelector((store) => store.burgers);

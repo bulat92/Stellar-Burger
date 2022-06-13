@@ -6,7 +6,7 @@ import {
 
     ORDER_MODAL_MUST_BE_CLOSED
 
-} from '../action/fetchMakeOrder';
+} from '../action/fetch-make-order';
 
 const initialState = {
     

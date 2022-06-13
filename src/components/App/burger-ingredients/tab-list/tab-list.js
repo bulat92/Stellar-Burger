@@ -1,6 +1,6 @@
-import style from "./TabList.module.css";
+import style from "./tab-list.module.css";
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
-import { tabListArray } from '../../../../consts/tabListArray';
+import { tabListArray } from '../../../../consts/tab-list-array';
 
 export const TabList = ({ currentTab, sectuionScrollFunc}) => {
  

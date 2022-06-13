@@ -1,17 +1,17 @@
-import style from "./App.module.css";
-import { BurgerConstructor } from "./BurgerConstructor/BurgerConstructor";
-import { BurgerIngredients } from "./BurgerIngredients/BurgerIngredients";
-import Modal from "../Modal/Modal";
-import IngredientDetails from "../Modal/ModalOverlay/IngredientDetails/IngredientDetails";
-import OrderDetails from "../Modal/ModalOverlay/OrderDetails/OrderDetails";
+import style from "./app.module.css";
+import { BurgerConstructor } from "./burger-constructor/burger-constructor";
+import { BurgerIngredients } from "./burger-ingredients/burger-ingredients";
+import Modal from "../modal/modal";
+import IngredientDetails from "../modal/modal-overlay/ingredient-details/ingredient-details";
+import OrderDetails from "../modal/modal-overlay/order-details/order-details";
 import PropTypes from "prop-types";
 import { ingredientPropType } from "../../prop-types";
 import { useSelector, useDispatch } from "react-redux";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { DndProvider } from "react-dnd";
-import { ORDER_MODAL_MUST_BE_CLOSED } from "../../services/action/fetchMakeOrder";
-import { INGREDIENTS_DETAILS_MUST_BE_CLOSED } from "../../services/action/burgerIngredients";
-import { AppHeader } from "../../components/HeaderApps/AppHeader";
+import { ORDER_MODAL_MUST_BE_CLOSED } from "../../services/action/fetch-make-order";
+import { INGREDIENTS_DETAILS_MUST_BE_CLOSED } from "../../services/action/burger-ingredients";
+import { AppHeader } from "../../components/header-apps/header-app";
 
 const App = () => {
   const { orderDetailsOpen } = useSelector(

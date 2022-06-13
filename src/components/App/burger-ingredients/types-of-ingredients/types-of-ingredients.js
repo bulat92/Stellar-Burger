@@ -1,8 +1,8 @@
-import style from "./TypesOfIngredients.module.css";
+import style from "./types-of-ingredients.module.css";
 import { forwardRef } from "react";
 import { ingredientPropType } from "../../../../prop-types";
 import PropTypes from "prop-types";
-import { Ingredients } from "./Ingredients/Ingredients";
+import { Ingredients } from "./ingredients/ingredients";
  
 export const TypesOfIngredients = forwardRef((props, ref) => {
  

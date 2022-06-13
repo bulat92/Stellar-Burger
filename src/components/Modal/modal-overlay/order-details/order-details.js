@@ -1,7 +1,7 @@
-import style from './OrderDetails.module.css';
+import style from './order-details.module.css';
 import PropTypes from 'prop-types';
 import {ingredientPropType} from '../../../../prop-types';
-import CheckMarImg from '../../../../img/CheckMarImg.png';
+import CheckMarImg from '../../../../img/check-mar-img.png';
 import { useSelector } from 'react-redux';
 
 
