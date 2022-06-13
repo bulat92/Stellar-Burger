@@ -4,7 +4,7 @@ import { ingredientPropType } from "../../../../prop-types";
 import PropTypes from "prop-types";
 import { Ingredients } from "./Ingredients/Ingredients";
  
-const TypesOfIngredients = forwardRef((props, ref) => {
+export const TypesOfIngredients = forwardRef((props, ref) => {
  
   return (
     <div className={style.TypesOfIngredients} id={props.id} ref={ref}>
@@ -21,6 +21,4 @@ const TypesOfIngredients = forwardRef((props, ref) => {
 
 TypesOfIngredients.propTypes = {
   arr: PropTypes.arrayOf(ingredientPropType.isRequired).isRequired,
-};
-
-export default TypesOfIngredients;
+}; 

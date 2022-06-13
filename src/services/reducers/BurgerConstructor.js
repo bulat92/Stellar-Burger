@@ -1,10 +1,9 @@
-import update from 'react-addons-update'; 
 import {
   ADD_INGREDIENT,
   DELETE_INGREDIENT,
   ADD_BUN,
   SORT_INGREDIENT,
-} from "../action/BurgerConstructor";
+} from "../action/burgerConstructor";
 
 const initialState = {
   OrderIngredients: [],
@@ -25,7 +24,7 @@ const initialState = {
   },
 };
 
-export const BurgerConstructorReducer = (state = initialState, action) => {
+export const burgerConstructorReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_INGREDIENT: {
       return {

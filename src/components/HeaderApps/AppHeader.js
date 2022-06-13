@@ -1,9 +1,8 @@
-import React from 'react';
 import style from './AppHeader.module.css';
-import LogoHead from './logo-head/Logo-head';
-import HeaderItems from './header-items/header-Items';
+import { LogoHead } from './logo-head/Logo-head';
+import { HeaderItems } from './header-items/header-Items';
  
-function AppHeader(){
+export const AppHeader = () => {
     return(
         <header className={style.header}>
             <LogoHead className={style.logo}/>
@@ -11,5 +10,3 @@ function AppHeader(){
         </header>
     );
 }
-
-export default AppHeader;

@@ -11,6 +11,7 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import { DndProvider } from "react-dnd";
 import { ORDER_MODAL_MUST_BE_CLOSED } from "../../services/action/fetchMakeOrder";
 import { INGREDIENTS_DETAILS_MUST_BE_CLOSED } from "../../services/action/burgerIngredients";
+import { AppHeader } from "../../components/HeaderApps/AppHeader";
 
 const App = () => {
   const { orderDetailsOpen } = useSelector(
@@ -32,26 +33,32 @@ const App = () => {
   };
 
   return (
-    <main style={style.App}>
-      {IngredientDetailsOpen && (
-        <Modal type={"Ingredient"} onCloseKey={escapeKeyFunc} onClose={onClose}>
-          <IngredientDetails />
-        </Modal>
-      )}
+    <>
+      <AppHeader />
+      <div className="headerOnMain">
+        <h1>Собери бургер</h1>
+      </div>
+      <main style={style.App}>
+        {IngredientDetailsOpen && (
+          <Modal type={"Ingredient"} onCloseKey={escapeKeyFunc} onClose={onClose}>
+            <IngredientDetails />
+          </Modal>
+        )}
 
-      {orderDetailsOpen && (
-        <Modal type={"order"} onCloseKey={escapeKeyFunc} onClose={onClose}>
-          <OrderDetails />
-        </Modal>
-      )}
-      <DndProvider backend={HTML5Backend}>
-        <BurgerIngredients />
-        {/* left */}
+        {orderDetailsOpen && (
+          <Modal type={"order"} onCloseKey={escapeKeyFunc} onClose={onClose}>
+            <OrderDetails />
+          </Modal>
+        )}
+        <DndProvider backend={HTML5Backend}>
+          <BurgerIngredients />
+          {/* left */}
 
-        <BurgerConstructor />
-        {/* right */}
-      </DndProvider>
-    </main>
+          <BurgerConstructor />
+          {/* right */}
+        </DndProvider>
+      </main>
+    </> 
   );
 };
 

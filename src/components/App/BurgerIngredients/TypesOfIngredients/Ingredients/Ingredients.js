@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 
 export const Ingredients = ({ el }) => {
   const { OrderIngredients, bun } = useSelector(
-    (store) => store.BurgerConstructor
+    (store) => store.burgerConstructorValues
   );
   const dispatch = useDispatch();
 

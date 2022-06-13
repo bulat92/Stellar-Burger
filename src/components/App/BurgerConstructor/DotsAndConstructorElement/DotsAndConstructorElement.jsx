@@ -9,7 +9,7 @@ import {
 import {
   DELETE_INGREDIENT,
   SORT_INGREDIENT,
-} from "../../../../services/action/BurgerConstructor";
+} from "../../../../services/action/burgerConstructor";
 import { useDrag, useDrop } from "react-dnd";
 
 export const DotsAndConstructorElement = ({ el, index }) => {

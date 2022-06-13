@@ -9,7 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   ADD_INGREDIENT,
   ADD_BUN
-} from "../../../services/action/BurgerConstructor";
+} from "../../../services/action/burgerConstructor";
 import { DotsAndConstructorElement } from "./DotsAndConstructorElement/DotsAndConstructorElement";
 
 export const BurgerConstructor = () => {
@@ -33,7 +33,7 @@ export const BurgerConstructor = () => {
   });
 
   const { OrderIngredients, bun } = useSelector(
-    (store) => store.BurgerConstructor
+    (store) => store.burgerConstructorValues
   );
 
   return (

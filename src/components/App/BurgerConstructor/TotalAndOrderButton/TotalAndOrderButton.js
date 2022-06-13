@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 
 export const TotalAndOrderButton = () => {
   const { OrderIngredients, bun } = useSelector(
-    (store) => store.BurgerConstructor
+    (store) => store.burgerConstructorValues
   );
 
   const dispatch = useDispatch();

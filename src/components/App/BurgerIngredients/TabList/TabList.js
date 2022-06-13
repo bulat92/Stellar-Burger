@@ -2,7 +2,7 @@ import style from "./TabList.module.css";
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import { tabListArray } from '../../../../consts/tabListArray';
 
-const TabList = ({ currentTab, sectuionScrollFunc}) => {
+export const TabList = ({ currentTab, sectuionScrollFunc}) => {
  
     return(
         <div style={{ display: 'flex' }} className={style.list}>
@@ -14,5 +14,3 @@ const TabList = ({ currentTab, sectuionScrollFunc}) => {
         </div>
     )
 }
- 
-export default TabList;

@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import style from "./BurgerIngredients.module.css";
-import TypesOfIngredients from "./TypesOfIngredients/TypesOfIngredients";
-import TabList from "./TabList/TabList";
+import { TypesOfIngredients } from "./TypesOfIngredients/TypesOfIngredients";
+import { TabList } from "./TabList/TabList";
 import PropTypes from "prop-types";
 import { ingredientPropType } from "../../../prop-types";
 import { useInView } from "react-intersection-observer";

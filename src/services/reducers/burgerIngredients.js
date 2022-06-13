@@ -14,7 +14,7 @@ const initialState = {
   IngredientDetailsOpen: false,
 };
 
-export const BurgersReducer = (state = initialState, action) => {
+export const burgersReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_INGREDIENTS_REQUEST: {
       return {

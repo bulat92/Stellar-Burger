@@ -1,8 +1,7 @@
-import React from 'react';
 import styles from './Logo-head.module.css';
-import {Logo} from '@ya.praktikum/react-developer-burger-ui-components';
+import { Logo } from '@ya.praktikum/react-developer-burger-ui-components';
 
-function LogoHead(){
+export const LogoHead = () => {
     return(
         <div className={styles.box_logo}>
             <div className={styles.logo}>
@@ -11,5 +10,3 @@ function LogoHead(){
         </div>
     );
 }
-
-export default LogoHead;
