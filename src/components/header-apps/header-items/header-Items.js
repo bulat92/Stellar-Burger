@@ -10,8 +10,8 @@ export const HeaderItems = () => {
     const [ProfileIconType, setProfileIconType] = useState("secondary");
 
     return(
-        <nav className={style.boxItems}>
-            <div className = {style.boxItemsLeft}>
+        <nav className={style.nav}>
+            <div className = {style.boxItems}>
                 <ButtonsWithIcons icon={<BurgerIcon type={BurgerIconType} />} onMouseOver={()=> setBurgerIconType('primary')} onMouseOut={()=> setBurgerIconType('secondary')}>
                     Конструктор
                 </ButtonsWithIcons>

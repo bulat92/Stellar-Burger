@@ -1,4 +1,5 @@
-import { ingredientsURL } from '../url';
+import { ingredientsURL, baseURL } from '../url';
+import { checkReponse } from '../check-response/check-response'
 
 export const
     GET_INGREDIENTS = 'GET_INGREDIENTS',
@@ -18,22 +19,17 @@ export const fetchGetIngredients = () => {
             type: GET_INGREDIENTS_REQUEST
         }) 
 
-        fetch(`https://norma.nomoreparties.space/api/${ingredientsURL}`)
-        .then(response => { 
-          if(response.ok === true){
-            return response.json();
-          }else{
-            dispatch({
-                type: GET_INGREDIENTS_FAILED
-            })
-            throw new Error("Ошибка HTTP: " + response.status);
-          }
-        }).then( response => {
+        fetch(`${baseURL}${ingredientsURL}`)
+        .then(checkReponse).then( response => {
           dispatch({
             type: GET_INGREDIENTS,
             ingredients: response.data
         })
         })
-        .catch(); 
+        .catch( e => {
+          dispatch({
+            type: GET_INGREDIENTS_FAILED
+          })
+        }); 
     }
 }    

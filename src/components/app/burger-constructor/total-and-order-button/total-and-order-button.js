@@ -1,4 +1,5 @@
 import style from "./total-and-order-button.module.css";
+import { useMemo } from "react";
 import {
   Button,
   CurrencyIcon,
@@ -12,12 +13,15 @@ export const TotalAndOrderButton = () => {
     (store) => store.burgerConstructorValues
   );
 
-  const dispatch = useDispatch();
+  const totalNumber = useMemo(() => {
+ 
+    const bunPrice = bun.type === 'bun' ? Number(bun.price) * 2 : 0;
 
-  const totalNumber =
-    OrderIngredients.reduce((sum, el) => (sum = Number(el.price) + sum), 0) +
-    Number(bun.price) * 2;
-    
+    return OrderIngredients.reduce((sum, el) => (sum = Number(el.price) + sum), 0) + bunPrice;
+  }, [OrderIngredients][bun])
+
+  const dispatch = useDispatch();
+ 
   const idIngredients = [...OrderIngredients.map((el) => { return el._id }), bun._id];
 
   return (
@@ -28,7 +32,7 @@ export const TotalAndOrderButton = () => {
       </div>
       <Button
         onClick={() => {
-          dispatch(fetchMakeOrder(idIngredients));
+          if(OrderIngredients.length > 0 && bun.type === 'bun'){dispatch(fetchMakeOrder(idIngredients));}
         }}
       >
         <pre>Оформить заказ</pre>

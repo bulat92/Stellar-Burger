@@ -1,3 +1,4 @@
 export const 
     ingredientsURL = 'ingredients',
-    ordersURL = 'orders';
+    ordersURL = 'orders',
+    baseURL = 'https://norma.nomoreparties.space/api/';

@@ -11,6 +11,8 @@ import {
   SORT_INGREDIENT,
 } from "../../../../services/action/burger-constructor";
 import { useDrag, useDrop } from "react-dnd";
+import PropTypes from "prop-types";
+import { ingredientPropType } from "../../../../prop-types";
 
 export const DotsAndConstructorElement = ({ el, index }) => {
   const ref = useRef(null);
@@ -75,7 +77,7 @@ export const DotsAndConstructorElement = ({ el, index }) => {
   drag(drop(ref));
 
   return (
-    <div className={style.dotsAndConstructorElement} ref={ref} key={uuidv4}>
+    <div className={style.dotsAndConstructorElement} ref={ref} key={el.id}>
       <DragIcon type="primary" />
       <ConstructorElement
         isLocked={false}
@@ -89,3 +91,7 @@ export const DotsAndConstructorElement = ({ el, index }) => {
     </div>
   );
 };
+
+DotsAndConstructorElement.propTypes = {
+  el : PropTypes.shape(ingredientPropType.isRequired).isRequired,
+}

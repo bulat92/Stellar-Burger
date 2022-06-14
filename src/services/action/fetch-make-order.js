@@ -1,4 +1,5 @@
-import { ordersURL } from '../url';
+import { ordersURL, baseURL } from '../url';
+import { checkReponse } from '../check-response/check-response'
 
 export const
     POST_ORDER_SUCCESS = 'POST_ORDER',
@@ -14,7 +15,7 @@ export const fetchMakeOrder = (idIngredients) => {
         dispatch({
             type: POST_ORDER_REQUEST
         })
-        fetch(`https://norma.nomoreparties.space/api/${ordersURL}`, {
+        fetch(`${baseURL}${ordersURL}`, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json;charset=utf-8",
@@ -23,21 +24,16 @@ export const fetchMakeOrder = (idIngredients) => {
                 ingredients: idIngredients
             })
         })
-        .then(response => {
-            if(response.ok){
-                return response.json();
-            }else{
-              dispatch({
-                  type: POST_ORDER_FAILED
-              })
-              throw new Error("Ошибка HTTP: " + response.status);
-            }
-        }).then( response => {
+        .then(checkReponse).then( response => {
             dispatch({
               type: POST_ORDER_SUCCESS,
               number: response.order.number
           })
         })
-          .catch(); 
+          .catch( e => {
+            dispatch({
+                type: POST_ORDER_FAILED
+            })
+          }); 
       }
   }    

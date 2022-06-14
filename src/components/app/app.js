@@ -20,13 +20,7 @@ const App = () => {
   const { IngredientDetailsOpen } = useSelector((store) => store.burgers);
 
   const dispatch = useDispatch();
-
-  const escapeKeyFunc = (e) => {
-    e.code === "Escape" &&
-      dispatch({ type: INGREDIENTS_DETAILS_MUST_BE_CLOSED });
-    e.code === "Escape" && dispatch({ type: ORDER_MODAL_MUST_BE_CLOSED });
-  };
-
+ 
   const onClose = () => {
     dispatch({ type: ORDER_MODAL_MUST_BE_CLOSED });
     dispatch({ type: INGREDIENTS_DETAILS_MUST_BE_CLOSED });
@@ -39,14 +33,15 @@ const App = () => {
         <h1>Собери бургер</h1>
       </div>
       <main style={style.App}>
+
         {IngredientDetailsOpen && (
-          <Modal type={"Ingredient"} onCloseKey={escapeKeyFunc} onClose={onClose}>
+          <Modal type={"Ingredient"} title={"Детали ингредиента"} detector={IngredientDetailsOpen} onClose={onClose}>
             <IngredientDetails />
           </Modal>
         )}
 
         {orderDetailsOpen && (
-          <Modal type={"order"} onCloseKey={escapeKeyFunc} onClose={onClose}>
+          <Modal type={"order"} detector={orderDetailsOpen} onClose={onClose}>
             <OrderDetails />
           </Modal>
         )}
