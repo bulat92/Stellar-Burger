@@ -1,6 +1,7 @@
 .list{
     margin-bottom: 40px;   
     max-width: 600px;
+    display: flex;
 }
 .list div{
     width: calc(100%/3);

@@ -3,8 +3,9 @@ import { useEffect } from "react";
 import style from "./modal.module.css";
 import { ModalOverlay } from "./modal-overlay/modal-overlay";
 import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+import PropTypes from "prop-types";
 
-const Modal = ({ children, detector, onClose, title }) => {
+export const Modal = ({ children, detector, onClose, title }) => {
   useEffect(() => {
     const escapeKeyFunc = (e) => {
       if (e.code === "Escape") {
@@ -36,4 +37,10 @@ const Modal = ({ children, detector, onClose, title }) => {
   );
 };
 
-export default Modal;
+Modal.propTypes = {
+  detector: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.object
+  ]).isRequired,
+  onClose: PropTypes.func.isRequired
+}

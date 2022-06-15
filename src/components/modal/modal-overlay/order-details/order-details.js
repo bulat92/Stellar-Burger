@@ -5,7 +5,7 @@ import CheckMarImg from '../../../../img/check-mar-img.png';
 import { useSelector } from 'react-redux';
 
 
-const OrderDetails = () => {
+export const OrderDetails = () => {
 
     const { orderNumber } = useSelector(store => store.orderedIngredientsValues)
 
@@ -22,6 +22,4 @@ const OrderDetails = () => {
 
 /* OrderDetails.propTypes = {
     orderInfo: PropTypes.arrayOf(ingredientPropType.isRequired).isRequired,
-}  */
-
-export default OrderDetails;
+}  */ 

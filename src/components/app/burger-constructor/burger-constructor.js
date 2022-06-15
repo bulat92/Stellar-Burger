@@ -48,7 +48,6 @@ export const BurgerConstructor = () => {
         {bun.type === "bun" ? (
           <ConstructorElement
             type="top"
-            key={uuidv4()}
             isLocked={true}
             text={`${bun.name} (верх)`}
             price={bun.price}
@@ -60,12 +59,11 @@ export const BurgerConstructor = () => {
       </div>
       <div className={`${style.scrollWindow} mt-4 mb-4`}>
         <div
-          style={{ display: "flex", flexDirection: "column", gap: "10px" }}
-          className="mr-2"
+          className={`mr-2 ${style.scrollWindow_into}`}
         >
           {OrderIngredients.length !== 0 ? (
             OrderIngredients.map((el, index) => (
-              <DotsAndConstructorElement el={el} key={index} index={index} />
+              <DotsAndConstructorElement el={el} key={el.id} index={index} />
             ))
           ) : (
             <div className={style.empty}>Выберите начинку</div>
@@ -75,7 +73,6 @@ export const BurgerConstructor = () => {
       <div className={`${style.constructorElement} mr-4`}>
         {bun.type === "bun" ? (
           <ConstructorElement
-            key={uuidv4()}
             type="bottom"
             isLocked={true}
             text={`${bun.name} (низ)`}
@@ -91,7 +88,6 @@ export const BurgerConstructor = () => {
   );
 };
 
-/* BurgerConstructor.contextTypes = {
+/* BurgerConstructor.propTypes = {
   OrderIngredients : PropTypes.arrayOf(ingredientPropType.isRequired).isRequired,
 } */
-<div className={style.empty}>Выберите начинку</div>;

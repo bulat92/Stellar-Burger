@@ -1,9 +1,9 @@
 import style from "./app.module.css";
 import { BurgerConstructor } from "./burger-constructor/burger-constructor";
 import { BurgerIngredients } from "./burger-ingredients/burger-ingredients";
-import Modal from "../modal/modal";
-import IngredientDetails from "../modal/modal-overlay/ingredient-details/ingredient-details";
-import OrderDetails from "../modal/modal-overlay/order-details/order-details";
+import { Modal } from "../modal/modal";
+import { IngredientDetails } from "../modal/modal-overlay/ingredient-details/ingredient-details";
+import { OrderDetails } from "../modal/modal-overlay/order-details/order-details";
 import PropTypes from "prop-types";
 import { ingredientPropType } from "../../prop-types";
 import { useSelector, useDispatch } from "react-redux";
@@ -13,7 +13,7 @@ import { ORDER_MODAL_MUST_BE_CLOSED } from "../../services/action/fetch-make-ord
 import { INGREDIENTS_DETAILS_MUST_BE_CLOSED } from "../../services/action/burger-ingredients";
 import { AppHeader } from "../../components/header-apps/header-app";
 
-const App = () => {
+export const App = () => {
   const { orderDetailsOpen } = useSelector(
     (store) => store.orderedIngredientsValues
   );
@@ -60,5 +60,3 @@ const App = () => {
 /* App.propTypes = {
   fromFetch: PropTypes.arrayOf(ingredientPropType.isRequired).isRequired,
 }  */
-
-export default App;

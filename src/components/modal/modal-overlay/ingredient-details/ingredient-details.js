@@ -3,7 +3,7 @@ import {ingredientPropType} from '../../../../prop-types';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 
-const IngredientDetails = () => {
+export const IngredientDetails = () => {
 
     const { IngredientDetailsOpen } = useSelector(store => store.burgers);
 
@@ -51,6 +51,4 @@ const IngredientDetails = () => {
 
 /* IngredientDetails.propTypes = {
     details: PropTypes.shape(ingredientPropType.isRequired).isRequired,
-}  */
-
-export default IngredientDetails;
+}  */ 
