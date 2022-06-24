@@ -2,9 +2,7 @@ import {
 
     POST_ORDER_SUCCESS,
     POST_ORDER_REQUEST,
-    POST_ORDER_FAILED,
-
-    ORDER_MODAL_MUST_BE_CLOSED
+    POST_ORDER_FAILED
 
 } from '../action/fetch-make-order';
 
@@ -37,12 +35,6 @@ export const orderReducer = (state = initialState, action) => {
             return{
                 ...state,
                 orderNumberFailed: true
-            }
-        }
-        case ORDER_MODAL_MUST_BE_CLOSED:{
-            return{
-                ...state,
-                orderDetailsOpen: false
             }
         }
         default:{

@@ -12,35 +12,33 @@ nav{
     height: 88px;
     align-items: center;
     box-sizing: border-box;
+    text-decoration: none !important;
 }
 .boxItems{
     display: flex;
 }
- 
-.ItemsInnerText{ 
-    height: 25px;
-    margin-left: 5px;
-    font-size: 16px;
-    composes: flex;
+.nav a{
+    text-decoration: none;
 }
 .profileIcon{
-    composes: ItemsInnerText;
     composes: flex;
+    height: 25px;
     margin: 0;
+    margin-right: 5px;
 }
 .boxItemsChild{
     display: flex;
     justify-content: center;
     align-items: center;
+
     color: #8585AD;
     width: 170px;
     height: 56px;
- 
-    /* interface/modal-bg */
-    
-    background: #1C1C21;
-     
+    font-size: 16px;
 }
 .boxItemsChild:hover{
+    color: white;
+}
+.activeClassName div {
     color: white;
 }

@@ -1,0 +1,25 @@
+.InnerIngredientView {
+  height: 100%;
+  width: 100%;
+  margin-top: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+.h2 {
+  text-align: center;
+  font-weight: 700;
+  font-size: 36px;
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: white;
+}
+.modalHeader{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
