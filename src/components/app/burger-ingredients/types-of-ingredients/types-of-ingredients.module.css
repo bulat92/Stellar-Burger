@@ -1,0 +1,31 @@
+.TypesOfIngredients {
+  max-width: 600px;
+  box-sizing: border-box;
+}
+.typesBox {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 24px 16px 40px 16px;
+}
+
+.nameOfType {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.h2 {
+  width: 600px;
+  height: 30px;
+
+  /* desktop/display small */
+
+  font-weight: 700;
+  font-size: 24px;
+
+  color: #f2f2f3;
+}
+.Counter {
+  left: 0;
+  bottom: 0;
+}

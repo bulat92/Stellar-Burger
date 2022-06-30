@@ -1,0 +1,52 @@
+.BurgerConstructor{
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: flex-end;
+    /* interface/bg */
+    margin-left: 20px; 
+    max-width: 600px;
+}
+ 
+.scrollWindow{
+    width: 600px;
+    max-height: 46vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.scrollWindow_into{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.empty{
+    height: 80px;
+    max-width: 488px;
+    border-radius: 40px;
+    background:  #2f2f38;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 100px;
+}
+.emptyTop{
+    height: 80px;
+    width: 488px;
+    border-radius: 60px 60px 25px 25px;
+    background:  #2f2f38;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 90px;
+}
+.emptyBottom{
+    height: 80px;
+    width: 488px;
+    border-radius: 25px 25px 60px 60px;
+    background:  #2f2f38;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 90px;
+}

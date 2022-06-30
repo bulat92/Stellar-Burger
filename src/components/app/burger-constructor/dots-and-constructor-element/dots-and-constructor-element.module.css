@@ -1,0 +1,16 @@
+.BurgerConstructor{
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: flex-end;
+    /* interface/bg */
+
+    background: #131316;
+    max-width: 600px;
+}
+.dotsAndConstructorElement{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+} 
