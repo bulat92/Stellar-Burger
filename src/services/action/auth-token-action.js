@@ -51,7 +51,7 @@ export const AuthTokenFetch = () => {
 
           success: e.success
         });
-        if(/* e.message === 'jwt expired' */ true){
+        if(e.message === 'jwt expired'){
           dispatch({
             type: LOGIN_FETCH_REQUEST,
           });
