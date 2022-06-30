@@ -4,10 +4,7 @@ import { checkResponse } from '../check-response/check-response'
 export const
     GET_INGREDIENTS = 'GET_INGREDIENTS',
     GET_INGREDIENTS_FAILED = 'GET_INGREDIENTS_FAILED',
-    GET_INGREDIENTS_REQUEST = 'GET_INGREDIENTS_FAILED',
-     
-    INCREASE_INGREDIENT = 'INCREASE_INGREDIENT',
-    DECREASE_INGREDIENT = 'DECREASE_INGREDIENT';
+    GET_INGREDIENTS_REQUEST = 'GET_INGREDIENTS_FAILED';
  
 export const fetchGetIngredients = () => {
     return function(dispatch){
@@ -24,6 +21,7 @@ export const fetchGetIngredients = () => {
         })
         })
         .catch( e => {
+          console.log(e)
           dispatch({
             type: GET_INGREDIENTS_FAILED
           })

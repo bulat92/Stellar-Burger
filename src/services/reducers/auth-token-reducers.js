@@ -26,7 +26,7 @@ const initialState = {
           request: false,
           failed: false,
    
-          successRefreshToken: action.success,
+          successRefreshToken: true,
         };
       }
       case AUTH_TOKEN_FETCH_FAILED: {
@@ -34,7 +34,7 @@ const initialState = {
           ...state,
           failed: true,
 
-          successRefreshToken: action.success,
+          successRefreshToken: false,
         };
       } 
       default: {

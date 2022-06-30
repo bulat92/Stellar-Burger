@@ -31,6 +31,7 @@ export const resetPasswordFetch = (password, token) => {
             })
         })
         .catch( e => {
+            console.log(e);
             dispatch({
                 type: RESET_PASSWORD_FETCH_FAILED
             })

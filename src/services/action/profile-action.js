@@ -11,7 +11,6 @@ export const profileSaveCancelData = (name, email, password) => {
     dispatch({
       type: PROFILE_FETCH_REQUEST,
     });
-    console.log(name, email, password)
     fetch(`${baseURL}${userURL}`, {
       method: "PATCH",
       headers: {

@@ -28,7 +28,7 @@ import {
           request: false,
           failed: false,
    
-          success: action.success, 
+          success: true, 
           name: action.name,
           email: action.email
         };

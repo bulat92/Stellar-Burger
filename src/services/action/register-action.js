@@ -33,17 +33,16 @@ export const registerFetch = (email, password, name) => {
       .then((response) => {
         dispatch({
           type: LOGIN_FETCH_SUCCESS,
-          success: response.success,
-          accessToken: response.accessToken,
-          refreshToken: response.refreshToken,
+          success: response.success, 
+
           name: response.user.name,
           email: response.user.email,
         });
         return response;
       })
       .then((response) => {
-        if (response.accessToken.indexOf("Bearer") === 0) {
-          setCookie("token", response.accessToken.split("Bearer ")[1]);
+        if (response.accessToken) {
+          setCookie("token", response.accessToken);
         }
         if (response.refreshToken) {
           setCookie("refreshToken", response.refreshToken);

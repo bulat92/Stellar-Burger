@@ -25,24 +25,28 @@ export const ProfileInner = () => {
     dispatch(logoutFetch());
   }, []);
 
-  const changeUserData = useCallback((e) => {
-    e.preventDefault();
-    setSaveOn(false);
-    setCancelOn(true);
-    if (password !== "") {
-      dispatch(profileSaveCancelData(nameInput, emailInput, password));
-    }else{
-      dispatch(profileSaveCancelData(nameInput, emailInput));
-    }
-  }, [emailInput, nameInput, password]);
+  const changeUserData = useCallback(
+    (e) => {
+      e.preventDefault();
+      setSaveOn(false);
+      setCancelOn(true);
+      if (password !== "") {
+        dispatch(profileSaveCancelData(nameInput, emailInput, password));
+      } else {
+        dispatch(profileSaveCancelData(nameInput, emailInput));
+      }
+    },
+    [emailInput, nameInput, password]
+  );
 
-  const cancelUserData = useCallback((e) => {
-    e.preventDefault();
-    setCancelOn(false);
-    dispatch(profileSaveCancelData(name, email));
-    
-  }, [email, name]);
-
+  const cancelUserData = useCallback(
+    (e) => {
+      e.preventDefault();
+      setCancelOn(false);
+      dispatch(profileSaveCancelData(name, email));
+    },
+    [email, name]
+  );
 
   useEffect(() => {
     if (password !== "" || nameInput !== name || emailInput !== email) {

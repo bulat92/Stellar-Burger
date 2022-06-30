@@ -7,9 +7,7 @@ import {
 const initialState = {
   email: "",
   name: "",
-  success: '',
-  accessToken: '',
-  refreshToken: '',
+  success: '', 
 
   request: false,
   failed: false,
@@ -29,9 +27,7 @@ export const registerReducer = (state = initialState, action) => {
         request: false,
         failed: false,
  
-        success: action.getedResponse,
-        accessToken: action.getedResponse,
-        refreshToken: action.getedResponse,
+        success: action.getedResponse, 
         name: action.getedResponse.name,
         email: action.getedResponse.email
       };

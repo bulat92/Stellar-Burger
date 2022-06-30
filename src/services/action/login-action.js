@@ -28,9 +28,8 @@ export const loginFetch = (email, password) => {
       .then((response) => {
         dispatch({
           type: LOGIN_FETCH_SUCCESS,
-          success: response.success,
-          accessToken: response.accessToken,
-          refreshToken: response.refreshToken,
+          success: response.success, 
+          
           name: response.user.name,
           email: response.user.email
         });

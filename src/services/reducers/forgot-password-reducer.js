@@ -25,6 +25,7 @@ export const forgotPasswordReducer = (state = initialState, action) => {
                 ...state,
                 request: false,
                 failed: false,
+                
                 successForgotPassword: action.success,
                 message: action.message
             }
