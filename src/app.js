@@ -7,12 +7,29 @@ import { Register } from "./pages/register";
 import { ForgotPassword } from "./pages/forgot-password";
 import { ResetPassword } from "./pages//reset-password";
 import { Modal } from "./components/modal/modal";
-import { IngredientView } from './pages/ingredient-view';
+import { IngredientView } from "./pages/ingredient-view";
+import { ProtectedRoute } from "./protected-route";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { AuthTokenFetch } from "./services/action/auth-token-action";
+import { useSelector } from "react-redux";
+import { getCookie } from "./services/cookie/cookie-functions";
 
 export const App = () => {
-  const location = useLocation();
+  const { success } = useSelector((store) => store.login);
+  const { successRefreshToken } = useSelector((store) => store.authToken);
 
+  const location = useLocation();
   let background = location.state && location.state.background;
+
+  const dispatch = useDispatch();
+
+  useEffect(() => { 
+    if (!success && getCookie("token")) {
+      dispatch(AuthTokenFetch());
+    } 
+  }, [dispatch, success, successRefreshToken]);
+  
 
   return (
     <>
@@ -20,9 +37,9 @@ export const App = () => {
         <Route path="/" exact={true}>
           <MainPage />
         </Route>
-        <Route path="/profile" exact={true}>
+        <ProtectedRoute path="/profile" exact={true}>
           <Profile />
-        </Route>
+        </ProtectedRoute>
         <Route path="/login" exact={true}>
           <Login />
         </Route>
@@ -45,7 +62,12 @@ export const App = () => {
           <NoPage />
         </Route>
       </Switch>
-      {background && <Route path={['/ingredients/:id', '/order-details']} children={<Modal />} /> }
+      {background && (
+        <Route
+          path={["/ingredients/:id", "/order-details"]}
+          children={<Modal />}
+        />
+      )}
     </>
   );
 };

@@ -1,9 +1,8 @@
 import {
-    LOGIN_FETCH_SUCCESS,
-    LOGIN_FETCH_REQUEST,
-    LOGIN_FETCH_FAILED,
-    LOGOUT_FETCH
-  } from "../action/login-action";
+    PROFILE_FETCH_SUCCESS,
+    PROFILE_FETCH_REQUEST,
+    PROFILE_FETCH_FAILED,
+  } from "../action/profile-action";
   
   const initialState = {
     email: "",
@@ -14,36 +13,29 @@ import {
     failed: false,
   };
   
-  export const loginReducer = (state = initialState, action) => {
+  export const profileReducer = (state = initialState, action) => {
     switch (action.type) {
-      case LOGIN_FETCH_REQUEST: {
+      case PROFILE_FETCH_REQUEST: {
         return {
           ...state,
           request: true,
         };
       }
-      case LOGIN_FETCH_SUCCESS: {
+      case PROFILE_FETCH_SUCCESS: {
         return {
           ...state,
           request: false,
           failed: false,
    
-          success: action.success, 
+          successProfileFetch: action.success, 
           name: action.name,
           email: action.email
         };
       }
-      case LOGIN_FETCH_FAILED: {
+      case PROFILE_FETCH_FAILED: {
         return {
           ...state,
           failed: true,
-        };
-      }
-      case LOGOUT_FETCH: {
-        return {
-          success: null, 
-          name: null,
-          email: null
         };
       }
       default: {

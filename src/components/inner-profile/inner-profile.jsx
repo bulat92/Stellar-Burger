@@ -1,67 +1,87 @@
 import style from "./inner-profile.module.css";
-import { Input } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useState, useRef } from "react";
-import { useRouteMatch, Link } from "react-router-dom";
+import {
+  Input,
+  Button,
+} from "@ya.praktikum/react-developer-burger-ui-components";
+import { useState, useCallback, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 import { logoutFetch } from "../../services/action/logout-action";
-import { getCookie } from "../../services/cookie/cookie-functions";
+import { profileSaveCancelData } from "../../services/action/profile-action";
+import { useDispatch, useSelector } from "react-redux";
 
 export const ProfileInner = () => {
-  const { url } = useRouteMatch();
+  const { name, email } = useSelector((store) => store.login);
 
-  const passwordRef = useRef(null);
-  const nameRef = useRef(null);
-  const emailRef = useRef(null);
-  const [password, setPassword] = useState("123456789");
-  const [name, setName] = useState("Марк");
-  const [email, setEmail] = useState("mail@stellar.burgers");
+  const dispatch = useDispatch();
 
-  const onChange = () => {
-    setPassword(passwordRef.current.value);
-    setName(nameRef.current.value);
-    setEmail(emailRef.current.value);
-  };
+  const [password, setPassword] = useState("");
+  const [nameInput, setName] = useState(name);
+  const [emailInput, setEmail] = useState(email);
+  const [saveOn, setSaveOn] = useState(false);
+  const [cancelOn, setCancelOn] = useState(false);
+
+  const onClick = useCallback((e) => {
+    e.preventDefault();
+    dispatch(logoutFetch());
+  }, []);
+
+  const changeUserData = useCallback((e) => {
+    e.preventDefault();
+    setSaveOn(false);
+    setCancelOn(true);
+    if (password !== "") {
+      dispatch(profileSaveCancelData(nameInput, emailInput, password));
+    }else{
+      dispatch(profileSaveCancelData(nameInput, emailInput));
+    }
+  }, [emailInput, nameInput, password]);
+
+  const cancelUserData = useCallback((e) => {
+    e.preventDefault();
+    setCancelOn(false);
+    dispatch(profileSaveCancelData(name, email));
+    
+  }, [email, name]);
+
+
+  useEffect(() => {
+    if (password !== "" || nameInput !== name || emailInput !== email) {
+      setSaveOn(true);
+    } else {
+      setSaveOn(false);
+    }
+  }, [password, nameInput, emailInput, name, email]);
 
   return (
     <section className={style.ProfileInner}>
       <div className={style.boxTabs}>
-        <Link
+        <NavLink
+          activeClassName={style.profileTabActive}
           to="/profile"
-          className={
-            url === "/profile" ? style.profileTabActive : style.profileTab
-          }
+          className={style.profileTab}
         >
           Профиль
-        </Link>
-        <Link
+        </NavLink>
+        <NavLink
+          activeClassName={style.profileTabActive}
           to="/profile/orders"
-          className={
-            url === "/profile/orders"
-              ? style.profileTabActive
-              : style.profileTab
-          }
+          className={style.profileTab}
         >
           Историй заказов
-        </Link>
-        <p
-          className={style.profileTab}
-          onClick={() => {
-            console.log(getCookie("token"));
-            logoutFetch(getCookie("token"));
-          }}
-        >
+        </NavLink>
+        <p className={style.profileTab} onClick={onClick}>
           Выход
         </p>
         <p className={style.profileDescription}>
           В этом разделе вы можете изменить свои персональные данные
         </p>
       </div>
-      <div className={style.boxInputs}>
+      <form className={style.boxInputs}>
         <div className={style.mbInput}>
           <Input
             icon={"EditIcon"}
-            onChange={onChange}
-            ref={nameRef}
-            value={name}
+            onChange={(e) => setName(e.target.value)}
+            value={nameInput}
             name={"name"}
             placeholder={"Имя"}
           />
@@ -69,9 +89,8 @@ export const ProfileInner = () => {
         <div className={style.mbInput}>
           <Input
             icon={"EditIcon"}
-            onChange={onChange}
-            ref={emailRef}
-            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            value={emailInput}
             name={"login"}
             placeholder={"Логин"}
           />
@@ -79,14 +98,19 @@ export const ProfileInner = () => {
         <div className={style.mbInput}>
           <Input
             icon={"EditIcon"}
-            onChange={onChange}
-            ref={passwordRef}
+            onChange={(e) => setPassword(e.target.value)}
             value={password}
             type={"password"}
             placeholder={"Пароль"}
           />
         </div>
-      </div>
+        <div className={style.buttonBox}>
+          {saveOn && (
+            <Button onClick={changeUserData}>сохранить изменения</Button>
+          )}
+          {cancelOn && <Button onClick={cancelUserData}>отменить</Button>}
+        </div>
+      </form>
     </section>
   );
 };

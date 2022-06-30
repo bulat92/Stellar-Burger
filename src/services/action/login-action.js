@@ -28,24 +28,24 @@ export const loginFetch = (email, password) => {
       .then((response) => {
         dispatch({
           type: LOGIN_FETCH_SUCCESS,
-          getedResponse: response,
+          success: response.success,
+          accessToken: response.accessToken,
+          refreshToken: response.refreshToken,
+          name: response.user.name,
+          email: response.user.email
         });
         return response;
       })
       .then((response) => {
-        console.log('1');
-        let authToken;
-        response.headers.forEach((header) => {
-          if (header.indexOf("Bearer") === 0) {
-            authToken = header.split("Bearer ")[1];
-          }
-        });
-        console.log('2')
-        if (authToken) {
-          setCookie("token", authToken);
+        if (response.accessToken) { 
+          setCookie("token", response.accessToken);
         }
+        if (response.refreshToken) { 
+          setCookie("refreshToken", response.refreshToken);
+        } 
       })
       .catch((e) => {
+        console.log(e)
         dispatch({
           type: LOGIN_FETCH_FAILED,
         });

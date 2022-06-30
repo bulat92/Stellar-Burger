@@ -16,6 +16,7 @@
   width: 320px;
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 .profileTabActive {
   color: white;
@@ -45,10 +46,7 @@
   display: flex;
   flex-direction: column;
   margin-right: 60px;
-}
-.boxInputs {
-  width: 480px;
-}
+} 
 .boxInputs div {
   color: #8585ad;
 }
@@ -62,3 +60,11 @@
 .mbInput{
   margin-bottom: 24px;
 } 
+.buttonBox{
+  display: flex;
+  flex-direction: column;
+}
+.buttonBox button{
+  margin-bottom: 24px;
+}
+ 

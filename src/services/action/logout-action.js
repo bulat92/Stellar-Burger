@@ -1,10 +1,10 @@
 import { logoutURL, baseURL } from "../url";
 import { checkResponse } from "../check-response/check-response";
-import { deleteCookie } from "../cookie/cookie-functions";
+import { deleteCookie, getCookie } from "../cookie/cookie-functions";
 
 import { LOGOUT_FETCH } from "../action/login-action";
 
-export const logoutFetch = (refreshToken) => {
+export const logoutFetch = () => {
   return function (dispatch) {
     fetch(`${baseURL}${logoutURL}`, {
       method: "POST",
@@ -12,15 +12,20 @@ export const logoutFetch = (refreshToken) => {
         "Content-Type": "application/json;charset=utf-8",
       },
       body: JSON.stringify({
-        token: `{{${refreshToken}}}`,
+        token: getCookie("refreshToken"),
       }),
     })
       .then(checkResponse)
-      .then(() => {
-        deleteCookie("token");
-        dispatch({
-          type: LOGOUT_FETCH,
-        });
+      .then((response) => {
+        if (response.success) {
+          deleteCookie("token");
+          deleteCookie("refreshToken");
+          dispatch({
+            type: LOGOUT_FETCH,
+          });
+        }else{
+          console.log('Logout не сработал')
+        }
       })
       .catch((e) => {
         console.log(e);

@@ -6,6 +6,7 @@ import { forgotPasswordReducer } from  './forgot-password-reducer';
 import { resetPasswordReducer } from './reset-password-reducer';
 import { registerReducer } from './register-reducer';
 import { loginReducer } from './login-reducer';
+import { authTokenReducer } from './auth-token-reducers';
  
 export const rootReducer = combineReducers({
     burgers: burgersReducer,
@@ -14,5 +15,6 @@ export const rootReducer = combineReducers({
     forgotPassword: forgotPasswordReducer,
     resetPassword: resetPasswordReducer,
     register: registerReducer,
-    login: loginReducer
+    login: loginReducer,
+    authToken: authTokenReducer
 });

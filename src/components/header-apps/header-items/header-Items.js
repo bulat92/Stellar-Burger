@@ -22,7 +22,7 @@ export const HeaderItems = () => {
         setListIconType("secondary");
         setProfileIconType("secondary");
         break;
-      case "/orders":
+      case "/profile/orders":
         setBurgerIconType("secondary");
         setListIconType("primary");
         setProfileIconType("secondary");

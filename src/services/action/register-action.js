@@ -1,5 +1,11 @@
 import { registerURL, baseURL } from "../url";
 import { checkResponse } from "../check-response/check-response";
+import {
+  LOGIN_FETCH_SUCCESS,
+  LOGIN_FETCH_REQUEST,
+  LOGIN_FETCH_FAILED,
+} from "./login-action";
+import { setCookie } from "../cookie/cookie-functions";
 
 export const REGISTER_FETCH_SUCCESS = "REGISTER_SUCCESS",
   REGISTER_FETCH_REQUEST = "REGISTER_REQUEST",
@@ -8,7 +14,7 @@ export const REGISTER_FETCH_SUCCESS = "REGISTER_SUCCESS",
 export const registerFetch = (email, password, name) => {
   return function (dispatch) {
     dispatch({
-      type: REGISTER_FETCH_REQUEST,
+      type: LOGIN_FETCH_REQUEST,
     });
     fetch(`${baseURL}${registerURL}`, {
       method: "POST",
@@ -18,19 +24,34 @@ export const registerFetch = (email, password, name) => {
       body: JSON.stringify({
         email: email,
         password: password,
-        name: name
-      })
+        name: name,
+      }),
     })
-      .then(checkResponse)
+      .then((response) => {
+        return checkResponse(response);
+      })
       .then((response) => {
         dispatch({
-          type: REGISTER_FETCH_SUCCESS,
-          getedResponse: response,
+          type: LOGIN_FETCH_SUCCESS,
+          success: response.success,
+          accessToken: response.accessToken,
+          refreshToken: response.refreshToken,
+          name: response.user.name,
+          email: response.user.email,
         });
+        return response;
+      })
+      .then((response) => {
+        if (response.accessToken.indexOf("Bearer") === 0) {
+          setCookie("token", response.accessToken.split("Bearer ")[1]);
+        }
+        if (response.refreshToken) {
+          setCookie("refreshToken", response.refreshToken);
+        }
       })
       .catch((e) => {
         dispatch({
-          type: REGISTER_FETCH_FAILED,
+          type: LOGIN_FETCH_FAILED,
         });
       });
   };

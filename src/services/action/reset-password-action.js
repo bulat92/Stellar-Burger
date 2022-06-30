@@ -27,7 +27,7 @@ export const resetPasswordFetch = (password, token) => {
         .then(checkResponse).then( response => {
             dispatch({
                 type: RESET_PASSWORD_FETCH_SUCCESS,
-                getedResponse: response
+                success: response.success
             })
         })
         .catch( e => {

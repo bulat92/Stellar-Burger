@@ -5,7 +5,7 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { resetPasswordFetch } from '../../services/action/reset-password-action'
 
 export const ResetPasswordInner = () => {
@@ -13,10 +13,11 @@ export const ResetPasswordInner = () => {
   
   const [newPassword, setNewPassword] = useState('');
   const [code, setCode] = useState('');
- 
-  const onClick = () => {
+  
+  const onClick = useCallback((e) => {
+    e.preventDefault();
     dispatch(resetPasswordFetch(newPassword, code));
-  }
+  }, []);
 
   return (
     <section className={style.ResetPasswordInner}>
