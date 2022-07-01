@@ -28,3 +28,7 @@
     text-decoration: none;
     color: #4C4CFF;
 }
+.boxInputs{
+  composes: LoginInner;
+  margin: 0;
+}

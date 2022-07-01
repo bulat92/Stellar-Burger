@@ -2,8 +2,18 @@ import style from './ingredient-details.module.css';
 import {ingredientPropType} from '../../../../prop-types';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
+import { useMemo } from "react";
+import { useParams } from "react-router-dom";
 
-export const IngredientDetails = ({IngredientForDetails}) => {
+export const IngredientDetails = () => {
+
+    const { ingredients } = useSelector((store) => store.burgers);
+
+    const { id } = useParams();
+
+    const IngredientForDetails = useMemo(() => {
+        return ingredients.find((el) => el._id === id);
+      },[id, ingredients]);
  
     return(
         <div className={style.IngredientDetails}>

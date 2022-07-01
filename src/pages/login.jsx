@@ -18,7 +18,6 @@ export const Login = () => {
 
     return (
         <>
-          <AppHeader />
           <LoginInner />
         </>
       );

@@ -12,21 +12,23 @@ export const LoginInner = () => {
   const dispatch = useDispatch();
   const [password, setPassword] = useState("123456");
   const [email, setEmail] = useState("damask161092@gmail.com");
- 
-  const onClick = useCallback((e) => {
-    e.preventDefault();
-    dispatch(loginFetch(email, password));
-    
-  },[email, password]);
- 
+
+  const onSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      dispatch(loginFetch(email, password));
+    },
+    [email, password]
+  );
+
   return (
     <section className={style.LoginInner}>
       <p className={style.loginHeader}>Вход</p>
-      <div className={style.boxInputs}>
+      <form className={style.boxInputs} onSubmit={onSubmit}>
         <div className={style.mbInput}>
           <Input
             value={email}
-            onChange={e => setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
             name={"login"}
             placeholder={"E-mail"}
           />
@@ -35,16 +37,16 @@ export const LoginInner = () => {
           <Input
             icon={"ShowIcon"}
             value={password}
-            onChange={e => setPassword(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
             name={"password"}
             type={"password"}
             placeholder={"Пароль"}
           />
         </div>
-      </div>
-      <Button type="primary" size="medium" onClick={onClick}>
-        Войти
-      </Button>
+        <Button type="primary" size="medium">
+          Войти
+        </Button>
+      </form>
       <div className={style.boxOptions}>
         <div className={`${style.option} mb-4`}>
           <p className="mr-2">Вы — новый пользователь?</p>

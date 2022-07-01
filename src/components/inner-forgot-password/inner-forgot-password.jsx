@@ -5,36 +5,40 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { useState } from "react";
-import { forgotPasswordFetch } from '../../services/action/forgot-password-action'
+import { useState, useCallback } from "react";
+import { forgotPasswordFetch } from "../../services/action/forgot-password-action";
 
 export const ForgotPasswordInner = () => {
   const dispatch = useDispatch();
-  
-  const [value, setValue] = useState('')
- 
-  const onClick = () => {
-    dispatch(forgotPasswordFetch(value));
-  }
+
+  const [value, setValue] = useState("");
+
+  const onSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      dispatch(forgotPasswordFetch(value));
+    },
+    [value]
+  );
 
   return (
-    <section className={style.ForgotPasswordInner}>
+    <form className={style.ForgotPasswordInner}  onSubmit={onSubmit}>
       <p className={style.ForgotPasswordHeader}>Восстановление пароля</p>
       <div className={style.mbInput}>
-        <Input 
-          value={value} 
+        <Input
+          value={value}
           name={"forgotP"}
           placeholder={"Укажите e-mail"}
-          onChange={e => setValue(e.target.value)}
+          onChange={(e) => setValue(e.target.value)}
         />
       </div>
-      <Button type="primary" size="medium" onClick={onClick}>
+      <Button type="primary" size="medium">
         Восстановить
       </Button>
       <div className={style.option}>
         <p className="mr-2">Вспомнили пароль?</p>
         <Link to="/login">Войти</Link>
       </div>
-    </section>
+    </form>
   );
 };

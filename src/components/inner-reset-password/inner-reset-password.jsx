@@ -14,13 +14,13 @@ export const ResetPasswordInner = () => {
   const [newPassword, setNewPassword] = useState('');
   const [code, setCode] = useState('');
   
-  const onClick = useCallback((e) => {
+  const onSubmit = useCallback((e) => {
     e.preventDefault();
     dispatch(resetPasswordFetch(newPassword, code));
   }, []);
 
   return (
-    <section className={style.ResetPasswordInner}>
+    <form className={style.ResetPasswordInner} onSubmit={onSubmit}>
       <p className={style.ResetPasswordInnerHeader}>Восстановление пароля</p>
       <div className={style.mbInput}>
         <Input
@@ -39,13 +39,13 @@ export const ResetPasswordInner = () => {
           placeholder={"Введите код из письма"}
         />
       </div>
-      <Button type="primary" size="medium" onClick={onClick}>
+      <Button type="primary" size="medium" >
         Сохранить
       </Button>
       <div className={style.option}>
         <p className="mr-2">Вспомнили пароль?</p>
         <Link to="/login">Войти</Link>
       </div>
-    </section>
+    </form>
   );
 };

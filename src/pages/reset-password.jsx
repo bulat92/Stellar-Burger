@@ -1,4 +1,3 @@
-import { AppHeader } from "../components/header-apps/header-app";
 import { ResetPasswordInner } from "../components/inner-reset-password/inner-reset-password";
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
@@ -20,7 +19,6 @@ export const ResetPassword = () => {
 
     return (
         <>
-          <AppHeader />
           <ResetPasswordInner />
         </>
       );

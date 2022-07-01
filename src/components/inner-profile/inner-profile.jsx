@@ -25,8 +25,9 @@ export const ProfileInner = () => {
     dispatch(logoutFetch());
   }, []);
 
-  const changeUserData = useCallback(
-    (e) => {
+  const saveUserData = useCallback((e) => {
+    if (password !== "" || nameInput !== name || emailInput !== email) {
+      console.log("saveUserData");
       e.preventDefault();
       setSaveOn(false);
       setCancelOn(true);
@@ -35,12 +36,12 @@ export const ProfileInner = () => {
       } else {
         dispatch(profileSaveCancelData(nameInput, emailInput));
       }
-    },
-    [emailInput, nameInput, password]
-  );
+    }
+  }, []);
 
   const cancelUserData = useCallback(
     (e) => {
+      console.log("cancelUserData");
       e.preventDefault();
       setCancelOn(false);
       dispatch(profileSaveCancelData(name, email));
@@ -80,41 +81,41 @@ export const ProfileInner = () => {
           В этом разделе вы можете изменить свои персональные данные
         </p>
       </div>
-      <form className={style.boxInputs}>
-        <div className={style.mbInput}>
-          <Input
-            icon={"EditIcon"}
-            onChange={(e) => setName(e.target.value)}
-            value={nameInput}
-            name={"name"}
-            placeholder={"Имя"}
-          />
-        </div>
-        <div className={style.mbInput}>
-          <Input
-            icon={"EditIcon"}
-            onChange={(e) => setEmail(e.target.value)}
-            value={emailInput}
-            name={"login"}
-            placeholder={"Логин"}
-          />
-        </div>
-        <div className={style.mbInput}>
-          <Input
-            icon={"EditIcon"}
-            onChange={(e) => setPassword(e.target.value)}
-            value={password}
-            type={"password"}
-            placeholder={"Пароль"}
-          />
-        </div>
-        <div className={style.buttonBox}>
-          {saveOn && (
-            <Button onClick={changeUserData}>сохранить изменения</Button>
-          )}
-          {cancelOn && <Button onClick={cancelUserData}>отменить</Button>}
-        </div>
-      </form>
+      <div>
+        <form className={style.boxInputs} onSubmit={saveUserData}>
+          <div className={style.mbInput}>
+            <Input
+              icon={"EditIcon"}
+              onChange={(e) => setName(e.target.value)}
+              value={nameInput}
+              name={"name"}
+              placeholder={"Имя"}
+            />
+          </div>
+          <div className={style.mbInput}>
+            <Input
+              icon={"EditIcon"}
+              onChange={(e) => setEmail(e.target.value)}
+              value={emailInput}
+              name={"login"}
+              placeholder={"Логин"}
+            />
+          </div>
+          <div className={style.mbInput}>
+            <Input
+              icon={"EditIcon"}
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
+              type={"password"}
+              placeholder={"Пароль"}
+            />
+          </div>
+          <div className={style.buttonBox}>
+            {saveOn && <Button>сохранить изменения</Button>}
+            {cancelOn && <Button onClick={cancelUserData}>отменить</Button>}
+          </div>
+        </form>
+      </div>
     </section>
   );
 };

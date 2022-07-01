@@ -5,13 +5,11 @@ import PropTypes from "../prop-types";
 import { ingredientPropType } from "../prop-types";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { DndProvider } from "react-dnd";
-import { AppHeader } from "../components/header-apps/header-app";
 
 export const MainPage = () => {
 
   return (
     <>
-      <AppHeader />
       <div className="headerOnMain">
         <h1>Собери бургер</h1>
       </div>

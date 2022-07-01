@@ -1,4 +1,3 @@
-import { AppHeader } from "../components/header-apps/header-app";
 import { ForgotPasswordInner } from "../components/inner-forgot-password/inner-forgot-password";
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
@@ -6,7 +5,7 @@ import { Redirect } from "react-router-dom";
 export const ForgotPassword = () => {
   const {successForgotPassword} = useSelector(store => store.forgotPassword)
   const {success} = useSelector(store => store.login)  
-  console.log(successForgotPassword)
+   
   if (success || successForgotPassword) {
     return (
       <Redirect
@@ -19,7 +18,6 @@ export const ForgotPassword = () => {
 
     return (
         <>
-          <AppHeader />
           <ForgotPasswordInner />
         </>
       );

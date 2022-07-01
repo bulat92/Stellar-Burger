@@ -5,7 +5,7 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { useState, useRef } from "react";
+import { useState, useRef, useCallback } from "react";
 import { registerFetch } from "../../services/action/register-action";
 
 export const RegisterInner = () => {
@@ -22,15 +22,16 @@ export const RegisterInner = () => {
     setName(nameRef.current.value);
     setEmail(emailRef.current.value);
   };
-
-  const onClick = () => {
-    dispatch(registerFetch(email,password, name));
-  };
+ 
+  const onSubmit = useCallback((e) => {
+    e.preventDefault();
+    dispatch(registerFetch(email, password, name));
+  }, []);
 
   return (
     <section className={style.RegisterInner}>
       <p className={style.registrationHeader}>Регистрация</p>
-      <div className={style.boxInputs}>
+      <form className={style.boxInputs} onSubmit={onSubmit}>
         <div className={style.mbInput}>
           <Input
             onChange={onChange}
@@ -46,7 +47,7 @@ export const RegisterInner = () => {
             ref={emailRef}
             value={email}
             name={"email"}
-            type={'email'}
+            type={"email"}
             placeholder={"E-mail"}
           />
         </div>
@@ -61,10 +62,11 @@ export const RegisterInner = () => {
             placeholder={"Пароль"}
           />
         </div>
-      </div>
-      <Button type="primary" size="medium" onClick={onClick}>
-        Зарегистрироваться
-      </Button>
+        <Button type="primary" size="medium" >
+          Зарегистрироваться
+        </Button>
+      </form>
+
       <div className={style.option}>
         <p className="mr-2">Уже зарегистрированы?</p>
         <Link to="/login">Войти</Link>
