@@ -5,9 +5,10 @@ import { Redirect } from "react-router-dom";
 export const ResetPassword = () => {
 
   const {success} = useSelector(store => store.login); 
-  const {successReset} = useSelector(store => store.resetPassword); 
+  const {successReset} = useSelector(store => store.resetPassword);
+  const { successForgotPassword } = useSelector(store => store.forgotPassword);
  
-  if (success || successReset) {
+  if (success || successReset || !successForgotPassword) {
     return (
       <Redirect
         to={{

@@ -4,8 +4,8 @@ import {
   Button,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { useState, useCallback } from "react";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
 import { loginFetch } from "../../services/action/login-action";
 
 export const LoginInner = () => {
@@ -13,13 +13,10 @@ export const LoginInner = () => {
   const [password, setPassword] = useState("123456");
   const [email, setEmail] = useState("damask161092@gmail.com");
 
-  const onSubmit = useCallback(
-    (e) => {
-      e.preventDefault();
-      dispatch(loginFetch(email, password));
-    },
-    [email, password]
-  );
+  const onSubmit = (e) => {
+    e.preventDefault();
+    dispatch(loginFetch(email, password));
+  };
 
   return (
     <section className={style.LoginInner}>

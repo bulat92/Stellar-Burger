@@ -3,7 +3,7 @@ import {
   Input,
   Button,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useState, useCallback, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { logoutFetch } from "../../services/action/logout-action";
 import { profileSaveCancelData } from "../../services/action/profile-action";
@@ -20,14 +20,15 @@ export const ProfileInner = () => {
   const [saveOn, setSaveOn] = useState(false);
   const [cancelOn, setCancelOn] = useState(false);
 
-  const onClick = useCallback((e) => {
+  const onClick = (e) => {
     e.preventDefault();
     dispatch(logoutFetch());
-  }, []);
+  };
 
-  const saveUserData = useCallback((e) => {
-    if (password !== "" || nameInput !== name || emailInput !== email) {
-      console.log("saveUserData");
+  const saveUserData = (e) => {
+    console.log('dsd')
+    if (password !== "" || nameInput !== name || emailInput !== email) { 
+      console.log('2')
       e.preventDefault();
       setSaveOn(false);
       setCancelOn(true);
@@ -37,17 +38,15 @@ export const ProfileInner = () => {
         dispatch(profileSaveCancelData(nameInput, emailInput));
       }
     }
-  }, []);
+  };
 
-  const cancelUserData = useCallback(
-    (e) => {
-      console.log("cancelUserData");
+  const cancelUserData = (e) => { 
       e.preventDefault();
       setCancelOn(false);
       dispatch(profileSaveCancelData(name, email));
-    },
-    [email, name]
-  );
+      setName(name);
+      setEmail(email)
+    };
 
   useEffect(() => {
     if (password !== "" || nameInput !== name || emailInput !== email) {

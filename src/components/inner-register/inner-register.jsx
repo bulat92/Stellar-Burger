@@ -5,7 +5,7 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef } from "react";
 import { registerFetch } from "../../services/action/register-action";
 
 export const RegisterInner = () => {
@@ -22,11 +22,11 @@ export const RegisterInner = () => {
     setName(nameRef.current.value);
     setEmail(emailRef.current.value);
   };
- 
-  const onSubmit = useCallback((e) => {
+
+  const onSubmit = (e) => {
     e.preventDefault();
     dispatch(registerFetch(email, password, name));
-  }, []);
+  };
 
   return (
     <section className={style.RegisterInner}>
@@ -62,7 +62,7 @@ export const RegisterInner = () => {
             placeholder={"Пароль"}
           />
         </div>
-        <Button type="primary" size="medium" >
+        <Button type="primary" size="medium">
           Зарегистрироваться
         </Button>
       </form>

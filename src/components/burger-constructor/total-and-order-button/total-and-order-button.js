@@ -7,7 +7,7 @@ import {
 import { useDispatch } from "react-redux";
 import { fetchMakeOrder } from "../../../services/action/fetch-make-order";
 import { useSelector } from "react-redux";
-import { useHistory, useLocation, Redirect } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 export const TotalAndOrderButton = () => {
   const { success } = useSelector((store) => store.login);
@@ -34,20 +34,20 @@ export const TotalAndOrderButton = () => {
       return el._id;
     }),
     bun._id,
-  ]; 
-  
+  ];
+
   const onClick = () => {
     if (!success) {
       history.replace({ pathname: "/login" });
-    }
+    } else {
+      if (OrderIngredients.length > 0 && bun.type === "bun") {
+        dispatch(fetchMakeOrder(idIngredients));
 
-    if (OrderIngredients.length > 0 && bun.type === "bun") {
-      dispatch(fetchMakeOrder(idIngredients));
-
-      history.replace({
-        pathname: "/order-details",
-        state: { background: location },
-      });
+        history.replace({
+          pathname: "/order-details",
+          state: { background: location },
+        });
+      }
     }
   };
 

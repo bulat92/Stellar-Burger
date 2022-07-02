@@ -5,7 +5,7 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import { forgotPasswordFetch } from "../../services/action/forgot-password-action";
 
 export const ForgotPasswordInner = () => {
@@ -13,16 +13,13 @@ export const ForgotPasswordInner = () => {
 
   const [value, setValue] = useState("");
 
-  const onSubmit = useCallback(
-    (e) => {
-      e.preventDefault();
-      dispatch(forgotPasswordFetch(value));
-    },
-    [value]
-  );
+  const onSubmit = (e) => {
+    e.preventDefault();
+    dispatch(forgotPasswordFetch(value));
+  };
 
   return (
-    <form className={style.ForgotPasswordInner}  onSubmit={onSubmit}>
+    <form className={style.ForgotPasswordInner} onSubmit={onSubmit}>
       <p className={style.ForgotPasswordHeader}>Восстановление пароля</p>
       <div className={style.mbInput}>
         <Input

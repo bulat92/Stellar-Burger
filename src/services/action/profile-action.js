@@ -4,7 +4,10 @@ import { getCookie } from "../cookie/cookie-functions";
 
 export const PROFILE_FETCH_SUCCESS = "PROFILE_FETCH_SUCCESS",
   PROFILE_FETCH_REQUEST = "PROFILE_FETCH_REQUEST",
-  PROFILE_FETCH_FAILED = "PROFILE_FETCH_FAILED";
+  PROFILE_FETCH_FAILED = "PROFILE_FETCH_FAILED",
+  SET_CHANGED_NAME = 'SET_CHANGED_NAME',
+  SET_CHANGED_EMAIL = 'SET_CHANGED_EMAIL',
+  SET_CHANGED_PASSWORD = 'SET_CHANGED_PASSWORD';
 
 export const profileSaveCancelData = (name, email, password) => {
   return function (dispatch) {
