@@ -6,17 +6,20 @@ import {
   ListIcon,
   BurgerIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useRouteMatch } from "react-router-dom";
+import { useLocation } from "react-router-dom"; 
 
 export const HeaderItems = () => {
-  const [BurgerIconType, setBurgerIconType] = useState("secondary");
-  const [ListIconType, setListIconType] = useState("secondary");
-  const [ProfileIconType, setProfileIconType] = useState("secondary");
 
-  const { url } = useRouteMatch();
+  type TTState = "secondary" | "primary";
 
-  useEffect(() => { 
-    switch (url) {
+  const [BurgerIconType, setBurgerIconType] = useState<TTState>("secondary");
+  const [ListIconType, setListIconType] = useState<TTState>("secondary");
+  const [ProfileIconType, setProfileIconType] = useState<TTState>("secondary");
+
+  const location = useLocation();
+
+  useEffect(() => {  
+    switch (location.pathname) {
       case "/":
         setBurgerIconType("primary");
         setListIconType("secondary");
@@ -27,7 +30,7 @@ export const HeaderItems = () => {
         setListIconType("primary");
         setProfileIconType("secondary");
         break;
-      case "/profile":
+      case "/profile": 
         setBurgerIconType("secondary");
         setListIconType("secondary");
         setProfileIconType("primary");
@@ -38,20 +41,15 @@ export const HeaderItems = () => {
         setProfileIconType("secondary");
         break;
     }
-  }, [url, BurgerIconType, ListIconType, ProfileIconType]);
-
-  const iconChangeFunc = (type) => {
-    setBurgerIconType(type);
-  };
-
+  }, [location.pathname, BurgerIconType, ListIconType, ProfileIconType]);
+ 
   return (
     <nav className={style.nav}>
       <div className={style.boxItems}>
         <ButtonsWithIcons
           icon={<BurgerIcon type={BurgerIconType} />}
           onMouseOver={() => setBurgerIconType("primary")}
-          onMouseOut={() => setBurgerIconType("secondary")}
-          set={iconChangeFunc}
+          onMouseOut={() => setBurgerIconType("secondary")} 
           linkAddress={""}
         >
           Конструктор
@@ -60,8 +58,7 @@ export const HeaderItems = () => {
         <ButtonsWithIcons
           icon={<ListIcon type={ListIconType} />}
           onMouseOver={() => setListIconType("primary")}
-          onMouseOut={() => setListIconType("secondary")}
-          /* set={} */
+          onMouseOut={() => setListIconType("secondary")} 
           linkAddress={"profile/orders"}
         >
           Лента заказов
@@ -70,8 +67,7 @@ export const HeaderItems = () => {
       <ButtonsWithIcons
         icon={<ProfileIcon type={ProfileIconType} />}
         onMouseOver={() => setProfileIconType("primary")}
-        onMouseOut={() => setProfileIconType("secondary")}
-        /* set={} */
+        onMouseOut={() => setProfileIconType("secondary")} 
         linkAddress={"profile"}
       >
         Личный кабинет

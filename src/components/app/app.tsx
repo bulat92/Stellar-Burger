@@ -17,27 +17,29 @@ import { getCookie } from "../../services/cookie/cookie-functions";
 import { AppHeader } from "../header-apps/header-app";
 import { IngredientDetails } from '../modal/modal-overlay/ingredient-details/ingredient-details';
 import { OrderDetails } from "../modal/modal-overlay/order-details/order-details";
+import { Location } from 'history';
 
 import { useHistory } from "react-router-dom";
 
-export const App = () => {
-  const { success } = useSelector((store) => store.login);
-  const { successRefreshToken } = useSelector((store) => store.authToken);
+export const App = (): JSX.Element => {
+  const { success } = useSelector((store: any) => store.login);
+  const { successRefreshToken } = useSelector((store: any) => store.authToken);
 
-  const location = useLocation();
+  const location = useLocation<{background: Location}>();
   const background = location.state && location.state.background;
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (!success && getCookie("token")) {
+      // @ts-ignore
       dispatch(AuthTokenFetch());
     }
   }, [dispatch, success, successRefreshToken]);
 
   const history = useHistory();
 
-  const onClose = (e) => {
+  const onClose = () => {
     history.replace({pathname: '/'});
   };
 

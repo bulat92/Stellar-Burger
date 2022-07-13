@@ -6,8 +6,13 @@ export const LogoHead = () => {
   const history = useHistory();
   return (
     <div className={styles.box_logo}>
-      <div className={styles.logo} >
-        <Logo onClick={()=>{history.replace({ pathname: "/" })}} />
+      <div
+        className={styles.logo}
+        onClick={() => { 
+          history.replace({ pathname: "/" });
+        }}
+      >
+        <Logo />
       </div>
     </div>
   );

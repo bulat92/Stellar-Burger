@@ -1,27 +1,24 @@
 import style from "./ingredients.module.css";
-import { SET_INGREDIENTS_FOR_DETAILS } from "../../../../services/action/burger-ingredients";
-import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useDispatch } from "react-redux";
+import { CurrencyIcon, Counter } from "@ya.praktikum/react-developer-burger-ui-components"; 
 import { useDrag } from "react-dnd";
-import { Counter } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
+import { IIngredient } from '../../../../interface/interface';
+import { FC } from 'react';
 
-export const Ingredients = ({ el }) => {
+export const Ingredients: FC<{el: IIngredient}> = ({ el }) => {
 
   const location = useLocation();
 
   const { OrderIngredients, bun } = useSelector(
-    (store) => store.burgerConstructorValues
-  );
-  const dispatch = useDispatch();
-
+    (store: any) => store.burgerConstructorValues
+  ); 
   const ingredientsCount = useMemo(() => {
     let count = 0;
 
     if (el.type !== "bun") {
-      OrderIngredients.map((OrIn) => {
+      OrderIngredients.map((OrIn: IIngredient) => {
         if (OrIn._id === el._id) {
           ++count;
         }
@@ -46,8 +43,7 @@ export const Ingredients = ({ el }) => {
         ref={ref}
       >
         {ingredientsCount > 0 && (
-          <Counter
-            className={style.Counter}
+          <Counter 
             count={ingredientsCount}
             size="small"
           />
@@ -55,7 +51,7 @@ export const Ingredients = ({ el }) => {
         <img className={style.typesImg} src={el.image_mobile} alt="" />
         <div className={style.priceBox}>
           <p className="text text_type_digits-default mr-2">{el.price}</p>
-          <CurrencyIcon className={style.CurrencyIcon} type="primary" />
+          <CurrencyIcon type="primary" />
         </div>
         <p className={style.typeName}>{el.name}</p>
       </div>

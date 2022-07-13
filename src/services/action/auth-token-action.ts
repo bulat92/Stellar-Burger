@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { userURL, baseURL, tokenURL } from "../url";
 import { checkResponse } from "../check-response/check-response";
 import { getCookie, setCookie } from "../cookie/cookie-functions";

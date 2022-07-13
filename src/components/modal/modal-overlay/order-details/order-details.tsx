@@ -1,13 +1,11 @@
-import style from './order-details.module.css';
-import PropTypes from 'prop-types';
-import {ingredientPropType} from '../../../../prop-types';
+import style from './order-details.module.css'; 
 import CheckMarImg from '../../../../img/check-mar-img.png';
 import { useSelector } from 'react-redux';
 
 
 export const OrderDetails = () => {
 
-    const { orderNumber } = useSelector(store => store.orderedIngredientsValues)
+    const { orderNumber } = useSelector((store: any)  => store.orderedIngredientsValues)
 
     return(
         <div className={style.OrderDetails}>
@@ -18,8 +16,4 @@ export const OrderDetails = () => {
             <p className="text text_type_main-default text_color_inactive">Дождитесь готовности на орбитальной станции</p>
         </div>
     )
-}
-
-/* OrderDetails.propTypes = {
-    orderInfo: PropTypes.arrayOf(ingredientPropType.isRequired).isRequired,
-}  */ 
+} 

@@ -1,13 +1,23 @@
+import React from "react";
 import ReactDOM from "react-dom";
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import style from "./modal.module.css";
 import { ModalOverlay } from "./modal-overlay/modal-overlay";
 import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 
-export const Modal = ({children, title, onClose}) => {
-   
+type TModal = {
+  children: any;
+  title?: string | undefined;
+  onClose: () => void;
+};
+
+export const Modal: React.FC<TModal> = ({
+  children,
+  title,
+  onClose,
+}): JSX.Element => {
   useEffect(() => {
-    const escapeKeyFunc = (e) => {
+    const escapeKeyFunc = (e: KeyboardEvent): void => {
       if (e.code === "Escape") {
         onClose();
       }
@@ -18,8 +28,8 @@ export const Modal = ({children, title, onClose}) => {
       window.removeEventListener("keydown", escapeKeyFunc);
     };
   }, []);
- 
-  const reactModals = document.getElementById("react-modals");
+
+  const reactModals = document.getElementById("react-modals") as HTMLDivElement;
   return ReactDOM.createPortal(
     <>
       <div className={style.Modal}>

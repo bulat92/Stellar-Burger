@@ -1,8 +1,6 @@
 import style from "./burger-constructor.module.css";
 import { TotalAndOrderButton } from "./total-and-order-button/total-and-order-button";
-import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
-import PropTypes from "prop-types";
-import { ingredientPropType } from "../../prop-types";
+import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components"; 
 import { v4 as uuidv4 } from "uuid";
 import { useDrop } from "react-dnd";
 import { useSelector, useDispatch } from "react-redux";
@@ -11,13 +9,15 @@ import {
   ADD_BUN,
 } from "../../services/action/burger-constructor";
 import { DotsAndConstructorElement } from "./dots-and-constructor-element/dots-and-constructor-element";
+import { IIngredient } from '../../interface/interface';
+import React from "react";
 
-export const BurgerConstructor = () => {
+export const BurgerConstructor: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
 
   const [, ref] = useDrop({
     accept: "ingredients",
-    drop(item) {
+    drop(item: IIngredient) { 
       if (item.type !== "bun") {
         dispatch({
           type: ADD_INGREDIENT,
@@ -39,7 +39,7 @@ export const BurgerConstructor = () => {
   });
 
   const { OrderIngredients, bun } = useSelector(
-    (store) => store.burgerConstructorValues
+    (store: any) => store.burgerConstructorValues
   );
 
   return (
@@ -62,8 +62,8 @@ export const BurgerConstructor = () => {
           className={`mr-2 ${style.scrollWindow_into}`}
         >
           {OrderIngredients.length !== 0 ? (
-            OrderIngredients.map((el, index) => (
-              <DotsAndConstructorElement el={el} key={el.id} index={index} />
+            OrderIngredients.map((el: IIngredient, index: number) => (
+              <DotsAndConstructorElement el={el} key={el._id} index={index} />
             ))
           ) : (
             <div className={style.empty}>Выберите начинку</div>
@@ -86,8 +86,4 @@ export const BurgerConstructor = () => {
       <TotalAndOrderButton />
     </section>
   );
-};
-
-/* BurgerConstructor.propTypes = {
-  OrderIngredients : PropTypes.arrayOf(ingredientPropType.isRequired).isRequired,
-} */
+}; 

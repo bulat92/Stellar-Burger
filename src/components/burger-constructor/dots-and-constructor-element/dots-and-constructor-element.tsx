@@ -1,7 +1,6 @@
 import style from "./dots-and-constructor-element.module.css";
-import { useRef } from "react";
+import React, { useRef } from "react";
 import { useDispatch } from "react-redux";
-import { v4 as uuidv4 } from "uuid";
 import {
   ConstructorElement,
   DragIcon,
@@ -11,46 +10,61 @@ import {
   SORT_INGREDIENT,
 } from "../../../services/action/burger-constructor";
 import { useDrag, useDrop } from "react-dnd";
-import PropTypes from "prop-types";
-import { ingredientPropType } from "../../../prop-types";
+import { IIngredient } from "../../../interface/interface";
 
-export const DotsAndConstructorElement = ({ el, index }) => {
-  const ref = useRef(null);
+interface TDotsAndConstructorElement {
+  el: IIngredient;
+  index: number;
+}
+
+export const DotsAndConstructorElement: React.FC<
+  TDotsAndConstructorElement
+> = ({ el, index }) => {
+  const ref = useRef<HTMLDivElement>(null);
 
   const dispatch = useDispatch();
 
   const [, drop] = useDrop({
     accept: "inConstructor",
-    hover(item, monitor) {
+    hover(item: IIngredient & { index: number }, monitor) {
       if (!ref.current) {
         return;
       }
 
-      const dragIndex = item.index;
-      const hoverIndex = index;
+      const dragIndex: number = item.index;
+      const hoverIndex: number = index;
       // Не заменяйте предметы сами собой
 
-      if (dragIndex === hoverIndex) {
+      if (Number(dragIndex) === hoverIndex) {
         return;
       }
       // Определить прямоугольник на экране
-      const hoverBoundingRect = ref.current?.getBoundingClientRect();
+      const hoverBoundingRect: DOMRect = ref.current?.getBoundingClientRect();
       //Получить вертикальную середину
       const hoverMiddleY =
         (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
       // Определить положение мыши
       const clientOffset = monitor.getClientOffset();
       //Получить пиксели вверху
-      const hoverClientY = clientOffset.y - hoverBoundingRect.top;
+
+      let hoverClientY: number | undefined;
+      if (clientOffset) {
+        hoverClientY = clientOffset.y - hoverBoundingRect.top;
+      }
+
       // Выполняйте перемещение только тогда, когда мышь пересекла половину высоты элементов.
       // При перетаскивании вниз двигаться только тогда, когда курсор находится ниже 50%
       // При перетаскивании вверх двигайтесь только тогда, когда курсор находится выше 50%
       // Перетаскивание вниз
-      if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
-        return;
-      }
-      // Dragging upwards
-      if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
+      if (hoverMiddleY && hoverIndex && dragIndex && hoverClientY) {
+        if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
+          return;
+        }
+        // Dragging upwards
+        if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
+          return;
+        }
+      } else {
         return;
       }
       // Время, чтобы фактически выполнить действие
@@ -77,7 +91,7 @@ export const DotsAndConstructorElement = ({ el, index }) => {
   drag(drop(ref));
 
   return (
-    <div className={style.dotsAndConstructorElement} ref={ref} key={el.id}>
+    <div className={style.dotsAndConstructorElement} ref={ref} key={el._id}>
       <DragIcon type="primary" />
       <ConstructorElement
         isLocked={false}
@@ -91,7 +105,3 @@ export const DotsAndConstructorElement = ({ el, index }) => {
     </div>
   );
 };
-
-DotsAndConstructorElement.propTypes = {
-  el : PropTypes.shape(ingredientPropType.isRequired).isRequired,
-}
