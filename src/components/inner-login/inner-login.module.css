@@ -1,0 +1,34 @@
+.LoginInner {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 200px;
+}
+.loginHeader {
+  height: 30px;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 30px;
+  color: white;
+  margin-bottom: 24px;
+}
+.mbInput{
+  margin-bottom: 24px;
+} 
+.boxOptions{
+    margin-top: 80px;
+}
+.option{
+    color: #8585ad;
+    text-decoration: none;
+
+    display: flex;
+}
+.option a{
+    text-decoration: none;
+    color: #4C4CFF;
+}
+.boxInputs{
+  composes: LoginInner;
+  margin: 0;
+}

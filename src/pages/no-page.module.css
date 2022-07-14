@@ -1,0 +1,7 @@
+.noPage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 80px;
+    font-size: 500px;
+}

@@ -1,12 +1,10 @@
 import { ordersURL, baseURL } from '../url';
-import { checkReponse } from '../check-response/check-response'
+import { checkResponse } from '../check-response/check-response'
 
 export const
     POST_ORDER_SUCCESS = 'POST_ORDER',
     POST_ORDER_REQUEST = 'POST_ORDER_REQUEST',
-    POST_ORDER_FAILED = 'FAILED',
-    
-    ORDER_MODAL_MUST_BE_CLOSED = 'ORDER_MODAL_MUST_BE_CLOSED';
+    POST_ORDER_FAILED = 'FAILED';
 
 export const fetchMakeOrder = (idIngredients) => {
  
@@ -24,7 +22,7 @@ export const fetchMakeOrder = (idIngredients) => {
                 ingredients: idIngredients
             })
         })
-        .then(checkReponse).then( response => {
+        .then(checkResponse).then( response => {
             dispatch({
               type: POST_ORDER_SUCCESS,
               number: response.order.number

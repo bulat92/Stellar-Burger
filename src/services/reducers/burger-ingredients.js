@@ -1,9 +1,7 @@
 import {
   GET_INGREDIENTS,
   GET_INGREDIENTS_FAILED,
-  GET_INGREDIENTS_REQUEST,
-  SET_INGREDIENTS_FOR_DETAILS,
-  INGREDIENTS_DETAILS_MUST_BE_CLOSED
+  GET_INGREDIENTS_REQUEST
 } from "../action/burger-ingredients";
 
 const initialState = {
@@ -34,18 +32,6 @@ export const burgersReducer = (state = initialState, action) => {
       return {
         ...state,
         ingredientsRequest: true,
-      };
-    }
-    case SET_INGREDIENTS_FOR_DETAILS: {
-      return {
-        ...state,
-        IngredientDetailsOpen: action.details,
-      };
-    }
-    case INGREDIENTS_DETAILS_MUST_BE_CLOSED: {
-      return {
-        ...state,
-        IngredientDetailsOpen: false,
       };
     }
     default: {

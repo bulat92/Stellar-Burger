@@ -9,13 +9,7 @@
 .logo{
     position: absolute;
     width: 289.15px;
-    height: 40px;
-   
-    /* interface/modal-bg */
-    
-    background: #1C1C21;
-    /* interface/accent */
- 
+    height: 40px; 
     display: flex;
     align-items: center;
 }

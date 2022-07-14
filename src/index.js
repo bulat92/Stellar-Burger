@@ -4,13 +4,19 @@ import "./index.css";
 import "./normalize.css";
 import { App } from "./components/app/app";
 import { Provider } from "react-redux";
-import { store } from './services/reducers/store';
+import { store } from "./services/reducers/store";
+import { HashRouter as Router } from "react-router-dom";
+import { CookiesProvider } from "react-cookie";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </React.StrictMode>
+  <Router>
+    <React.StrictMode>
+      <Provider store={store}>
+        <CookiesProvider>
+          <App />
+        </CookiesProvider>
+      </Provider>
+    </React.StrictMode>
+  </Router>
 );
