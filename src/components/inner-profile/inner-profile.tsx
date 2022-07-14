@@ -3,46 +3,48 @@ import {
   Input,
   Button,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { logoutFetch } from "../../services/action/logout-action";
 import { profileSaveCancelData } from "../../services/action/profile-action";
 import { useDispatch, useSelector } from "react-redux";
 
 export const ProfileInner = () => {
-  const { name, email } = useSelector((store) => store.login);
+  const { name, email } = useSelector((store: any) => store.login);
 
   const dispatch = useDispatch();
 
-  const [password, setPassword] = useState("");
-  const [nameInput, setName] = useState(name);
-  const [emailInput, setEmail] = useState(email);
-  const [saveOn, setSaveOn] = useState(false);
-  const [cancelOn, setCancelOn] = useState(false);
+  const [password, setPassword] = useState<string>("");
+  const [nameInput, setName] = useState<string>(name);
+  const [emailInput, setEmail] = useState<string>(email);
+  const [saveOn, setSaveOn] = useState<boolean>(false);
+  const [cancelOn, setCancelOn] = useState<boolean>(false);
 
-  const onClick = (e) => {
+  const onClick = (e: React.SyntheticEvent) => {
     e.preventDefault();
+    // @ts-ignore
     dispatch(logoutFetch());
   };
 
-  const saveUserData = (e) => {
-    console.log('dsd')
-    if (password !== "" || nameInput !== name || emailInput !== email) { 
-      console.log('2')
+  const saveUserData = (e: React.SyntheticEvent) => { 
+    if (password !== "" || nameInput !== name || emailInput !== email) {  
       e.preventDefault();
       setSaveOn(false);
       setCancelOn(true);
       if (password !== "") {
+        // @ts-ignore
         dispatch(profileSaveCancelData(nameInput, emailInput, password));
       } else {
+        // @ts-ignore
         dispatch(profileSaveCancelData(nameInput, emailInput));
       }
     }
   };
 
-  const cancelUserData = (e) => { 
+  const cancelUserData = (e: React.SyntheticEvent) => { 
       e.preventDefault();
       setCancelOn(false);
+      // @ts-ignore
       dispatch(profileSaveCancelData(name, email));
       setName(name);
       setEmail(email)

@@ -4,9 +4,9 @@ import { Redirect } from "react-router-dom";
 
 export const ResetPassword = () => {
 
-  const {success} = useSelector(store => store.login); 
-  const {successReset} = useSelector(store => store.resetPassword);
-  const { successForgotPassword } = useSelector(store => store.forgotPassword);
+  const {success} = useSelector((store: any) => store.login); 
+  const {successReset} = useSelector((store: any) => store.resetPassword);
+  const { successForgotPassword } = useSelector((store: any) => store.forgotPassword);
  
   if (success || successReset || !successForgotPassword) {
     return (

@@ -5,16 +5,17 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { useState } from "react";
+import React, { useState } from "react";
 import { forgotPasswordFetch } from "../../services/action/forgot-password-action";
 
 export const ForgotPasswordInner = () => {
   const dispatch = useDispatch();
 
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState<string>("");
 
-  const onSubmit = (e) => {
+  const onSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
+    // @ts-ignore
     dispatch(forgotPasswordFetch(value));
   };
 

@@ -5,7 +5,7 @@ import { TabList } from "./tab-list/tab-list";
 import { useInView } from "react-intersection-observer";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchGetIngredients } from "../../services/action/burger-ingredients";
-import { IIngredient } from '../../interface/interface'
+import { IIngredient } from '../../interface/interface';
 
 export const BurgerIngredients:FC = () => {
  

@@ -1,18 +1,17 @@
-import style from './ingredient-details.module.css';
-import {ingredientPropType} from '../../../../prop-types';
-import PropTypes from 'prop-types';
+import style from './ingredient-details.module.css'; 
 import { useSelector } from 'react-redux';
 import { useMemo } from "react";
 import { useParams } from "react-router-dom";
+import { IIngredient } from '../../../../interface/interface';
 
 export const IngredientDetails = () => {
 
-    const { ingredients } = useSelector((store) => store.burgers);
-
+    const { ingredients } = useSelector((store: any) => store.burgers);
+    // @ts-ignore
     const { id } = useParams();
 
     const IngredientForDetails = useMemo(() => {
-        return ingredients.find((el) => el._id === id);
+        return ingredients.find((el: IIngredient) => el._id === id);
       },[id, ingredients]);
  
     return(
@@ -55,8 +54,4 @@ export const IngredientDetails = () => {
             </div>
         </div>
     )
-}
-
-/* IngredientDetails.propTypes = {
-    details: PropTypes.shape(ingredientPropType.isRequired).isRequired,
-}  */ 
+} 

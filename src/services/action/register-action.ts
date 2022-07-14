@@ -7,11 +7,17 @@ import {
 } from "./login-action";
 import { setCookie } from "../cookie/cookie-functions";
 
-export const REGISTER_FETCH_SUCCESS = "REGISTER_SUCCESS",
+export const REGISTER_FETCH_SUCCESS: = "REGISTER_SUCCESS",
   REGISTER_FETCH_REQUEST = "REGISTER_REQUEST",
   REGISTER_FETCH_FAILED = "REGISTER_FAILED";
 
-export const registerFetch = (email, password, name) => {
+interface TRegisterFetch {
+  email: string; 
+  password: string; 
+  name: string;
+}
+
+export const registerFetch: TRegisterFetch = (email, password, name) => {
   return function (dispatch) {
     dispatch({
       type: LOGIN_FETCH_REQUEST,

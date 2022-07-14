@@ -4,26 +4,31 @@ import { useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useMemo, useEffect } from "react";
 import { fetchGetIngredients } from "../../services/action/burger-ingredients";
+import { IIngredient } from '../../interface/interface';
 
 export const InnerIngredientView = () => {
-  const { id } = useParams();
-
+  const { id } = useParams<any>();
+ 
   const dispatch = useDispatch();
 
   useEffect(() => {
+    // @ts-ignore
     dispatch(fetchGetIngredients());
   }, [dispatch]);
 
-  const { ingredients } = useSelector((store) => store.burgers);
+  const { ingredients } = useSelector((store: any) => store.burgers);
 
   const content = useMemo(() => {
     let IngredientForDetails = false;
 
     if (ingredients) {
-      IngredientForDetails = ingredients.find((el) => el._id === id);
- 
-    }
+      ingredients.forEach((el: IIngredient) => {
+        if(el._id === id){
+          IngredientForDetails =  true;
+      }});
 
+    } 
+    
     return IngredientForDetails;
   }, [id, ingredients]);
 
@@ -33,7 +38,7 @@ export const InnerIngredientView = () => {
         <div className={style.modalHeader}>
           <h2 className={style.h2}>Детали ингредиента</h2>
         </div>
-        {content && <IngredientDetails IngredientForDetails={content} />}
+        {content && <IngredientDetails/>}
       </div>
     </section>
   );

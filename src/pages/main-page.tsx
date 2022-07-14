@@ -11,7 +11,7 @@ export const MainPage = () => {
       <div className="headerOnMain">
         <h1>Собери бургер</h1>
       </div>
-      <main style={style.App}>
+      <main className={style.App}>
         <DndProvider backend={HTML5Backend}>
           <BurgerIngredients />
           {/* left */}
