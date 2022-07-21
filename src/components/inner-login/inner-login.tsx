@@ -10,11 +10,12 @@ import { loginFetch } from "../../services/action/login-action";
 
 export const LoginInner = () => {
   const dispatch = useDispatch();
-  const [password, setPassword] = useState("123456");
-  const [email, setEmail] = useState("damask161092@gmail.com");
+  const [password, setPassword] = useState<string>("123456");
+  const [email, setEmail] = useState<string>("damask161092@gmail.com");
 
-  const onSubmit = (e) => {
+  const onSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
+    // @ts-ignore
     dispatch(loginFetch(email, password));
   };
 

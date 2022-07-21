@@ -4,7 +4,7 @@ import React from 'react';
 
 interface TButtonsWithIcons {
   linkAddress: string;
-  onMouseOver: any;
+  onMouseOver: ()=>void;
   onMouseOut: ()=>void;
   children: string;
   icon: any;

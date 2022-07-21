@@ -7,24 +7,20 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useState, useRef } from "react";
 import { registerFetch } from "../../services/action/register-action";
+import React from 'react';
 
 export const RegisterInner = () => {
   const dispatch = useDispatch();
-  const passwordRef = useRef(null);
-  const nameRef = useRef(null);
-  const emailRef = useRef(null);
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-
-  const onChange = () => {
-    setPassword(passwordRef.current.value);
-    setName(nameRef.current.value);
-    setEmail(emailRef.current.value);
-  };
-
-  const onSubmit = (e) => {
+  const passwordRef = useRef<HTMLInputElement>(null);
+  const nameRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
+  const [password, setPassword] = useState<string>("");
+  const [name, setName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+ 
+  const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    // @ts-ignore
     dispatch(registerFetch(email, password, name));
   };
 
@@ -34,7 +30,7 @@ export const RegisterInner = () => {
       <form className={style.boxInputs} onSubmit={onSubmit}>
         <div className={style.mbInput}>
           <Input
-            onChange={onChange}
+            onChange={(e)=>{setName(e.target.value)}}
             ref={nameRef}
             value={name}
             name={"name"}
@@ -43,7 +39,7 @@ export const RegisterInner = () => {
         </div>
         <div className={style.mbInput}>
           <Input
-            onChange={onChange}
+            onChange={(e)=>{setEmail(e.target.value)}}
             ref={emailRef}
             value={email}
             name={"email"}
@@ -53,7 +49,7 @@ export const RegisterInner = () => {
         </div>
         <div className={style.mbInput}>
           <Input
-            onChange={onChange}
+            onChange={(e)=>{setPassword(e.target.value)}}
             ref={passwordRef}
             value={password}
             icon={"ShowIcon"}
