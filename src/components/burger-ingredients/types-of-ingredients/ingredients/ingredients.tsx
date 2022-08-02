@@ -4,7 +4,7 @@ import { useDrag } from "react-dnd";
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
-import { IIngredient } from '../../../../interface/interface';
+import { IIngredient } from '../../../../interface-and-types/interface';
 import { FC } from 'react';
 
 export const Ingredients: FC<{el: IIngredient}> = ({ el }) => {

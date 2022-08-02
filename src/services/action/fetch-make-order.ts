@@ -1,15 +1,25 @@
 import { ordersURL, baseURL } from '../url';
 import { checkResponse } from '../check-response/check-response'
+import { AppDispatch, AppThunk } from "../../interface-and-types/types";
 
 export const
-    POST_ORDER_SUCCESS = 'POST_ORDER',
+    POST_ORDER_SUCCESS = 'POST_ORDER_SUCCESS',
     POST_ORDER_REQUEST = 'POST_ORDER_REQUEST',
-    POST_ORDER_FAILED = 'FAILED';
+    POST_ORDER_FAILED = 'POST_ORDER_FAILED';
 
-export const fetchMakeOrder = (idIngredients) => {
+interface IPostOrderRequestPostOrderFailed{
+    readonly type: typeof POST_ORDER_REQUEST | typeof POST_ORDER_FAILED;
+}
+interface IPostOrderSuccess{
+    readonly type: typeof POST_ORDER_SUCCESS;
+    readonly number: string;
+}
+
+export type TFetchMakeOrder = IPostOrderRequestPostOrderFailed | IPostOrderSuccess;
+
+
+export const fetchMakeOrder = (idIngredients: string[]): AppThunk => (dispatch: AppDispatch) => {
  
-    return function(dispatch) {
-        
         dispatch({
             type: POST_ORDER_REQUEST
         })
@@ -33,5 +43,5 @@ export const fetchMakeOrder = (idIngredients) => {
                 type: POST_ORDER_FAILED
             })
           }); 
-      }
+ 
   }    

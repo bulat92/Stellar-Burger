@@ -1,0 +1,16 @@
+.StatusTableRight{
+    width: 584px;
+}
+.ordersStatusBox{
+    display: flex;
+    justify-content: space-between;
+
+    margin-bottom: 60px;
+}
+.ready{
+    width: 272px;
+    color: #00CCCC;
+}
+.inWork{
+    width: 272px
+}

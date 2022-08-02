@@ -28,7 +28,6 @@ nav{
 }
 .boxItemsChild{
     display: flex;
-    justify-content: center;
     align-items: center;
 
     color: #8585AD;

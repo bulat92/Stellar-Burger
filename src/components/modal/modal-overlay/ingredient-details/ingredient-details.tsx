@@ -2,7 +2,7 @@ import style from './ingredient-details.module.css';
 import { useSelector } from 'react-redux';
 import { useMemo } from "react";
 import { useParams } from "react-router-dom";
-import { IIngredient } from '../../../../interface/interface';
+import { IIngredient } from '../../../../interface-and-types/interface';
 
 export const IngredientDetails = () => {
 

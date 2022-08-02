@@ -10,7 +10,7 @@ import {
   SORT_INGREDIENT,
 } from "../../../services/action/burger-constructor";
 import { useDrag, useDrop } from "react-dnd";
-import { IIngredient } from "../../../interface/interface";
+import { IIngredient } from "../../../interface-and-types/interface";
 
 interface TDotsAndConstructorElement {
   el: IIngredient;

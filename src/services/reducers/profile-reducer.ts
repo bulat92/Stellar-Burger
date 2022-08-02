@@ -4,20 +4,32 @@ import {
   PROFILE_FETCH_FAILED,
   SET_CHANGED_NAME,
   SET_CHANGED_EMAIL,
-  SET_CHANGED_PASSWORD
+  SET_CHANGED_PASSWORD,
+  TProfileReducer
 } from "../action/profile-action";
 
-const initialState = {
+interface IInitialState {
+  changedEmail: string;
+  changedName: string;
+  changedPassword: string;
+
+  successProfileFetch: boolean;
+
+  request: boolean;
+  failed: boolean;
+}
+
+const initialState: IInitialState = {
   changedEmail: "",
   changedName: "",
-  changedPassword: '',
-  success: '',
+  changedPassword: "",
+  successProfileFetch: false,
 
   request: false,
   failed: false,
 };
 
-export const profileReducer = (state = initialState, action) => {
+export const profileReducer = (state = initialState, action: TProfileReducer) => {
   switch (action.type) {
     case PROFILE_FETCH_REQUEST: {
       return {
@@ -30,8 +42,8 @@ export const profileReducer = (state = initialState, action) => {
         ...state,
         request: false,
         failed: false,
- 
-        successProfileFetch: action.success
+
+        successProfileFetch: action.success,
       };
     }
     case PROFILE_FETCH_FAILED: {

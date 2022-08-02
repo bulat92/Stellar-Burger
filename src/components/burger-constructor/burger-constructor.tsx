@@ -9,7 +9,7 @@ import {
   ADD_BUN,
 } from "../../services/action/burger-constructor";
 import { DotsAndConstructorElement } from "./dots-and-constructor-element/dots-and-constructor-element";
-import { IIngredient } from '../../interface/interface';
+import { IIngredient } from '../../interface-and-types/interface';
 import React from "react";
 
 export const BurgerConstructor: React.FC = (): JSX.Element => {

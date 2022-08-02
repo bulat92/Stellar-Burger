@@ -1,46 +1,44 @@
-import style from "./inner-profile.module.css";
+import style from "./inner-order.module.css";
 import { NavLink } from "react-router-dom";
 import { logoutFetch } from "../../services/action/logout-action";
-import { useDispatch } from "react-redux";
-import { ProfileForm } from "./profile-form/profile-form";
+import { useDispatch, useSelector } from "react-redux";
+import { OrderList } from "../inner-feed/order-list/order-list";
 
-export const ProfileInner = () => {
+export const InnerOrder = () => {
   const dispatch = useDispatch();
 
-  const logout = (e: React.SyntheticEvent) => {
+  const onClick = (e: React.SyntheticEvent) => {
     e.preventDefault();
     dispatch(logoutFetch());
   };
 
   return (
-    <section className={style.ProfileInner}>
+    <section className={style.InnerOrder}>
       <div className={style.boxTabs}>
         <NavLink
-          exact={true}
-          to="/profile"
+        exact
           activeClassName={style.profileTabActive}
+          to="/profile"
           className={style.profileTab}
         >
           Профиль
         </NavLink>
         <NavLink
-          exact={true}
+        exact
           activeClassName={style.profileTabActive}
           to="/profile/orders"
           className={style.profileTab}
         >
           Историй заказов
         </NavLink>
-        <p className={style.profileTab} onClick={logout}>
+        <p className={style.profileTab} onClick={onClick}>
           Выход
         </p>
         <p className={style.profileDescription}>
           В этом разделе вы можете изменить свои персональные данные
         </p>
       </div>
-      <div>
-        <ProfileForm />
-      </div>
+      <OrderList classWidth={style.classWidth}/>
     </section>
   );
 };

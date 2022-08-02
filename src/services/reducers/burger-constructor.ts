@@ -3,15 +3,22 @@ import {
   DELETE_INGREDIENT,
   ADD_BUN,
   SORT_INGREDIENT,
+  IBurgerConstructorReducer
 } from "../action/burger-constructor";
+import { IIngredient } from '../../interface-and-types/interface';
 
-const initialState = {
+interface IInitialState{
+  OrderIngredients: IIngredient[] | [];
+  bun: IIngredient | {};
+}
+
+const initialState: IInitialState = {
   OrderIngredients: [],
 
   bun: {}
 };
 
-export const burgerConstructorReducer = (state = initialState, action) => {
+export const burgerConstructorReducer = (state = initialState, action: IBurgerConstructorReducer) => {
   switch (action.type) {
     case ADD_INGREDIENT: {
       return {

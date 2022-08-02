@@ -1,20 +1,23 @@
 import {
-
+    TFetchMakeOrder,
     POST_ORDER_SUCCESS,
     POST_ORDER_REQUEST,
     POST_ORDER_FAILED
 
 } from '../action/fetch-make-order';
 
-const initialState = {
-    
+interface IInitialState{
+    orderNumber: string;
+    orderNumberRequest: Boolean;
+    orderNumberFailed: Boolean;
+}
+
+const initialState: IInitialState = {
     orderNumber: '',
     orderNumberRequest: false,
     orderNumberFailed: false,
-    
-    orderDetailsOpen: false
 }
-export const orderReducer = (state = initialState, action) => {
+export const orderReducer = (state = initialState, action: TFetchMakeOrder) => {
     switch(action.type){
         case POST_ORDER_REQUEST:{
             return{
@@ -27,8 +30,7 @@ export const orderReducer = (state = initialState, action) => {
                 ...state,
                 orderNumberRequest: false,
                 orderNumberFailed: false,
-                orderNumber: action.number,
-                orderDetailsOpen: true
+                orderNumber: action.number
             }
         }
         case POST_ORDER_FAILED:{

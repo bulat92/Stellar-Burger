@@ -1,7 +1,7 @@
 import style from "./types-of-ingredients.module.css";
 import { forwardRef } from "react"; 
 import { Ingredients } from "./ingredients/ingredients";
-import { IIngredient } from '../../../interface/interface'
+import { IIngredient } from '../../../interface-and-types/interface'
 
 interface ITypesOfIngredients {
   children: string;

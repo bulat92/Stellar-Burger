@@ -1,10 +1,13 @@
-.ProfileInner {
+.InnerOrder {
   max-width: 1280px;
   margin: 0 auto;
   margin-top: 100px;
 
   display: flex;
-} 
+}
+.classWidth {
+  width: 844px;
+}
 .profileTab {
   color: #8585ad;
   font-family: "JetBrains Mono";
@@ -46,38 +49,4 @@
   display: flex;
   flex-direction: column;
   margin-right: 60px;
-}
-.boxInputs div {
-  color: #8585ad;
-}
-.boxInputs input {
-  color: #8585ad;
-}
-.boxInputs input:focus {
-  color: white;
-}
-
-.mbInput {
-  margin-bottom: 24px;
-}
-.buttonBox {
-  display: flex;
-  flex-direction: column;
-}
-.buttonBox button {
-  margin-bottom: 24px;
-}
-.cancelButton {
-  color: white;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 16px 40px;
-  width: 196px;
-  height: 56px;
-
-  background: linear-gradient(63.18deg, #801ab3 0%, #4c4cff 100%);
-  border-radius: 64px;
- 
 }

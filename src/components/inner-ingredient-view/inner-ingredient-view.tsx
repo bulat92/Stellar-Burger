@@ -4,7 +4,7 @@ import { useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useMemo, useEffect } from "react";
 import { fetchGetIngredients } from "../../services/action/burger-ingredients";
-import { IIngredient } from '../../interface/interface';
+import { IIngredient } from '../../interface-and-types/interface';
 
 export const InnerIngredientView = () => {
   const { id } = useParams<any>();
@@ -12,7 +12,6 @@ export const InnerIngredientView = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // @ts-ignore
     dispatch(fetchGetIngredients());
   }, [dispatch]);
 

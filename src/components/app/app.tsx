@@ -1,4 +1,6 @@
 import { Switch, Route, useLocation } from "react-router-dom";
+import { Feed } from "../../pages/feed";
+import { Orders } from '../../pages/orders';
 import { MainPage } from "../../pages/main-page";
 import { Profile } from "../../pages/profile";
 import { NoPage } from "../../pages/no-page";
@@ -9,15 +11,15 @@ import { ResetPassword } from "../../pages//reset-password";
 import { Modal } from "../modal/modal";
 import { IngredientView } from "../../pages/ingredient-view";
 import { ProtectedRoute } from "../protected-route/protected-route";
-import { useDispatch } from "react-redux";
+import { useDispatch } from "../../interface-and-types/hooks";
 import { useEffect } from "react";
 import { AuthTokenFetch } from "../../services/action/auth-token-action";
-import { useSelector } from "react-redux";
+import { useSelector } from "../../interface-and-types/hooks";
 import { getCookie } from "../../services/cookie/cookie-functions";
 import { AppHeader } from "../header-apps/header-app";
-import { IngredientDetails } from '../modal/modal-overlay/ingredient-details/ingredient-details';
+import { IngredientDetails } from "../modal/modal-overlay/ingredient-details/ingredient-details";
 import { OrderDetails } from "../modal/modal-overlay/order-details/order-details";
-import { Location } from 'history';
+import { Location } from "history";
 
 import { useHistory } from "react-router-dom";
 
@@ -25,22 +27,21 @@ export const App = (): JSX.Element => {
   const { success } = useSelector((store: any) => store.login);
   const { successRefreshToken } = useSelector((store: any) => store.authToken);
 
-  const location = useLocation<{background: Location}>();
+  const location = useLocation<{ background: Location }>();
   const background = location.state && location.state.background;
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (!success && getCookie("token")) {
-      // @ts-ignore
       dispatch(AuthTokenFetch());
     }
-  }, [dispatch, success, successRefreshToken]);
+  }, [success, successRefreshToken]);
 
   const history = useHistory();
 
   const onClose = () => {
-    history.replace({pathname: '/'});
+    history.replace({ pathname: "/" });
   };
 
   return (
@@ -71,6 +72,12 @@ export const App = (): JSX.Element => {
         <Route path="/ingredients/:id" exact={true}>
           <IngredientView />
         </Route>
+        <Route path="/feed" exact={true}>
+          <Feed />
+        </Route>
+        <ProtectedRoute path="/profile/orders" exact={true}>
+          <Orders />
+        </ProtectedRoute>
         <Route>
           <NoPage />
         </Route>
@@ -78,10 +85,14 @@ export const App = (): JSX.Element => {
       {background && (
         <Switch>
           <Route path={"/ingredients/:id"}>
-            <Modal onClose={onClose}  title={'Детали ингредиента'} children={<IngredientDetails />}/>
+            <Modal
+              onClose={onClose}
+              title={"Детали ингредиента"}
+              children={<IngredientDetails />}
+            />
           </Route>
           <Route path={"/order-details"}>
-            <Modal onClose={onClose} children={<OrderDetails />}/>
+            <Modal onClose={onClose} children={<OrderDetails />} />
           </Route>
         </Switch>
       )}
