@@ -3,6 +3,7 @@ import { forwardRef } from "react";
 import { Ingredients } from "./ingredients/ingredients";
 import { IIngredient } from '../../../interface-and-types/interface'
 
+
 interface ITypesOfIngredients {
   children: string;
   id: string;

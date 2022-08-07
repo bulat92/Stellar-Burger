@@ -1,7 +1,7 @@
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import React from "react";
 
-export const Cost: React.FC<{ cost: number | string }> = ({ cost }) => {
+export const Cost: React.FC<{ cost: number | string | undefined }> = ({ cost }) => {
   const style = { display: "flex" };
 
   return (

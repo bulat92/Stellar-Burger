@@ -9,8 +9,12 @@
 }
 .ready{
     width: 272px;
+    height: 200px;
     color: #00CCCC;
+    overflow-y: scroll;
 }
 .inWork{
-    width: 272px
+    width: 272px;
+    height: 200px;
+    overflow-y: scroll;
 }

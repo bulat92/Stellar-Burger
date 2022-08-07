@@ -8,7 +8,8 @@ import { registerReducer } from './register-reducer';
 import { loginReducer } from './login-reducer';
 import { authTokenReducer } from './auth-token-reducers';
 import { profileReducer } from './profile-reducer';
-import { WSReducer } from './ws-reducer';
+import { ordersReducer } from './orders-reducer';
+import { feedReducer } from './feed-reducer';
  
 export const rootReducer = combineReducers({
     burgers: burgersReducer,
@@ -20,5 +21,6 @@ export const rootReducer = combineReducers({
     login: loginReducer,
     authToken: authTokenReducer,
     profileData: profileReducer,
-    WSR: WSReducer
+    WSOrders: ordersReducer,
+    wsFeed: feedReducer
 });

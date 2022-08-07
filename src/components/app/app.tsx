@@ -11,17 +11,21 @@ import { ResetPassword } from "../../pages//reset-password";
 import { Modal } from "../modal/modal";
 import { IngredientView } from "../../pages/ingredient-view";
 import { ProtectedRoute } from "../protected-route/protected-route";
-import { useDispatch } from "../../interface-and-types/hooks";
+import { useDispatch, useSelector } from "../../interface-and-types/hooks";
 import { useEffect } from "react";
-import { AuthTokenFetch } from "../../services/action/auth-token-action";
-import { useSelector } from "../../interface-and-types/hooks";
+import { AuthTokenFetch } from "../../services/action/auth-token-action"; 
 import { getCookie } from "../../services/cookie/cookie-functions";
 import { AppHeader } from "../header-apps/header-app";
 import { IngredientDetails } from "../modal/modal-overlay/ingredient-details/ingredient-details";
 import { OrderDetails } from "../modal/modal-overlay/order-details/order-details";
-import { Location } from "history";
-
+import { Location } from "history"; 
+import { fetchGetIngredients } from "../../services/action/burger-ingredients";
+import { OrderInfo } from '../modal/modal-overlay/order-info/order-info';
 import { useHistory } from "react-router-dom";
+import { FeedOrderView } from '../../pages/feed-order-view';
+
+
+
 
 export const App = (): JSX.Element => {
   const { success } = useSelector((store: any) => store.login);
@@ -38,10 +42,14 @@ export const App = (): JSX.Element => {
     }
   }, [success, successRefreshToken]);
 
+  useEffect(() => {
+    dispatch(fetchGetIngredients());
+  }, [dispatch]);
+
   const history = useHistory();
 
   const onClose = () => {
-    history.replace({ pathname: "/" });
+    history.go(-1);
   };
 
   return (
@@ -72,6 +80,9 @@ export const App = (): JSX.Element => {
         <Route path="/ingredients/:id" exact={true}>
           <IngredientView />
         </Route>
+        <Route path="/feed/:id" exact={true}>
+          <FeedOrderView />
+        </Route>
         <Route path="/feed" exact={true}>
           <Feed />
         </Route>
@@ -93,6 +104,9 @@ export const App = (): JSX.Element => {
           </Route>
           <Route path={"/order-details"}>
             <Modal onClose={onClose} children={<OrderDetails />} />
+          </Route>
+          <Route path={"/feed/:id"}>
+            <Modal onClose={onClose} children={<OrderInfo />} />
           </Route>
         </Switch>
       )}

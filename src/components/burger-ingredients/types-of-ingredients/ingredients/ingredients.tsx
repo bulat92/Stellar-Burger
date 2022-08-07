@@ -1,11 +1,13 @@
 import style from "./ingredients.module.css";
-import { CurrencyIcon, Counter } from "@ya.praktikum/react-developer-burger-ui-components"; 
+import { Counter } from "@ya.praktikum/react-developer-burger-ui-components"; 
 import { useDrag } from "react-dnd";
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import { IIngredient } from '../../../../interface-and-types/interface';
 import { FC } from 'react';
+import { Cost } from "../../../cost/cost";
+
 
 export const Ingredients: FC<{el: IIngredient}> = ({ el }) => {
 
@@ -50,8 +52,7 @@ export const Ingredients: FC<{el: IIngredient}> = ({ el }) => {
         )}
         <img className={style.typesImg} src={el.image_mobile} alt="" />
         <div className={style.priceBox}>
-          <p className="text text_type_digits-default mr-2">{el.price}</p>
-          <CurrencyIcon type="primary" />
+          < Cost cost={el.price} /> 
         </div>
         <p className={style.typeName}>{el.name}</p>
       </div>

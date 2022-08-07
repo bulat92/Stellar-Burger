@@ -1,12 +1,24 @@
-import { InnerFeed } from "../components/inner-feed/inner-feed";
-/* import {WSOrderGET} from '../services/action/ws-action';
-import { useDispatch } from '../interface-and-types/hooks'; */
+import { InnerFeed } from "../components/inner-feed/inner-feed"; 
+import { useDispatch } from '../interface-and-types/hooks'; 
+import { wssBaseURL, WSordersURL } from '../services/url';
+import { useEffect } from 'react';
+import { FEED_CONNECTION_INIT,
+FEED_CONNECTION_CLOSE} from '../services/action/ws-feed-action';
 
 export const Feed = () => {
 
- /*  const dispatch = useDispatch();
-  
-  dispatch(WSOrderGET()) */
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch({
+      type: FEED_CONNECTION_INIT,
+      payload: `${wssBaseURL}${WSordersURL}`,
+    });
+    return () => {
+      dispatch({ type: FEED_CONNECTION_CLOSE });
+    };
+  }, [dispatch]); 
+
   return (
     <>
       <div className="headerOnMain">

@@ -1,10 +1,17 @@
 .orderList{
-    height: 65vh;
+    height: 70vh;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+.orderList a{
+  text-decoration: none;
+  color: inherit;
 }
 .orderCard{
     border-radius: 40px;
     background: #1C1C21;
     padding: 24px;
+     
 }
 .idAndDate{
     display: flex;

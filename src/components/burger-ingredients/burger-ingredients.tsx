@@ -3,16 +3,13 @@ import style from "./burger-ingredients.module.css";
 import { TypesOfIngredients } from "./types-of-ingredients/types-of-ingredients";
 import { TabList } from "./tab-list/tab-list"; 
 import { useInView } from "react-intersection-observer";
-import { useSelector, useDispatch } from "react-redux";
-import { fetchGetIngredients } from "../../services/action/burger-ingredients";
+import { useSelector } from "../../interface-and-types/hooks"; 
 import { IIngredient } from '../../interface-and-types/interface';
 
 export const BurgerIngredients:FC = () => {
  
   const { ingredients } = useSelector((store: any) => store.burgers);
-
-  const dispatch = useDispatch();
-
+ 
   const mainSection = useRef(null),
     [currentTab, setCurrentTab] = useState("bun");
 
@@ -43,11 +40,7 @@ export const BurgerIngredients:FC = () => {
       setCurrentTab("main");
     }
   }, [inViewBuns, inViewFilling, inViewSauces]);
-
-  useEffect(() => {
-    dispatch(fetchGetIngredients());
-  }, [dispatch]);
-
+ 
   return (
     <section>
       <TabList sectionScrollFunc={sectionScrollFunc} currentTab={currentTab} />

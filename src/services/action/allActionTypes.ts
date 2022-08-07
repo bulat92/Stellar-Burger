@@ -7,7 +7,8 @@ import { TProfileReducer } from "./profile-action";
 import { TBurgersReducer } from "./burger-ingredients";
 import { TRegisterReducer } from "./register-action";
 import { TLoginReducer } from "./login-action";
-import { TWS } from "./ws-action";
+import { TOrdersActions } from "./ws-order-action";
+import { TFeedActions } from './ws-feed-action';
 
 export type allActionTypes =
   | TResetPasswordReducer
@@ -19,4 +20,5 @@ export type allActionTypes =
   | TBurgersReducer
   | TRegisterReducer
   | TLoginReducer
-  | TWS;
+  | TFeedActions
+  | TOrdersActions;

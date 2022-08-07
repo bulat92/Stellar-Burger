@@ -1,10 +1,13 @@
 import style from "./inner-order.module.css";
 import { NavLink } from "react-router-dom";
 import { logoutFetch } from "../../services/action/logout-action";
-import { useDispatch, useSelector } from "react-redux";
-import { OrderList } from "../inner-feed/order-list/order-list";
+import { useDispatch, useSelector } from "../../interface-and-types/hooks";
+import { OrderList } from "../inner-feed/order-list/order-list"; 
 
 export const InnerOrder = () => {
+
+  const { orders } = useSelector(store => store.wsFeed)
+
   const dispatch = useDispatch();
 
   const onClick = (e: React.SyntheticEvent) => {
@@ -38,7 +41,7 @@ export const InnerOrder = () => {
           В этом разделе вы можете изменить свои персональные данные
         </p>
       </div>
-      <OrderList classWidth={style.classWidth}/>
+      <OrderList classWidth={style.classWidth} arr={orders}/>
     </section>
   );
 };

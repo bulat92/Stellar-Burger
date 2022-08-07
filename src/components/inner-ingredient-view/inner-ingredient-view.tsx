@@ -1,7 +1,7 @@
 import style from "./inner-ingredient-view.module.css";
 import { IngredientDetails } from "../modal/modal-overlay/ingredient-details/ingredient-details";
-import { useParams, useHistory } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "../../interface-and-types/hooks";
 import { useMemo, useEffect } from "react";
 import { fetchGetIngredients } from "../../services/action/burger-ingredients";
 import { IIngredient } from '../../interface-and-types/interface';
