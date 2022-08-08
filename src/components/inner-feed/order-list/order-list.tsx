@@ -5,10 +5,17 @@ import { ingredientsWS } from "../../../services/action/ws-feed-action";
 import { Link, useLocation } from "react-router-dom";
 
 export const OrderList: React.FC<{
+  statusSwitch: boolean;
   classWidth: string;
   arr: ingredientsWS[];
-}> = ({ classWidth, arr }): JSX.Element => {
+}> = ({ classWidth, arr, statusSwitch }): JSX.Element => {
   const location = useLocation();
+
+  const statusText: { [key: string]: string } = {
+    pending: "Готовится",
+    done: "Выполнен",
+    created: "Создан",
+  };
 
   return (
     <section className={style.orderList}>
@@ -25,6 +32,9 @@ export const OrderList: React.FC<{
               </p>
             </div>
             <p className="text text_type_main-medium mb-5">{el.name}</p>
+            { statusSwitch && <p className="text text_type_main-small">
+              statusText.[el.status]
+            </p>}
             <OrderListRoundImg arr={el.ingredients} />
           </div>
         </Link>

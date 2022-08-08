@@ -1,7 +1,6 @@
 import thunk from "redux-thunk";
 import { compose, createStore, applyMiddleware } from "redux";
-import { rootReducer } from "./index";
-import { wssBaseURL, WSordersURL } from "../url";
+import { rootReducer } from "./index"; 
 import { socketMiddleware } from "../socket-middleware/socketMiddleware";
 
 import {

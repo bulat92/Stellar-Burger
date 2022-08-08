@@ -10,7 +10,7 @@ export const InnerFeed = () => {
   return (
     <>
       <section className={style.InnerFeed}>
-        <OrderList classWidth={style.classWidth} arr={orders}/>
+        <OrderList classWidth={style.classWidth} arr={orders} statusSwitch={false}/>
         <StatusTableRight />
       </section>
     </>

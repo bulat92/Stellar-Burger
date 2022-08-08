@@ -2,11 +2,13 @@ import style from "./inner-order.module.css";
 import { NavLink } from "react-router-dom";
 import { logoutFetch } from "../../services/action/logout-action";
 import { useDispatch, useSelector } from "../../interface-and-types/hooks";
-import { OrderList } from "../inner-feed/order-list/order-list"; 
+import { OrderList } from "../inner-feed/order-list/order-list";
 
 export const InnerOrder = () => {
 
-  const { orders } = useSelector(store => store.wsFeed)
+  const { data } = useSelector((store) => store.WSOrders);
+
+  console.log(data)
 
   const dispatch = useDispatch();
 
@@ -19,7 +21,7 @@ export const InnerOrder = () => {
     <section className={style.InnerOrder}>
       <div className={style.boxTabs}>
         <NavLink
-        exact
+          exact
           activeClassName={style.profileTabActive}
           to="/profile"
           className={style.profileTab}
@@ -27,7 +29,7 @@ export const InnerOrder = () => {
           Профиль
         </NavLink>
         <NavLink
-        exact
+          exact
           activeClassName={style.profileTabActive}
           to="/profile/orders"
           className={style.profileTab}
@@ -38,10 +40,10 @@ export const InnerOrder = () => {
           Выход
         </p>
         <p className={style.profileDescription}>
-          В этом разделе вы можете изменить свои персональные данные
+          В этом разделе вы можете просмотреть свою историю заказов
         </p>
       </div>
-      <OrderList classWidth={style.classWidth} arr={orders}/>
+      <OrderList classWidth={style.classWidth} arr={data} statusSwitch={true}/>
     </section>
   );
 };
