@@ -24,7 +24,8 @@ export const AuthTokenFetch = (): AppThunk => (dispatch: AppDispatch) => {
     const requestHeaders: HeadersInit = new Headers();
     requestHeaders.set("Content-Type", "application/json");
     const notUndefined = getCookie("token");
-    
+
+     
     if(notUndefined !== undefined){// если не Undefined то добавится в заголовок 
       requestHeaders.set('Authorization', notUndefined  )
     }

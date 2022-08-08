@@ -1,6 +1,7 @@
 import { ordersURL, baseURL } from '../url';
 import { checkResponse } from '../check-response/check-response'
 import { AppDispatch, AppThunk } from "../../interface-and-types/types";
+import { getCookie } from "../cookie/cookie-functions";
 
 export const
     POST_ORDER_SUCCESS = 'POST_ORDER_SUCCESS',
@@ -17,17 +18,25 @@ interface IPostOrderSuccess{
 
 export type TFetchMakeOrder = IPostOrderRequestPostOrderFailed | IPostOrderSuccess;
 
+const requestHeaders: HeadersInit = new Headers();
+requestHeaders.set("Content-Type", "application/json");
+const notUndefined = getCookie("token");
+
+if(notUndefined !== undefined){// если не Undefined то добавится в заголовок 
+  requestHeaders.set('Authorization', notUndefined  )
+}
+
+
 
 export const fetchMakeOrder = (idIngredients: string[]): AppThunk => (dispatch: AppDispatch) => {
+    
  
         dispatch({
             type: POST_ORDER_REQUEST
         })
         fetch(`${baseURL}${ordersURL}`, {
             method: 'POST',
-            headers: {
-                "Content-Type": "application/json;charset=utf-8",
-            },
+            headers: requestHeaders,
             body: JSON.stringify({
                 ingredients: idIngredients
             })

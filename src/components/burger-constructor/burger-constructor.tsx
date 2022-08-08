@@ -1,6 +1,6 @@
 import style from "./burger-constructor.module.css";
 import { TotalAndOrderButton } from "./total-and-order-button/total-and-order-button";
-import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components"; 
+import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
 import { v4 as uuidv4 } from "uuid";
 import { useDrop } from "react-dnd";
 import { useSelector, useDispatch } from "react-redux";
@@ -9,7 +9,7 @@ import {
   ADD_BUN,
 } from "../../services/action/burger-constructor";
 import { DotsAndConstructorElement } from "./dots-and-constructor-element/dots-and-constructor-element";
-import { IIngredient } from '../../interface-and-types/interface';
+import { IIngredient } from "../../interface-and-types/interface";
 import React from "react";
 
 export const BurgerConstructor: React.FC = (): JSX.Element => {
@@ -17,13 +17,13 @@ export const BurgerConstructor: React.FC = (): JSX.Element => {
 
   const [, ref] = useDrop({
     accept: "ingredients",
-    drop(item: IIngredient) { 
+    drop(item: IIngredient) {
       if (item.type !== "bun") {
         dispatch({
           type: ADD_INGREDIENT,
           item: {
             ...item,
-            id: uuidv4()
+            id: uuidv4(),
           },
         });
       } else {
@@ -31,7 +31,7 @@ export const BurgerConstructor: React.FC = (): JSX.Element => {
           type: ADD_BUN,
           item: {
             ...item,
-            id: uuidv4()
+            id: uuidv4(),
           },
         });
       }
@@ -58,12 +58,10 @@ export const BurgerConstructor: React.FC = (): JSX.Element => {
         )}
       </div>
       <div className={`${style.scrollWindow} mt-4 mb-4`}>
-        <div
-          className={`mr-2 ${style.scrollWindow_into}`}
-        >
+        <div className={`mr-2 ${style.scrollWindow_into}`}>
           {OrderIngredients.length !== 0 ? (
             OrderIngredients.map((el: IIngredient, index: number) => (
-              <DotsAndConstructorElement el={el} key={el._id} index={index} />
+              <DotsAndConstructorElement el={el} key={uuidv4()} index={index} />
             ))
           ) : (
             <div className={style.empty}>Выберите начинку</div>
@@ -86,4 +84,4 @@ export const BurgerConstructor: React.FC = (): JSX.Element => {
       <TotalAndOrderButton />
     </section>
   );
-}; 
+};

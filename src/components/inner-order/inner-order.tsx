@@ -7,9 +7,7 @@ import { OrderList } from "../inner-feed/order-list/order-list";
 export const InnerOrder = () => {
 
   const { data } = useSelector((store) => store.WSOrders);
-
-  console.log(data)
-
+  
   const dispatch = useDispatch();
 
   const onClick = (e: React.SyntheticEvent) => {

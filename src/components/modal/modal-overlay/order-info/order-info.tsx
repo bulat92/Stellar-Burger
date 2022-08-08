@@ -5,15 +5,16 @@ import { useMemo } from "react";
 import { Cost } from "../../../cost/cost";
 import { Check } from "./check";
 import { IIngredient } from '../../../../interface-and-types/interface';
+import { ingredientsWS } from '../../../../services/action/ws-feed-action';
+import React from 'react';
 
-export const OrderInfo = () => {
+export const OrderInfo: React.FC<{arr: ingredientsWS[]}> = ({arr}): JSX.Element => {
   const { id }: any = useParams();
-
-  const { orders } = useSelector((store) => store.wsFeed);
+ 
   const { ingredients } = useSelector((store) => store.burgers);
 
   const orderForInfo = useMemo(() => {
-    return orders.find((el) => el._id === id);
+    return arr.find((el) => el._id === id);
   }, [id]);
 
   const status = () => {
@@ -62,7 +63,7 @@ export const OrderInfo = () => {
           <p className="text text_type_main-medium mb-6">Состав:</p>
           <div className={`${style.roundImagesAndCostBox} mb-10`}>
             {ordersImg.map((el, index) => ( 
-              <Check urlImg={el} index={index} arr={allOrderIngredients}/>
+              <Check urlImg={el} index={index} key={index} arr={allOrderIngredients}/>
             ))}
           </div>
 

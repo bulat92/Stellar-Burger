@@ -14,13 +14,13 @@ export const StatusTableRight = () => {
         <div className={`${style.ready} mb-5`}>
           <p className="text text_type_main-medium mb-5">Готовы:</p>
           <div className="listReady">
-            {readyOrders.map( el => (<p className="text text_type_digits-default mb-2">{el.number}</p>))} 
+            {readyOrders.map( (el, index) => (<p className="text text_type_digits-default mb-2" key={index}>{el.number}</p>))} 
           </div>
         </div>
         <div className={`${style.inWork} mb-5`}>
           <p className="text text_type_main-medium mb-5">В работе:</p>
           <div className="listInWork">
-            {inWorkOrders.map( el => (<p className="text text_type_digits-default mb-2">{el.number}</p>))}
+            {inWorkOrders.map( (el, index) => (<p className="text text_type_digits-default mb-2" key={index}>{el.number}</p>))}
           </div>
         </div>
       </div>
