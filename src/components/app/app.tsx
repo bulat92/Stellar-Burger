@@ -22,10 +22,12 @@ import { Location } from "history";
 import { fetchGetIngredients } from "../../services/action/burger-ingredients";
 import { OrderInfo } from "../modal/modal-overlay/order-info/order-info";
 import { useHistory } from "react-router-dom";
-import { FeedOrderView } from "../../pages/feed-order-view"; 
-import { wssBaseURL, WSFeedURL, WSOrdersURL } from '../../services/url'; 
-import { FEED_CONNECTION_INIT,
-FEED_CONNECTION_CLOSE} from '../../services/action/ws-feed-action';
+import { FeedOrderView } from "../../pages/feed-order-view";
+import { wssBaseURL, WSFeedURL, WSOrdersURL } from "../../services/url";
+import {
+  FEED_CONNECTION_INIT,
+  FEED_CONNECTION_CLOSE,
+} from "../../services/action/ws-feed-action";
 import {
   ORDERS_CONNECTION_INIT,
   ORDERS_CONNECTION_CLOSE,
@@ -42,7 +44,7 @@ export const App = (): JSX.Element => {
   const background = location.state && location.state.background;
 
   const dispatch = useDispatch();
- 
+
   useEffect(() => {
     dispatch({
       type: FEED_CONNECTION_INIT,
@@ -51,10 +53,7 @@ export const App = (): JSX.Element => {
     return () => {
       dispatch({ type: FEED_CONNECTION_CLOSE });
     };
-  }, [dispatch]);  
-
-
-
+  }, [dispatch]);
 
   useEffect(() => {
     if (!success && getCookie("token")) {
@@ -62,14 +61,9 @@ export const App = (): JSX.Element => {
     }
   }, [success, successRefreshToken]);
 
-
-
-
-
   useEffect(() => {
     dispatch(fetchGetIngredients());
   }, [dispatch]);
-
 
   const accessToken = () => {
     let token = getCookie("token");
@@ -79,9 +73,6 @@ export const App = (): JSX.Element => {
     }
     return token;
   };
-
-
-
 
   useEffect(() => {
     dispatch({
@@ -110,7 +101,7 @@ export const App = (): JSX.Element => {
           <Profile />
         </ProtectedRoute>
         <ProtectedRoute path="/profile/orders/:id" exact={true}>
-          <FeedOrderView  arr={data}/>
+          <FeedOrderView arr={data} />
         </ProtectedRoute>
         <Route path="/login" exact={true}>
           <Login />
@@ -131,7 +122,7 @@ export const App = (): JSX.Element => {
           <IngredientView />
         </Route>
         <Route path="/feed/:id" exact={true}>
-          <FeedOrderView  arr={orders}/>
+          <FeedOrderView arr={orders} />
         </Route>
         <Route path="/feed" exact={true}>
           <Feed />
@@ -146,7 +137,7 @@ export const App = (): JSX.Element => {
       {background && (
         <Switch>
           <ProtectedRoute path="/profile/orders/:id" exact={true}>
-            <Modal onClose={onClose} children={<OrderInfo arr={data}/>} />
+            <Modal onClose={onClose} children={<OrderInfo arr={data} />} />
           </ProtectedRoute>
           <Route path={"/ingredients/:id"}>
             <Modal
@@ -159,7 +150,7 @@ export const App = (): JSX.Element => {
             <Modal onClose={onClose} children={<OrderDetails />} />
           </Route>
           <Route path={"/feed/:id"}>
-            <Modal onClose={onClose} children={<OrderInfo arr={orders}/>} />
+            <Modal onClose={onClose} children={<OrderInfo arr={orders} />} />
           </Route>
         </Switch>
       )}

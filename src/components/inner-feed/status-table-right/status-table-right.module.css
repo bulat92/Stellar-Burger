@@ -4,17 +4,23 @@
 .ordersStatusBox{
     display: flex;
     justify-content: space-between;
+    height: 270px;
 
     margin-bottom: 60px;
 }
 .ready{
-    width: 272px;
-    height: 200px;
+    width: 70%;
     color: #00CCCC;
-    overflow-y: scroll;
+    height: 100%;
 }
 .inWork{
-    width: 272px;
-    height: 200px;
-    overflow-y: scroll;
+    width: 30%;
+    height: 100%;
+}
+.listReady{
+    display: flex;
+    flex-wrap: wrap;
+}
+.listReady p{
+    width: 25%;
 }
