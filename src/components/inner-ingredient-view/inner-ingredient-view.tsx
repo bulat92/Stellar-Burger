@@ -1,20 +1,20 @@
 import style from "./inner-ingredient-view.module.css";
 import { IngredientDetails } from "../modal/modal-overlay/ingredient-details/ingredient-details";
-import { useParams, useHistory } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "../../interface-and-types/hooks";
 import { useMemo, useEffect } from "react";
 import { fetchGetIngredients } from "../../services/action/burger-ingredients";
-import { IIngredient } from '../../interface/interface';
+import { IIngredient } from '../../interface-and-types/interface';
 
 export const InnerIngredientView = () => {
-  const { id } = useParams<any>();
- 
+  
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // @ts-ignore
     dispatch(fetchGetIngredients());
-  }, [dispatch]);
+  }, []);
+
+  const { id } = useParams<any>();
 
   const { ingredients } = useSelector((store: any) => store.burgers);
 

@@ -1,0 +1,56 @@
+.orderList{
+    height: 72vh;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+.orderList a{
+  text-decoration: none;
+  color: inherit;
+}
+.orderCard{
+    border-radius: 40px;
+    background: #1C1C21;
+    padding: 24px;
+     
+}
+.idAndDate{
+    display: flex;
+    justify-content: space-between;
+}
+.imageIngredientsAndCostBox {
+  display: flex;
+  justify-content: space-between;
+
+  align-items: center;
+
+  width: 100%;
+}
+.roundImagesBOX {
+  display: flex;
+  margin-left: 20px;
+}
+.roundImages {
+  border-radius: 50%; 
+
+  width: 60px;
+  height: 60px;
+  background-position: center;
+  background-color: #1c1c21;
+  background-size: 190%;
+  background-repeat: no-repeat;
+
+  flex-direction: row-reverse;
+}
+.roundImagesBorder {
+  margin-left: -20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(63.18deg, #801ab3 0%, #4c4cff 100%);
+}
+.statusOrderColor{
+  color: #00CCCC;
+}

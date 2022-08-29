@@ -25,7 +25,7 @@ export const HeaderItems = () => {
         setListIconType("secondary");
         setProfileIconType("secondary");
         break;
-      case "/profile/orders":
+      case "/feed":
         setBurgerIconType("secondary");
         setListIconType("primary");
         setProfileIconType("secondary");
@@ -59,7 +59,7 @@ export const HeaderItems = () => {
           icon={<ListIcon type={ListIconType} />}
           onMouseOver={() => setListIconType("primary")}
           onMouseOut={() => setListIconType("secondary")} 
-          linkAddress={"profile/orders"}
+          linkAddress={"feed"}
         >
           Лента заказов
         </ButtonsWithIcons>

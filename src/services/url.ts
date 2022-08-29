@@ -8,4 +8,7 @@ export const
     logoutURL = 'auth/logout',
     tokenURL = 'auth/token',
     userURL = 'auth/user',
+    WSOrdersURL = 'orders',
+    WSFeedURL = 'orders/all',
+    wssBaseURL = 'wss://norma.nomoreparties.space/',
     baseURL = 'https://norma.nomoreparties.space/api/';

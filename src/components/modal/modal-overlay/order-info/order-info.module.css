@@ -1,0 +1,60 @@
+.orderForInfo{
+    display: flex;
+    flex-direction: column;
+    width: 640px;
+}
+
+.headerNumber{
+    width: 100%;
+    text-align: center;
+}
+.status{
+    color: #00CCCC;
+}
+.dataAndTotalBox{
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+}
+.roundImagesAndCostBox{
+    max-height: 40vh;
+    overflow-y: scroll; 
+}
+.oneIngredientBox{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.roundImagesAndNameBox{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.costAndCountBox{
+    display: flex;
+}
+.roundImages {
+    border-radius: 50%;
+    border-color: #801ab3 0% #4c4cff 100%;
+  
+    width: 60px;
+    height: 60px;
+    background-position: center;
+    background-color: #1c1c21;
+    background-size: 190%;
+    background-repeat: no-repeat;
+  
+    flex-direction: row-reverse;
+  }
+  .roundImagesBorder {
+    margin-left: -20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(63.18deg, #801ab3 0%, #4c4cff 100%);
+  }
+  

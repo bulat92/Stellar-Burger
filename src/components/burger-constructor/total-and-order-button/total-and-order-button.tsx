@@ -9,7 +9,7 @@ import { fetchMakeOrder } from "../../../services/action/fetch-make-order";
 import { useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 import React from "react";
-import { IIngredient } from "../../../interface/interface";
+import { IIngredient } from "../../../interface-and-types/interface";
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 declare module "react" {

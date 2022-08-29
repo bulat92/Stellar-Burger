@@ -16,6 +16,7 @@ export const Modal: React.FC<TModal> = ({
   title,
   onClose,
 }): JSX.Element => {
+  
   useEffect(() => {
     const escapeKeyFunc = (e: KeyboardEvent): void => {
       if (e.code === "Escape") {

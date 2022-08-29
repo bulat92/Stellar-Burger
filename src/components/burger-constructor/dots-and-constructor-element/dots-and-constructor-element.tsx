@@ -1,6 +1,7 @@
 import style from "./dots-and-constructor-element.module.css";
-import React, { useRef } from "react";
-import { useDispatch } from "react-redux";
+import type { Identifier, XYCoord } from "dnd-core";
+import React, { useRef, useEffect } from "react";
+import { useDispatch } from "../../../interface-and-types/hooks";
 import {
   ConstructorElement,
   DragIcon,
@@ -10,7 +11,9 @@ import {
   SORT_INGREDIENT,
 } from "../../../services/action/burger-constructor";
 import { useDrag, useDrop } from "react-dnd";
-import { IIngredient } from "../../../interface/interface";
+import { IIngredient } from "../../../interface-and-types/interface";
+import { getEmptyImage } from 'react-dnd-html5-backend';
+
 
 interface TDotsAndConstructorElement {
   el: IIngredient;
@@ -19,13 +22,22 @@ interface TDotsAndConstructorElement {
 
 export const DotsAndConstructorElement: React.FC<
   TDotsAndConstructorElement
-> = ({ el, index }) => {
+> = ({ el, index }): JSX.Element => {
   const ref = useRef<HTMLDivElement>(null);
 
   const dispatch = useDispatch();
 
-  const [, drop] = useDrop({
+  const [{ handlerId }, drop] = useDrop<
+    IIngredient & { index: number },
+    void,
+    { handlerId: Identifier | null }
+  >({
     accept: "inConstructor",
+    collect(monitor) {
+      return {
+        handlerId: monitor.getHandlerId(),
+      };
+    },
     hover(item: IIngredient & { index: number }, monitor) {
       if (!ref.current) {
         return;
@@ -47,24 +59,14 @@ export const DotsAndConstructorElement: React.FC<
       const clientOffset = monitor.getClientOffset();
       //Получить пиксели вверху
 
-      let hoverClientY: number | undefined;
-      if (clientOffset) {
-        hoverClientY = clientOffset.y - hoverBoundingRect.top;
+      const hoverClientY = (clientOffset as XYCoord).y - hoverBoundingRect.top;
+      //Перетаскивание вниз
+      if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
+        return;
       }
 
-      // Выполняйте перемещение только тогда, когда мышь пересекла половину высоты элементов.
-      // При перетаскивании вниз двигаться только тогда, когда курсор находится ниже 50%
-      // При перетаскивании вверх двигайтесь только тогда, когда курсор находится выше 50%
-      // Перетаскивание вниз
-      if (hoverMiddleY && hoverIndex && dragIndex && hoverClientY) {
-        if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
-          return;
-        }
-        // Dragging upwards
-        if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
-          return;
-        }
-      } else {
+      // Перетаскивание вверх
+      if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
         return;
       }
       // Время, чтобы фактически выполнить действие
@@ -81,17 +83,32 @@ export const DotsAndConstructorElement: React.FC<
     },
   });
 
-  const [, drag] = useDrag({
+  const [{ isDragging }, drag, preview] = useDrag({
     type: "inConstructor",
     item: () => {
-      return { id: el._id, index };
+      return { id: el._id, index, name: el.name, price: el.price, image: el.image_mobile };
     },
+    collect: (monitor: any) => ({
+      isDragging: monitor.isDragging(),
+    }),
   });
 
+  useEffect(() => {
+    preview(getEmptyImage(), { captureDraggingState: true })
+  }, [index, preview])
+
+  const opacity = isDragging ? 0 : 1;
+
   drag(drop(ref));
+  
 
   return (
-    <div className={style.dotsAndConstructorElement} ref={ref} key={el._id}>
+    <div
+      className={style.dotsAndConstructorElement}
+      ref={ref}
+      style={{ ...style, opacity }}
+      data-handler-id={handlerId}
+    >
       <DragIcon type="primary" />
       <ConstructorElement
         isLocked={false}
