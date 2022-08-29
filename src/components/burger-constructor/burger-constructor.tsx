@@ -11,6 +11,7 @@ import {
 import { DotsAndConstructorElement } from "./dots-and-constructor-element/dots-and-constructor-element";
 import { IIngredient } from "../../interface-and-types/interface";
 import React from "react";
+import { CustomDragLayer } from './custom-drag-layer/custom-drag-layer';
 
 export const BurgerConstructor: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
@@ -41,9 +42,12 @@ export const BurgerConstructor: React.FC = (): JSX.Element => {
   const { OrderIngredients, bun } = useSelector(
     (store: any) => store.burgerConstructorValues
   );
+    
+ 
 
   return (
     <section className={`${style.BurgerConstructor}`} ref={ref}>
+      <CustomDragLayer />
       <div className={`${style.constructorElement} mr-4`}>
         {bun.type === "bun" ? (
           <ConstructorElement
@@ -61,7 +65,7 @@ export const BurgerConstructor: React.FC = (): JSX.Element => {
         <div className={`mr-2 ${style.scrollWindow_into}`}>
           {OrderIngredients.length !== 0 ? (
             OrderIngredients.map((el: IIngredient, index: number) => (
-              <DotsAndConstructorElement el={el} key={uuidv4()} index={index} />
+              <DotsAndConstructorElement el={el} key={el.id} index={index} />
             ))
           ) : (
             <div className={style.empty}>Выберите начинку</div>

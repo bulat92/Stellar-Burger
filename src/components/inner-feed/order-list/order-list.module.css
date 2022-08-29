@@ -30,8 +30,7 @@
   margin-left: 20px;
 }
 .roundImages {
-  border-radius: 50%;
-  border-color: #801ab3 0% #4c4cff 100%;
+  border-radius: 50%; 
 
   width: 60px;
   height: 60px;

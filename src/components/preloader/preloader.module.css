@@ -1,0 +1,87 @@
+.preloader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  width: 600px;
+  height: 600px;
+}
+.svg {
+  width: 400px;
+  height: 400px;
+  animation: 2s infinite;
+  animation-timing-function: linear;
+  position: absolute;
+}
+.blue {
+  animation-name: blue;
+  transform: rotate(120deg);
+}
+.purple {
+  animation-name: purple;
+  transform: rotate(360deg);
+}
+.mixColor {
+  animation-name: mix-color;
+  transform: rotate(240deg);
+}
+circle {
+  fill: none;
+  stroke-dashoffset: 314;
+  stroke-dasharray: 314;
+  stroke-linecap: round;
+  cy: 50%;
+  cx: 50%; 
+  stroke-width: 2%;
+}
+
+.blue circle {
+  stroke: #4c4cff;
+  filter: drop-shadow(0 0 10px #4c4cff);
+
+  r: 120px;
+  stroke-width: 10px;
+}
+.purple circle {
+  filter: drop-shadow(0 0 10px #801ab3);
+  stroke: #801ab3;
+
+  r: 100px;
+  stroke-width: 10px;
+}
+.mixColor circle { 
+  filter: drop-shadow(0 0 10px #6633d9);
+  stroke: #6633d9;
+
+  r: 80px;
+  stroke-width: 10px;
+}
+
+@keyframes blue {
+  0% {
+    transform: rotate(120deg);
+  }
+
+  100% {
+    transform: rotate(480deg);
+  }
+}
+@keyframes purple {
+  0% {
+    transform: rotate(360deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+@keyframes mix-color {
+  0% {
+    transform: rotate(720deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}

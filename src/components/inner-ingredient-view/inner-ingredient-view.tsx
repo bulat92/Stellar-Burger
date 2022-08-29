@@ -7,13 +7,14 @@ import { fetchGetIngredients } from "../../services/action/burger-ingredients";
 import { IIngredient } from '../../interface-and-types/interface';
 
 export const InnerIngredientView = () => {
-  const { id } = useParams<any>();
- 
+  
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchGetIngredients());
-  }, [dispatch]);
+  }, []);
+
+  const { id } = useParams<any>();
 
   const { ingredients } = useSelector((store: any) => store.burgers);
 

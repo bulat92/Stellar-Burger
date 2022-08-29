@@ -15,7 +15,7 @@ export const OrderInfo: React.FC<{arr: ingredientsWS[]}> = ({arr}): JSX.Element 
 
   const orderForInfo = useMemo(() => {
     return arr.find((el) => el._id === id);
-  }, [id]);
+  }, [id, arr]);
 
   const status = () => {
     let orderStatus;

@@ -1,4 +1,4 @@
-import { Switch, Route, useLocation } from "react-router-dom";
+import { Switch, Route, useLocation, useHistory } from "react-router-dom";
 import { Feed } from "../../pages/feed";
 import { Orders } from "../../pages/orders";
 import { MainPage } from "../../pages/main-page";
@@ -20,8 +20,7 @@ import { IngredientDetails } from "../modal/modal-overlay/ingredient-details/ing
 import { OrderDetails } from "../modal/modal-overlay/order-details/order-details";
 import { Location } from "history";
 import { fetchGetIngredients } from "../../services/action/burger-ingredients";
-import { OrderInfo } from "../modal/modal-overlay/order-info/order-info";
-import { useHistory } from "react-router-dom";
+import { OrderInfo } from "../modal/modal-overlay/order-info/order-info"; 
 import { FeedOrderView } from "../../pages/feed-order-view";
 import { wssBaseURL, WSFeedURL, WSOrdersURL } from "../../services/url";
 import {
@@ -56,6 +55,16 @@ export const App = (): JSX.Element => {
   }, [dispatch]);
 
   useEffect(() => {
+    dispatch({
+      type: ORDERS_CONNECTION_INIT,
+      payload: `${wssBaseURL}${WSOrdersURL}?token=${accessToken()}`,
+    });
+    return () => {
+      dispatch({ type: ORDERS_CONNECTION_CLOSE });
+    };
+  }, [dispatch]);
+
+  useEffect(() => {
     if (!success && getCookie("token")) {
       dispatch(AuthTokenFetch());
     }
@@ -73,17 +82,7 @@ export const App = (): JSX.Element => {
     }
     return token;
   };
-
-  useEffect(() => {
-    dispatch({
-      type: ORDERS_CONNECTION_INIT,
-      payload: `${wssBaseURL}${WSOrdersURL}?token=${accessToken()}`,
-    });
-    return () => {
-      dispatch({ type: ORDERS_CONNECTION_CLOSE });
-    };
-  }, [dispatch]);
-
+ 
   const history = useHistory();
 
   const onClose = () => {
@@ -92,7 +91,7 @@ export const App = (): JSX.Element => {
 
   return (
     <>
-      <AppHeader />
+      <AppHeader /> 
       <Switch location={background || location}>
         <Route path="/" exact={true}>
           <MainPage />
@@ -154,6 +153,6 @@ export const App = (): JSX.Element => {
           </Route>
         </Switch>
       )}
-    </>
+    </> 
   );
 };

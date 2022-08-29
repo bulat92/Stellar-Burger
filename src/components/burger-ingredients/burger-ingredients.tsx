@@ -5,10 +5,13 @@ import { TabList } from "./tab-list/tab-list";
 import { useInView } from "react-intersection-observer";
 import { useSelector } from "../../interface-and-types/hooks"; 
 import { IIngredient } from '../../interface-and-types/interface';
+import { CustomDragLayer } from './custom-drag-layer';
+import { Preloader } from '../preloader/preloader';
+
 
 export const BurgerIngredients:FC = () => {
  
-  const { ingredients } = useSelector((store: any) => store.burgers);
+  const { ingredients, ingredientsRequest } = useSelector((store: any) => store.burgers);
  
   const mainSection = useRef(null),
     [currentTab, setCurrentTab] = useState("bun");
@@ -41,10 +44,12 @@ export const BurgerIngredients:FC = () => {
     }
   }, [inViewBuns, inViewFilling, inViewSauces]);
  
+
   return (
     <section>
+      <CustomDragLayer />
       <TabList sectionScrollFunc={sectionScrollFunc} currentTab={currentTab} />
-      {ingredients && (
+      {!ingredientsRequest ? (
         <section className={style.BurgerIngredients} ref={mainSection}>
           <TypesOfIngredients
             ref={bunsRef}
@@ -76,7 +81,7 @@ export const BurgerIngredients:FC = () => {
             Начинки
           </TypesOfIngredients>
         </section>
-      )}
+      ) : <Preloader/>}
     </section>
   );
 }; 
