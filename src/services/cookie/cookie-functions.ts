@@ -6,7 +6,7 @@ export function getCookie(name: string): string | undefined {
   }
   
   export function setCookie(name: string, value?: string | null, props?: any): void {
-    console.log(props)
+    
     props = props || {};
     let exp = props.expires;
     if (typeof exp == 'number' && exp) {

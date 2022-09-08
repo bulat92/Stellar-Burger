@@ -41,6 +41,16 @@ export const loginFetch = (email: string, password: string): AppThunk => (dispat
       return checkResponse(response);
     })
     .then((response) => {
+
+      
+      if (response.accessToken) {
+        setCookie("token", response.accessToken);
+      }
+      if (response.refreshToken) {
+        setCookie("refreshToken", response.refreshToken);
+      }
+
+
       dispatch({
         type: LOGIN_FETCH_SUCCESS,
         success: response.success,
@@ -49,15 +59,7 @@ export const loginFetch = (email: string, password: string): AppThunk => (dispat
         email: response.user.email,
       });
       return response;
-    })
-    .then((response) => {
-      if (response.accessToken) {
-        setCookie("token", response.accessToken);
-      }
-      if (response.refreshToken) {
-        setCookie("refreshToken", response.refreshToken);
-      }
-    })
+    }) 
     .catch((e) => {
       console.log(e);
       dispatch({

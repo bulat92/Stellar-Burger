@@ -5,6 +5,9 @@
 
   display: flex;
 } 
+.classWidth{
+  width: 880px;
+}
 .profileTab {
   color: #8585ad;
   font-family: "JetBrains Mono";

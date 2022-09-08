@@ -1,6 +1,5 @@
 import { Switch, Route, useLocation, useHistory } from "react-router-dom";
-import { Feed } from "../../pages/feed";
-import { Orders } from "../../pages/orders";
+import { Feed } from "../../pages/feed"; 
 import { MainPage } from "../../pages/main-page";
 import { Profile } from "../../pages/profile";
 import { NoPage } from "../../pages/no-page";
@@ -20,17 +19,14 @@ import { IngredientDetails } from "../modal/modal-overlay/ingredient-details/ing
 import { OrderDetails } from "../modal/modal-overlay/order-details/order-details";
 import { Location } from "history";
 import { fetchGetIngredients } from "../../services/action/burger-ingredients";
-import { OrderInfo } from "../modal/modal-overlay/order-info/order-info"; 
-import { FeedOrderView } from "../../pages/feed-order-view";
-import { wssBaseURL, WSFeedURL, WSOrdersURL } from "../../services/url";
+import { OrderInfo } from "../modal/modal-overlay/order-info/order-info";  
+import { wssBaseURL, WSFeedURL } from "../../services/url";
 import {
   FEED_CONNECTION_INIT,
   FEED_CONNECTION_CLOSE,
-} from "../../services/action/ws-feed-action";
-import {
-  ORDERS_CONNECTION_INIT,
-  ORDERS_CONNECTION_CLOSE,
-} from "../../services/action/ws-order-action";
+} from "../../services/action/ws-feed-action"; 
+import { FeedOrderView } from "../../pages/feed-order-view"; 
+
 
 export const App = (): JSX.Element => {
   const { success } = useSelector((store: any) => store.login);
@@ -54,16 +50,7 @@ export const App = (): JSX.Element => {
     };
   }, [dispatch]);
 
-  useEffect(() => {
-    dispatch({
-      type: ORDERS_CONNECTION_INIT,
-      payload: `${wssBaseURL}${WSOrdersURL}?token=${accessToken()}`,
-    });
-    return () => {
-      dispatch({ type: ORDERS_CONNECTION_CLOSE });
-    };
-  }, [dispatch]);
-
+  
   useEffect(() => {
     if (!success && getCookie("token")) {
       dispatch(AuthTokenFetch());
@@ -73,20 +60,16 @@ export const App = (): JSX.Element => {
   useEffect(() => {
     dispatch(fetchGetIngredients());
   }, [dispatch]);
-
-  const accessToken = () => {
-    let token = getCookie("token");
-
-    if (token) {
-      token = token.slice(7);
-    }
-    return token;
-  };
  
   const history = useHistory();
 
   const onClose = () => {
-    history.go(-1);
+    
+    if(history.location.pathname === '/order-details'){
+      history.push('/');
+    }else{
+      history.goBack();
+    }
   };
 
   return (
@@ -96,12 +79,12 @@ export const App = (): JSX.Element => {
         <Route path="/" exact={true}>
           <MainPage />
         </Route>
-        <ProtectedRoute path="/profile" exact={true}>
+        <ProtectedRoute path="/profile">
           <Profile />
         </ProtectedRoute>
-        <ProtectedRoute path="/profile/orders/:id" exact={true}>
-          <FeedOrderView arr={data} />
-        </ProtectedRoute>
+        <Route path="/feed/:id" exact={true}>
+          <FeedOrderView arr={orders} />
+        </Route>
         <Route path="/login" exact={true}>
           <Login />
         </Route>
@@ -120,15 +103,9 @@ export const App = (): JSX.Element => {
         <Route path="/ingredients/:id" exact={true}>
           <IngredientView />
         </Route>
-        <Route path="/feed/:id" exact={true}>
-          <FeedOrderView arr={orders} />
-        </Route>
         <Route path="/feed" exact={true}>
           <Feed />
-        </Route>
-        <ProtectedRoute path="/profile/orders" exact={true}>
-          <Orders />
-        </ProtectedRoute>
+        </Route> 
         <Route>
           <NoPage />
         </Route>
