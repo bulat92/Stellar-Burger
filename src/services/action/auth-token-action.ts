@@ -46,6 +46,7 @@ export const AuthTokenFetch = (): AppThunk => (dispatch: AppDispatch) => {
       })
       .catch((e) => {
         console.log(e);
+        console.log('49');
         dispatch({
           type: LOGIN_FETCH_FAILED,
         });
@@ -76,6 +77,7 @@ export const AuthTokenFetch = (): AppThunk => (dispatch: AppDispatch) => {
             })
             .catch((e) => {
               console.log(e);
+              console.log('80');
               dispatch({
                 type: AUTH_TOKEN_FETCH_FAILED,
               });

@@ -6,10 +6,11 @@ import { getCookie } from "../cookie/cookie-functions";
 export const
     POST_ORDER_SUCCESS = 'POST_ORDER_SUCCESS',
     POST_ORDER_REQUEST = 'POST_ORDER_REQUEST',
+    POST_ORDER_CLEARING = 'POST_ORDER_CLEARING',
     POST_ORDER_FAILED = 'POST_ORDER_FAILED';
 
 interface IPostOrderRequestPostOrderFailed{
-    readonly type: typeof POST_ORDER_REQUEST | typeof POST_ORDER_FAILED;
+    readonly type: typeof POST_ORDER_REQUEST | typeof POST_ORDER_FAILED | typeof POST_ORDER_CLEARING ;
 }
 interface IPostOrderSuccess{
     readonly type: typeof POST_ORDER_SUCCESS;
@@ -30,7 +31,9 @@ if(notUndefined !== undefined){// если не Undefined то добавитс�
 
 export const fetchMakeOrder = (idIngredients: string[]): AppThunk => (dispatch: AppDispatch) => {
     
- 
+        dispatch({
+            type: POST_ORDER_CLEARING
+        });
         dispatch({
             type: POST_ORDER_REQUEST
         })

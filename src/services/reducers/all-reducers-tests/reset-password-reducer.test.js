@@ -1,14 +1,9 @@
-import { resetPasswordReducer } from "../reset-password-reducer";
+import { resetPasswordReducer, initialState } from "../reset-password-reducer";
 import * as types from "../../action/reset-password-action";
 
 describe("resetPassword reducer", () => {
   it("should return the initial state", () => {
-    expect(resetPasswordReducer(undefined, {})).toEqual({
-      successReset: false,
-
-      request: false,
-      failed: false,
-    });
+    expect(resetPasswordReducer(undefined, {})).toEqual(initialState);
   });
 
   it("should test success reset password", () => {
@@ -22,7 +17,7 @@ describe("resetPassword reducer", () => {
         },
         {
           type: types.ORDERS_GET_MESSAGE,
-          success: true
+          success: true,
         }
       )
     ).toEqual({

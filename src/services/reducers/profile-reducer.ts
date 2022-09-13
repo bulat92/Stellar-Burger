@@ -19,7 +19,7 @@ interface IInitialState {
   failed: boolean;
 }
 
-const initialState: IInitialState = {
+export const initialState: IInitialState = {
   changedEmail: "",
   changedName: "",
   changedPassword: "",

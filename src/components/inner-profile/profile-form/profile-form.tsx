@@ -5,10 +5,10 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { profileSaveCancelData } from "../../../services/action/profile-action";
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "../../../interface-and-types/hooks";
 
 export const ProfileForm = () => {
-  const { name, email } = useSelector((store: any) => store.login);
+  const { name, email } = useSelector((store ) => store.login);
 
   const dispatch = useDispatch();
 

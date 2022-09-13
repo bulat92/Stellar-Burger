@@ -12,7 +12,7 @@ interface IInitialState {
   failed: boolean;
 }
 
-const initialState: IInitialState = {
+export const initialState: IInitialState = {
   successForgotPassword: false,
   message: "",
 

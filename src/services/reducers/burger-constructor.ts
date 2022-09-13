@@ -12,7 +12,7 @@ interface IInitialState{
   bun: IIngredient | {};
 }
 
-const initialState: IInitialState = {
+export const initialState: IInitialState = {
   OrderIngredients: [],
 
   bun: {}

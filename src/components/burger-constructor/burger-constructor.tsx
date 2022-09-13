@@ -3,7 +3,7 @@ import { TotalAndOrderButton } from "./total-and-order-button/total-and-order-bu
 import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
 import { v4 as uuidv4 } from "uuid";
 import { useDrop } from "react-dnd";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from '../../interface-and-types/hooks';
 import {
   ADD_INGREDIENT,
   ADD_BUN,
@@ -46,7 +46,7 @@ export const BurgerConstructor: React.FC = (): JSX.Element => {
  
 
   return (
-    <section className={`${style.BurgerConstructor}`} ref={ref}>
+    <section className={`${style.BurgerConstructor}`} ref={ref} data-test='drop-in-constructor'>
       <CustomDragLayer />
       <div className={`${style.constructorElement} mr-4`}>
         {bun.type === "bun" ? (

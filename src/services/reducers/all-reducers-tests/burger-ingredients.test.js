@@ -1,27 +1,18 @@
-import { burgersReducer } from "../burger-ingredients";
+import { burgersReducer, initialState } from "../burger-ingredients";
 import * as types from "../../action/burger-ingredients";
+
+/* const objectForTest =  */
 
 describe("burger-ingredients reducer", () => {
   it("should return the initial state", () => {
-    expect(burgersReducer(undefined, {})).toEqual({
-      ingredients: [],
-      ingredientsRequest: false,
-      ingredientsFailed: false,
-    });
+    expect(burgersReducer(undefined, {})).toEqual(initialState);
   });
 
   it("should change ingredientsRequest only", () => {
     expect(
-      burgersReducer(
-        {
-          ingredients: [],
-          ingredientsRequest: false,
-          ingredientsFailed: false,
-        },
-        {
-          type: types.GET_INGREDIENTS_REQUEST,
-        }
-      )
+      burgersReducer(initialState, {
+        type: types.GET_INGREDIENTS_REQUEST,
+      })
     ).toEqual({
       ingredients: [],
       ingredientsRequest: true,
@@ -51,7 +42,8 @@ describe("burger-ingredients reducer", () => {
               image: "https://code.s3.yandex.net/react/code/bun-02.png",
               image_mobile:
                 "https://code.s3.yandex.net/react/code/bun-02-mobile.png",
-              image_large: "https://code.s3.yandex.net/react/code/bun-02-large.png",
+              image_large:
+                "https://code.s3.yandex.net/react/code/bun-02-large.png",
               __v: 0,
             },
             {
@@ -70,7 +62,7 @@ describe("burger-ingredients reducer", () => {
                 "https://code.s3.yandex.net/react/code/meat-04-large.png",
               __v: 0,
             },
-          ]
+          ],
         }
       )
     ).toEqual({

@@ -1,16 +1,9 @@
-import { registerReducer } from "../register-reducer";
+import { registerReducer, initialState } from "../register-reducer";
 import * as types from "../../action/register-action";
 
 describe("register reducer", () => {
   it("should return the initial state", () => {
-    expect(registerReducer(undefined, {})).toEqual({
-      email: "",
-      name: "",
-      success: false,
-
-      request: false,
-      failed: false,
-    });
+    expect(registerReducer(undefined, {})).toEqual(initialState);
   });
 
   it("should test success register", () => {

@@ -6,7 +6,7 @@ import { ModalOverlay } from "./modal-overlay/modal-overlay";
 import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 
 type TModal = {
-  children: any;
+  children: React.ReactNode;
   title?: string | undefined;
   onClose: () => void;
 };

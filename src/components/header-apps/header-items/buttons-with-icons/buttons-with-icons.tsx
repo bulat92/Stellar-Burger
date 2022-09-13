@@ -4,16 +4,17 @@ import React from 'react';
 
 interface TButtonsWithIcons {
   linkAddress: string;
+  exactBool?: boolean;
   onMouseOver: ()=>void;
   onMouseOut: ()=>void;
   children: string;
-  icon: any;
+  icon: React.ReactNode;
 }
 
-export const ButtonsWithIcons: React.FC<TButtonsWithIcons> = ({icon, linkAddress, onMouseOver, onMouseOut, children }) => {
+export const ButtonsWithIcons: React.FC<TButtonsWithIcons> = ({icon, linkAddress, onMouseOver, onMouseOut, children, exactBool }) => {
   
   return (
-    <NavLink to={`/${linkAddress}`} exact activeClassName={style.activeClassName}>
+    <NavLink to={`/${linkAddress}`} exact={exactBool} activeClassName={style.activeClassName}>
       <div
         className={style.boxItemsChild}
         onMouseOver={onMouseOver}

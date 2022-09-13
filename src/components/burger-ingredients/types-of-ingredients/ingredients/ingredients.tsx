@@ -2,7 +2,7 @@ import style from "./ingredients.module.css";
 import { Counter } from "@ya.praktikum/react-developer-burger-ui-components"; 
 import { useDrag } from "react-dnd";
 import { useMemo, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector } from "../../../../interface-and-types/hooks";
 import { Link, useLocation } from "react-router-dom";
 import { IIngredient } from '../../../../interface-and-types/interface';
 import { FC } from 'react';
@@ -10,7 +10,7 @@ import { Cost } from "../../../cost/cost";
 import { getEmptyImage } from 'react-dnd-html5-backend';
 
 
-export const Ingredients: FC<{el: IIngredient}> = ({ el }) => {
+export const Ingredients: FC<{el: IIngredient, dataTestText: string, index: number }> = ({ el, dataTestText, index }) => {
 
   const location = useLocation();
 
@@ -44,10 +44,12 @@ export const Ingredients: FC<{el: IIngredient}> = ({ el }) => {
   }, [preview])
 
   return (
-    <Link to={{ pathname: `/ingredients/${el._id}`, state: {background: location} }}>
+    <Link  to={{ pathname: `/ingredients/${el._id}`, state: {background: location} }}>
       <div
         className={style.type}
         ref={ref}
+        data-test={dataTestText}
+        data-test-drag={`${dataTestText}${index}`}
       >
         {ingredientsCount > 0 && (
           <Counter 

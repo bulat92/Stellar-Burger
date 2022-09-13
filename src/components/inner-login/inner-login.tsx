@@ -29,6 +29,8 @@ export const LoginInner = () => {
             onChange={(e) => setEmail(e.target.value)}
             name={"login"}
             placeholder={"E-mail"}
+
+            data-test="login"
           />
         </div>
         <div className={style.mbInput}>
@@ -39,6 +41,8 @@ export const LoginInner = () => {
             name={"password"}
             type={"password"}
             placeholder={"Пароль"}
+
+            data-test="password"
           />
         </div>
         <Button type="primary" size="medium">

@@ -16,7 +16,7 @@ import { AuthTokenFetch } from "../../services/action/auth-token-action";
 import { getCookie } from "../../services/cookie/cookie-functions";
 import { AppHeader } from "../header-apps/header-app";
 import { IngredientDetails } from "../modal/modal-overlay/ingredient-details/ingredient-details";
-import { OrderDetails } from "../modal/modal-overlay/order-details/order-details";
+import { OrderNumber } from "../modal/modal-overlay/order-number/order-number";
 import { Location } from "history";
 import { fetchGetIngredients } from "../../services/action/burger-ingredients";
 import { OrderInfo } from "../modal/modal-overlay/order-info/order-info";  
@@ -29,8 +29,8 @@ import { FeedOrderView } from "../../pages/feed-order-view";
 
 
 export const App = (): JSX.Element => {
-  const { success } = useSelector((store: any) => store.login);
-  const { successRefreshToken } = useSelector((store: any) => store.authToken);
+  const { success } = useSelector((store) => store.login);
+  const { successRefreshToken } = useSelector((store) => store.authToken);
 
   const { orders } = useSelector((store) => store.wsFeed);
   const { data } = useSelector((store) => store.WSOrders);
@@ -123,7 +123,7 @@ export const App = (): JSX.Element => {
             />
           </Route>
           <Route path={"/order-details"}>
-            <Modal onClose={onClose} children={<OrderDetails />} />
+            <Modal onClose={onClose} children={<OrderNumber />} />
           </Route>
           <Route path={"/feed/:id"}>
             <Modal onClose={onClose} children={<OrderInfo arr={orders} />} />

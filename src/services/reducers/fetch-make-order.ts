@@ -12,7 +12,7 @@ interface IInitialState {
   orderNumberFailed: Boolean;
 }
 
-const initialState: IInitialState = {
+export const initialState: IInitialState = {
   orderNumber: "",
   orderNumberRequest: false,
   orderNumberFailed: false,

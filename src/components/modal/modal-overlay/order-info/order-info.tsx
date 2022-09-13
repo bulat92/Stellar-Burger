@@ -9,7 +9,7 @@ import { ingredientsWS } from '../../../../services/action/ws-feed-action';
 import React from 'react';
 
 export const OrderInfo: React.FC<{arr: ingredientsWS[]}> = ({arr}): JSX.Element => {
-  const { id }: any = useParams();
+  const { id } = useParams<{ id: string }>();
  
   const { ingredients } = useSelector((store) => store.burgers);
 

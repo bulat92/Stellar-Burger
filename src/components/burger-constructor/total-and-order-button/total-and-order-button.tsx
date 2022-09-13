@@ -4,9 +4,8 @@ import {
   Button,
   CurrencyIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useDispatch } from "react-redux";
-import { fetchMakeOrder } from "../../../services/action/fetch-make-order";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector  } from "../../../interface-and-types/hooks";
+import { fetchMakeOrder } from "../../../services/action/fetch-make-order"; 
 import { useHistory, useLocation } from "react-router-dom";
 import React from "react";
 import { IIngredient } from "../../../interface-and-types/interface";

@@ -6,16 +6,16 @@ import { Switch, Route, useHistory, useLocation } from "react-router-dom";
 import { OrderList } from "../inner-feed/order-list/order-list";
 import { useDispatch, useSelector } from "../../interface-and-types/hooks";
 import { ProtectedRoute } from "../protected-route/protected-route";
-import { FeedOrderView } from "../../pages/feed-order-view"; 
-import { Modal } from "../modal/modal"; 
-import { OrderInfo } from "../modal/modal-overlay/order-info/order-info";  
+import { FeedOrderView } from "../../pages/feed-order-view";
+import { Modal } from "../modal/modal";
+import { OrderInfo } from "../modal/modal-overlay/order-info/order-info";
 
 export const ProfileInner = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { data } = useSelector((store) => store.WSOrders); 
+  const { data } = useSelector((store) => store.WSOrders);
   const { orders } = useSelector((store) => store.wsFeed);
- 
+
   const location = useLocation<{ background: Location }>();
   const background = location.state && location.state.background;
 
@@ -24,8 +24,8 @@ export const ProfileInner = () => {
     dispatch(logoutFetch());
   };
 
-  const onClose = () => { 
-      history.goBack(); 
+  const onClose = () => {
+    history.goBack();
   };
 
   return (
@@ -62,10 +62,10 @@ export const ProfileInner = () => {
           <ProtectedRoute path="/profile/orders/:id" exact={true}>
             <FeedOrderView arr={data} />
           </ProtectedRoute>
-          
-        <Route path="/feed/:id" exact={true}>
-          <FeedOrderView arr={orders} />
-        </Route>
+
+          <Route path="/feed/:id" exact={true}>
+            <FeedOrderView arr={orders} />
+          </Route>
           <ProtectedRoute path="/profile/orders" exact={true}>
             <OrderList
               classWidth={`${style.classWidth} mr-2`}
@@ -75,12 +75,12 @@ export const ProfileInner = () => {
           </ProtectedRoute>
         </Switch>
         {background && (
-        <Switch>
-          <ProtectedRoute path="/profile/orders/:id" exact={true}>
-            <Modal onClose={onClose} children={<OrderInfo arr={data} />} />
-          </ProtectedRoute> 
-        </Switch>
-      )}
+          <Switch>
+            <ProtectedRoute path="/profile/orders/:id" exact={true}>
+              <Modal onClose={onClose} children={<OrderInfo arr={data} />} />
+            </ProtectedRoute>
+          </Switch>
+        )}
       </div>
     </section>
   );
