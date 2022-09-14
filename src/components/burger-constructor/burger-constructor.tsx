@@ -40,7 +40,7 @@ export const BurgerConstructor: React.FC = (): JSX.Element => {
   });
 
   const { OrderIngredients, bun } = useSelector(
-    (store: any) => store.burgerConstructorValues
+    (store) => store.burgerConstructorValues
   );
     
  
@@ -49,7 +49,7 @@ export const BurgerConstructor: React.FC = (): JSX.Element => {
     <section className={`${style.BurgerConstructor}`} ref={ref} data-test='drop-in-constructor'>
       <CustomDragLayer />
       <div className={`${style.constructorElement} mr-4`}>
-        {bun.type === "bun" ? (
+        {bun ? (
           <ConstructorElement
             type="top"
             isLocked={true}
@@ -64,7 +64,7 @@ export const BurgerConstructor: React.FC = (): JSX.Element => {
       <div className={`${style.scrollWindow} mt-4 mb-4`}>
         <div className={`mr-2 ${style.scrollWindow_into}`}>
           {OrderIngredients.length !== 0 ? (
-            OrderIngredients.map((el: IIngredient, index: number) => (
+            OrderIngredients.map((el , index ) => (
               <DotsAndConstructorElement el={el} key={el.id} index={index} />
             ))
           ) : (
@@ -73,7 +73,7 @@ export const BurgerConstructor: React.FC = (): JSX.Element => {
         </div>
       </div>
       <div className={`${style.constructorElement} mr-4`}>
-        {bun.type === "bun" ? (
+        {bun ? (
           <ConstructorElement
             type="bottom"
             isLocked={true}

@@ -15,11 +15,9 @@ describe("feed reducer", () => {
         },
       })
     ).toEqual({
-      orders: [],
+      ...initialState,
       total: 123456789,
       totalToday: 123456789,
-      isOpen: false,
-      error: null,
     });
   });
 });

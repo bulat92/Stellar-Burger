@@ -23,19 +23,12 @@ describe("burger-constructor reducer", () => {
 
   it("should add bun", () => {
     expect(
-      burgerConstructorReducer(
-        {
-          OrderIngredients: [],
-
-          bun: {},
-        },
-        {
-          type: types.ADD_BUN,
-          item: objectForTest,
-        }
-      )
+      burgerConstructorReducer(initialState, {
+        type: types.ADD_BUN,
+        item: objectForTest,
+      })
     ).toEqual({
-      OrderIngredients: [],
+      ...initialState,
 
       bun: objectForTest,
     });
@@ -54,28 +47,22 @@ describe("burger-constructor reducer", () => {
         }
       )
     ).toEqual({
+      ...initialState,
       OrderIngredients: [objectForTest],
-
-      bun: {},
     });
   });
   it("should delete ingredient in order list", () => {
     expect(
       burgerConstructorReducer(
         {
+          ...initialState,
           OrderIngredients: [objectForTest],
-
-          bun: {},
         },
         {
           type: types.DELETE_INGREDIENT,
           index: 0,
         }
       )
-    ).toEqual({
-      OrderIngredients: [],
-
-      bun: {},
-    });
+    ).toEqual(initialState);
   });
 });

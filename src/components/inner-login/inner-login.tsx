@@ -4,7 +4,7 @@ import {
   Button,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch } from "../../interface-and-types/hooks";
 import { useState } from "react";
 import { loginFetch } from "../../services/action/login-action";
 
@@ -14,8 +14,7 @@ export const LoginInner = () => {
   const [email, setEmail] = useState<string>("damask161092@gmail.com");
 
   const onSubmit = (e: React.SyntheticEvent) => {
-    e.preventDefault();
-    // @ts-ignore
+    e.preventDefault(); 
     dispatch(loginFetch(email, password));
   };
 

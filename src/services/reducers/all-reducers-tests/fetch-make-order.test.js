@@ -13,9 +13,8 @@ describe("burger-ingredients reducer", () => {
         number: 123456789,
       })
     ).toEqual({
+      ...initialState,
       orderNumber: 123456789,
-      orderNumberRequest: false,
-      orderNumberFailed: false,
     });
   });
 });

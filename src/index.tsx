@@ -24,4 +24,4 @@ if (rootHTMLElementIFNotNull) {
   );
 } else {
   console.log("HTML элемент не найден");
-}
+} 

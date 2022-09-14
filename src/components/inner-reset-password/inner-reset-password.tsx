@@ -4,7 +4,7 @@ import {
   Button,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch } from "../../interface-and-types/hooks";
 import React, { useState } from "react";
 import { resetPasswordFetch } from "../../services/action/reset-password-action";
 
@@ -15,8 +15,7 @@ export const ResetPasswordInner = () => {
   const [code, setCode] = useState<string>("");
 
   const onSubmit = (e: React.SyntheticEvent) => {
-    e.preventDefault();
-    // @ts-ignore
+    e.preventDefault(); 
     dispatch(resetPasswordFetch(newPassword, code));
   };
 

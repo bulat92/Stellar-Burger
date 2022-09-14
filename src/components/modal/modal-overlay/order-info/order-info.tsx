@@ -4,13 +4,15 @@ import { useParams } from "react-router-dom";
 import { useMemo } from "react";
 import { Cost } from "../../../cost/cost";
 import { Check } from "./check";
-import { IIngredient } from '../../../../interface-and-types/interface';
-import { ingredientsWS } from '../../../../services/action/ws-feed-action';
-import React from 'react';
+import { IIngredient } from "../../../../interface-and-types/interface";
+import { ingredientsWS } from "../../../../services/action/ws-feed-action";
+import React from "react";
 
-export const OrderInfo: React.FC<{arr: ingredientsWS[]}> = ({arr}): JSX.Element => {
+export const OrderInfo: React.FC<{ arr: ingredientsWS[] }> = ({
+  arr,
+}): JSX.Element => {
   const { id } = useParams<{ id: string }>();
- 
+
   const { ingredients } = useSelector((store) => store.burgers);
 
   const orderForInfo = useMemo(() => {
@@ -62,8 +64,13 @@ export const OrderInfo: React.FC<{arr: ingredientsWS[]}> = ({arr}): JSX.Element 
           </p>
           <p className="text text_type_main-medium mb-6">Состав:</p>
           <div className={`${style.roundImagesAndCostBox} mb-10`}>
-            {ordersImg.map((el, index) => ( 
-              <Check urlImg={el} index={index} key={index} arr={allOrderIngredients}/>
+            {ordersImg.map((el, index) => (
+              <Check
+                urlImg={el}
+                index={index}
+                key={index}
+                arr={allOrderIngredients}
+              />
             ))}
           </div>
 

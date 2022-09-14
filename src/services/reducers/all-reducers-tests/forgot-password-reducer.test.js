@@ -17,12 +17,10 @@ describe("forgot-password reducer", () => {
           "dsda-dfdgfdjf-ggughergty87-t43yt85-9890ty0-yujpghldflpg-ggdfgkdg-gf-gf",
       })
     ).toEqual({
+      ...initialState,
       successForgotPassword: true,
       message:
         "dsda-dfdgfdjf-ggughergty87-t43yt85-9890ty0-yujpghldflpg-ggdfgkdg-gf-gf",
-
-      request: false,
-      failed: false,
     });
   });
 });

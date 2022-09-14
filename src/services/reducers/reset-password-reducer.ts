@@ -2,7 +2,7 @@ import {
   RESET_PASSWORD_FETCH_SUCCESS,
   RESET_PASSWORD_FETCH_REQUEST,
   RESET_PASSWORD_FETCH_FAILED,
-  TResetPasswordReducer
+  TResetPasswordReducer,
 } from "../action/reset-password-action";
 
 interface IInitialState {
@@ -19,7 +19,10 @@ export const initialState: IInitialState = {
   failed: false,
 };
 
-export const resetPasswordReducer = (state = initialState, action: TResetPasswordReducer) => {
+export const resetPasswordReducer = (
+  state = initialState,
+  action: TResetPasswordReducer
+) => {
   switch (action.type) {
     case RESET_PASSWORD_FETCH_REQUEST: {
       return {

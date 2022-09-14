@@ -14,8 +14,7 @@ export const ForgotPasswordInner = () => {
   const [value, setValue] = useState<string>("");
 
   const onSubmit = (e: React.SyntheticEvent) => {
-    e.preventDefault();
-    // @ts-ignore
+    e.preventDefault(); 
     dispatch(forgotPasswordFetch(value));
   };
 

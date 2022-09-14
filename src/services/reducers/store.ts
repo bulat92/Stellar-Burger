@@ -39,9 +39,8 @@ const feedWsActions = {
   onClose: FEED_CONNECTION_CLOSED,
   onError: FEED_CONNECTION_ERROR,
   onMessage: FEED_GET_MESSAGE,
-};
-  
-/* export const store = createStore(rootReducer, enhancer); */
+}; 
+
 export const store = configureStore({
   reducer: rootReducer,
   middleware: getDefaultMiddleware =>

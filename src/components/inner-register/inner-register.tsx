@@ -4,7 +4,7 @@ import {
   Button,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch } from "../../interface-and-types/hooks";
 import { useState, useRef } from "react";
 import { registerFetch } from "../../services/action/register-action";
 import React from 'react';
@@ -19,8 +19,7 @@ export const RegisterInner = () => {
   const [email, setEmail] = useState<string>("");
  
   const onSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // @ts-ignore
+    e.preventDefault(); 
     dispatch(registerFetch(email, password, name));
   };
 

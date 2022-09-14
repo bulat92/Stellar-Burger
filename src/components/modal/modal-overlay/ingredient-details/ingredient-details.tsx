@@ -7,7 +7,7 @@ import { IIngredient } from "../../../../interface-and-types/interface";
 export const IngredientDetails = () => {
   const { ingredients } = useSelector((store) => store.burgers);
 
-  const { id } = useParams<{id: string}>();
+  const { id } = useParams<{ id: string }>();
 
   const IngredientForDetails = useMemo(() => {
     return ingredients.find((el: IIngredient) => el._id === id);

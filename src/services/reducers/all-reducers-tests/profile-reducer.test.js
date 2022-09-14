@@ -13,13 +13,8 @@ describe("profile reducer", () => {
         success: true,
       })
     ).toEqual({
-      changedEmail: "",
-      changedName: "",
-      changedPassword: "",
+      ...initialState,
       successProfileFetch: true,
-
-      request: false,
-      failed: false,
     });
   });
   it("should set name", () => {
@@ -29,13 +24,8 @@ describe("profile reducer", () => {
         name: "bulat",
       })
     ).toEqual({
-      changedEmail: "",
+      ...initialState,
       changedName: "bulat",
-      changedPassword: "",
-      successProfileFetch: false,
-
-      request: false,
-      failed: false,
     });
   });
   it("should set password", () => {
@@ -45,13 +35,8 @@ describe("profile reducer", () => {
         password: "bulat",
       })
     ).toEqual({
-      changedEmail: "",
-      changedName: "",
+      ...initialState,
       changedPassword: "bulat",
-      successProfileFetch: false,
-
-      request: false,
-      failed: false,
     });
   });
   it("should set email", () => {
@@ -61,13 +46,8 @@ describe("profile reducer", () => {
         email: "email",
       })
     ).toEqual({
+      ...initialState,
       changedEmail: "email",
-      changedName: "",
-      changedPassword: "",
-      successProfileFetch: false,
-
-      request: false,
-      failed: false,
     });
   });
 });

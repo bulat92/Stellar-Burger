@@ -14,12 +14,10 @@ describe("login reducer", () => {
         email: "email",
       })
     ).toEqual({
+      ...initialState,
       email: "email",
       name: "bulat",
       success: true,
-
-      request: false,
-      failed: false,
     });
   });
 });

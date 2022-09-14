@@ -8,14 +8,14 @@ import {
 import { IIngredient } from '../../interface-and-types/interface';
 
 interface IInitialState{
-  OrderIngredients: IIngredient[] | [];
-  bun: IIngredient | {};
+  OrderIngredients: ReadonlyArray<IIngredient>;
+  readonly bun: IIngredient | null;
 }
 
 export const initialState: IInitialState = {
   OrderIngredients: [],
 
-  bun: {}
+  bun: null
 };
 
 export const burgerConstructorReducer = (state = initialState, action: IBurgerConstructorReducer) => {

@@ -8,23 +8,13 @@ describe("resetPassword reducer", () => {
 
   it("should test success reset password", () => {
     expect(
-      resetPasswordReducer(
-        {
-          successReset: false,
-
-          request: false,
-          failed: false,
-        },
-        {
-          type: types.ORDERS_GET_MESSAGE,
-          success: true,
-        }
-      )
+      resetPasswordReducer(initialState, {
+        type: types.RESET_PASSWORD_FETCH_SUCCESS,
+        success: true,
+      })
     ).toEqual({
-      successReset: false,
-
-      request: false,
-      failed: false,
+      ...initialState,
+      successReset: true,
     });
   });
 });
