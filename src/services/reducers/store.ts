@@ -1,6 +1,6 @@
  import { applyMiddleware } from "redux";
 import { rootReducer } from "./index";
-import { socketMiddleware } from "../socket-middleware/socketMiddleware";
+import { socketMiddleware } from "../socket-middleware/socket-middleware";
 import { configureStore } from "@reduxjs/toolkit"; 
 
 import {
