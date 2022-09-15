@@ -8,7 +8,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "../../../interface-and-types/hooks";
 
 export const ProfileForm = () => {
-  const { name, email } = useSelector((store ) => store.login);
+  const { name, email } = useSelector((store) => store.login);
 
   const dispatch = useDispatch();
 
@@ -38,6 +38,11 @@ export const ProfileForm = () => {
     setName(name);
     setEmail(email);
   };
+
+useEffect(() => {
+     setName(name)
+     setEmail(email)
+  }, [name, email]);
 
   useEffect(() => {
     if (password !== "" || nameInput !== name || emailInput !== email) {

@@ -21,7 +21,7 @@ export const logoutFetch = (): AppThunk => (dispatch: AppDispatch) => {
         "Content-Type": "application/json;charset=utf-8",
       },
       body: JSON.stringify({
-        token: getCookie(refreshToken),
+        token: refreshToken,
       }),
     })
       .then(checkResponse)

@@ -29,16 +29,9 @@ import { FeedOrderView } from "../../pages/feed-order-view";
 
 
 export const App = (): JSX.Element => {
-  
-  const { success } = useSelector((store) => store.login);
-  const { successRefreshToken } = useSelector((store) => store.authToken);
-  
-  useEffect(() => {
-    if (!success && getCookie("token")) {
-      dispatch(AuthTokenFetch());
-    }
-  }, [success, successRefreshToken]);
- 
+  const { success } = useSelector((store ) => store.login);
+  const { successRefreshToken } = useSelector((store ) => store.authToken);
+
   const { orders } = useSelector((store) => store.wsFeed);
   const { data } = useSelector((store) => store.WSOrders);
 
@@ -56,7 +49,14 @@ export const App = (): JSX.Element => {
       dispatch({ type: FEED_CONNECTION_CLOSE });
     };
   }, [dispatch]);
- 
+
+  
+  useEffect(() => {
+    if (!success && getCookie("token")) {
+      dispatch(AuthTokenFetch());
+    }
+  }, [success, successRefreshToken]);
+
   useEffect(() => {
     dispatch(fetchGetIngredients());
   }, [dispatch]);
@@ -123,7 +123,7 @@ export const App = (): JSX.Element => {
             />
           </Route>
           <Route path={"/order-details"}>
-            <Modal onClose={onClose} children={<OrderNumber />} />
+            <Modal onClose={onClose} children={< OrderNumber />} />
           </Route>
           <Route path={"/feed/:id"}>
             <Modal onClose={onClose} children={<OrderInfo arr={orders} />} />

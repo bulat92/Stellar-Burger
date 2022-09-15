@@ -10,9 +10,13 @@ import { FeedOrderView } from "../../pages/feed-order-view";
 import { Modal } from "../modal/modal";
 import { OrderInfo } from "../modal/modal-overlay/order-info/order-info";
 
+ 
 export const ProfileInner = () => {
   const dispatch = useDispatch();
   const history = useHistory();
+  
+  
+ 
   const { data } = useSelector((store) => store.WSOrders);
   const { orders } = useSelector((store) => store.wsFeed);
 
