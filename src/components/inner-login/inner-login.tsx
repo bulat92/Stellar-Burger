@@ -22,7 +22,7 @@ export const LoginInner = () => {
     <section className={style.LoginInner}>
       <p className={style.loginHeader}>Вход</p>
       <form className={style.boxInputs} onSubmit={onSubmit}>
-        <div className={style.mbInput}>
+        <div className={style.mbInput} data-test='email-input'>
           <Input
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -32,7 +32,7 @@ export const LoginInner = () => {
             data-test="login"
           />
         </div>
-        <div className={style.mbInput}>
+        <div className={style.mbInput} data-test='password-input'>
           <Input
             icon={"ShowIcon"}
             value={password}

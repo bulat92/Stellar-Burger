@@ -1,5 +1,5 @@
 import { Switch, Route, useLocation, useHistory } from "react-router-dom";
-import { Feed } from "../../pages/feed"; 
+import { Feed } from "../../pages/feed";
 import { MainPage } from "../../pages/main-page";
 import { Profile } from "../../pages/profile";
 import { NoPage } from "../../pages/no-page";
@@ -19,14 +19,17 @@ import { IngredientDetails } from "../modal/modal-overlay/ingredient-details/ing
 import { OrderNumber } from "../modal/modal-overlay/order-number/order-number";
 import { Location } from "history";
 import { fetchGetIngredients } from "../../services/action/burger-ingredients";
-import { OrderInfo } from "../modal/modal-overlay/order-info/order-info";  
- 
-import { FeedOrderView } from "../../pages/feed-order-view"; 
-
+import { OrderInfo } from "../modal/modal-overlay/order-info/order-info"; 
+import {
+  FEED_CONNECTION_INIT,
+  FEED_CONNECTION_CLOSE,
+} from "../../services/action/ws-feed-action"; 
+import { wssBaseURL, WSFeedURL } from "../../services/url";
+import { FeedOrderView } from "../../pages/feed-order-view";
 
 export const App = (): JSX.Element => {
-  const { success } = useSelector((store ) => store.login);
-  const { successRefreshToken } = useSelector((store ) => store.authToken);
+  const { success } = useSelector((store) => store.login);
+  const { successRefreshToken } = useSelector((store) => store.authToken);
 
   const { orders } = useSelector((store) => store.wsFeed);
   const { data } = useSelector((store) => store.WSOrders);
@@ -35,7 +38,17 @@ export const App = (): JSX.Element => {
   const background = location.state && location.state.background;
 
   const dispatch = useDispatch();
- 
+
+  useEffect(() => {
+    dispatch({
+      type: FEED_CONNECTION_INIT,
+      payload: `${wssBaseURL}${WSFeedURL}`,
+    });
+    return () => {
+      dispatch({ type: FEED_CONNECTION_CLOSE });
+    };
+  }, [dispatch]);
+
   useEffect(() => {
     if (!success && getCookie("token")) {
       dispatch(AuthTokenFetch());
@@ -45,21 +58,20 @@ export const App = (): JSX.Element => {
   useEffect(() => {
     dispatch(fetchGetIngredients());
   }, [dispatch]);
- 
+
   const history = useHistory();
 
   const onClose = () => {
-    
-    if(history.location.pathname === '/order-details'){
-      history.push('/');
-    }else{
+    if (history.location.pathname === "/order-details") {
+      history.push("/");
+    } else {
       history.goBack();
     }
   };
 
   return (
     <>
-      <AppHeader /> 
+      <AppHeader />
       <Switch location={background || location}>
         <Route path="/" exact={true}>
           <MainPage />
@@ -90,7 +102,7 @@ export const App = (): JSX.Element => {
         </Route>
         <Route path="/feed" exact={true}>
           <Feed />
-        </Route> 
+        </Route>
         <Route>
           <NoPage />
         </Route>
@@ -108,13 +120,13 @@ export const App = (): JSX.Element => {
             />
           </Route>
           <Route path={"/order-details"}>
-            <Modal onClose={onClose} children={< OrderNumber />} />
+            <Modal onClose={onClose} children={<OrderNumber />} />
           </Route>
           <Route path={"/feed/:id"}>
             <Modal onClose={onClose} children={<OrderInfo arr={orders} />} />
           </Route>
         </Switch>
       )}
-    </> 
+    </>
   );
 };

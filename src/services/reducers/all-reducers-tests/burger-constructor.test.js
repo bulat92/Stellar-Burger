@@ -36,11 +36,7 @@ describe("burger-constructor reducer", () => {
   it("should add ingredient in order list", () => {
     expect(
       burgerConstructorReducer(
-        {
-          OrderIngredients: [],
-
-          bun: {},
-        },
+        initialState,
         {
           type: types.ADD_INGREDIENT,
           item: objectForTest,

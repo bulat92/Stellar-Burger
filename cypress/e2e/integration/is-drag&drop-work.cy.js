@@ -1,11 +1,16 @@
 // {project}/cypress/integration/cart/is-available.spec.js
+
+import {testUrl} from './url-for-test';
+
+const waitDuration = 15000;
+
 describe("is constructor work", function () {
   const bunLength = 2,
     sauceLength = 4,
     mainLength = 9;
 
   before(function () {
-    cy.visit("http://localhost:3000");
+    cy.visit(testUrl);
   });
   context("720p resolution", () => {
     beforeEach(() => {
@@ -29,14 +34,13 @@ describe("is constructor work", function () {
     });
     it("should login for make order", function () {
       cy.get("button").contains("Оформить заказ").click();
-      cy.get(":nth-child(1) > .input__container > .input").type(
+      cy.get("[data-test='email-input']").type(
         `{selectAll}damask161092@gmail.com{enter}`
       );
-      cy.get(":nth-child(2) > .input__container > .input").type(
+      cy.get("[data-test='password-input']").type(
         `{selectAll}123456{enter}`
       );
-      cy.get('[href="/"] > .header-Items_boxItemsChild__p4XXl')
-        .contains("Конструктор")
+      cy.contains("Конструктор")
         .click();
     });
     it("should drag and drop and make order", function () {
@@ -60,10 +64,11 @@ describe("is constructor work", function () {
         `[data-test-drag='Начинки${randomInteger(mainLength)}']`,
         `[data-test='drop-in-constructor']`
       );
-      cy.get("button").contains("Оформить заказ").click();
-      cy.contains("идентификатор заказа");
+      cy.get("button").contains("Оформить заказ").click(); 
+      // eslint-disable-next-line cypress/no-unnecessary-waiting
+      cy.wait(waitDuration)
       cy.contains("Ваш заказ начали готовить");
-      cy.get(".modal_modalHeader__5HW85 > svg").click();
+      cy.get("[data-test='modal-Close']").click();
 
       DragAndDrop(
         "[data-test-drag='Булки0']",
@@ -86,17 +91,12 @@ describe("is constructor work", function () {
         `[data-test='drop-in-constructor']`
       );
       cy.get("button").contains("Оформить заказ").click();
+      // eslint-disable-next-line cypress/no-unnecessary-waiting
+      cy.wait(waitDuration)
       cy.contains("идентификатор заказа");
       cy.contains("Ваш заказ начали готовить");
-      cy.get(".modal_modalHeader__5HW85 > svg").click();
+      cy.get("[data-test='modal-Close']").click();
     });
-    it("should be deleted after clicking on the delete button", function () {
-      cy.get(
-        "[data-test='constructorElement'] > .constructor-element > .constructor-element__row > .constructor-element__action > svg"
-      ).each(function (el) {
-        cy.wrap(el).click();
-      });
-      cy.contains("Выберите начинку");
-    });
+     
   });
 });

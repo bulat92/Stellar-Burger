@@ -4,27 +4,27 @@ import {
   Button,
   CurrencyIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useDispatch, useSelector  } from "../../../interface-and-types/hooks";
-import { fetchMakeOrder } from "../../../services/action/fetch-make-order"; 
+import { useDispatch, useSelector } from "../../../interface-and-types/hooks";
+import { fetchMakeOrder } from "../../../services/action/fetch-make-order";
 import { useHistory, useLocation } from "react-router-dom";
 import React from "react";
-import { IIngredient } from "../../../interface-and-types/interface"; 
+import { IIngredient } from "../../../interface-and-types/interface";
 
 export const TotalAndOrderButton: React.FC = (): JSX.Element => {
-  const { success } = useSelector((store: any) => store.login);
+  const { success } = useSelector((store) => store.login);
   const history = useHistory();
   const location = useLocation();
 
   const { OrderIngredients, bun } = useSelector(
-    (store ) => store.burgerConstructorValues
+    (store) => store.burgerConstructorValues
   );
 
   const totalNumber = useMemo(() => {
     let bunPrice = 0;
 
-      if(bun){
-        bunPrice = bun.type === "bun" ? Number(bun.price) * 2 : 0;
-      }
+    if (bun) {
+      bunPrice = bun.type === "bun" ? Number(bun.price) * 2 : 0;
+    }
 
     return (
       OrderIngredients.reduce(
@@ -39,11 +39,11 @@ export const TotalAndOrderButton: React.FC = (): JSX.Element => {
   let idIngredients = [
     ...OrderIngredients.map((el) => {
       return el._id;
-    })
+    }),
   ];
 
-  if(bun){
-    idIngredients.push(bun._id)
+  if (bun) {
+    idIngredients.push(bun._id);
   }
 
   const onClick = () => {

@@ -1,4 +1,6 @@
 // {project}/cypress/integration/cart/is-available.spec.js
+import {testUrl} from './url-for-test';
+
 describe("service is available", function () {
   context("720p resolution", () => {
     beforeEach(() => {
@@ -7,7 +9,7 @@ describe("service is available", function () {
       cy.viewport(1920, 1080);
     });
     it("should be available on localhost:3000", function () {
-      cy.visit("http://localhost:3000");
+      cy.visit(testUrl);
     });
     it("should open constructor page by default", () => {
       cy.contains("Выберите булку");
