@@ -20,12 +20,7 @@ import { OrderNumber } from "../modal/modal-overlay/order-number/order-number";
 import { Location } from "history";
 import { fetchGetIngredients } from "../../services/action/burger-ingredients";
 import { OrderInfo } from "../modal/modal-overlay/order-info/order-info"; 
-import {
-  FEED_CONNECTION_INIT,
-  FEED_CONNECTION_CLOSE,
-} from "../../services/action/ws-feed-action"; 
-import { wssBaseURL, WSFeedURL } from "../../services/url";
-import { FeedOrderView } from "../../pages/feed-order-view";
+import { FeedView } from "../../pages/feed-view";
 
 export const App = (): JSX.Element => {
   const { success } = useSelector((store) => store.login);
@@ -38,17 +33,7 @@ export const App = (): JSX.Element => {
   const background = location.state && location.state.background;
 
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch({
-      type: FEED_CONNECTION_INIT,
-      payload: `${wssBaseURL}${WSFeedURL}`,
-    });
-    return () => {
-      dispatch({ type: FEED_CONNECTION_CLOSE });
-    };
-  }, [dispatch]);
-
+ 
   useEffect(() => {
     if (!success && getCookie("token")) {
       dispatch(AuthTokenFetch());
@@ -80,7 +65,7 @@ export const App = (): JSX.Element => {
           <Profile />
         </ProtectedRoute>
         <Route path="/feed/:id" exact={true}>
-          <FeedOrderView arr={orders} />
+          <FeedView/>
         </Route>
         <Route path="/login" exact={true}>
           <Login />

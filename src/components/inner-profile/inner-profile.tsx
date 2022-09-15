@@ -6,7 +6,7 @@ import { Switch, Route, useHistory, useLocation } from "react-router-dom";
 import { OrderList } from "../inner-feed/order-list/order-list";
 import { useDispatch, useSelector } from "../../interface-and-types/hooks";
 import { ProtectedRoute } from "../protected-route/protected-route";
-import { FeedOrderView } from "../../pages/feed-order-view";
+import { ProfileOrdersView } from "../../pages/profile-orders-view";
 import { Modal } from "../modal/modal";
 import { OrderInfo } from "../modal/modal-overlay/order-info/order-info";
 
@@ -14,11 +14,8 @@ import { OrderInfo } from "../modal/modal-overlay/order-info/order-info";
 export const ProfileInner = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  
-  
- 
+   
   const { data } = useSelector((store) => store.WSOrders);
-  const { orders } = useSelector((store) => store.wsFeed);
 
   const location = useLocation<{ background: Location }>();
   const background = location.state && location.state.background;
@@ -64,11 +61,11 @@ export const ProfileInner = () => {
             <ProfileForm />
           </ProtectedRoute>
           <ProtectedRoute path="/profile/orders/:id" exact={true}>
-            <FeedOrderView arr={data} />
+            <ProfileOrdersView/>
           </ProtectedRoute>
 
           <Route path="/feed/:id" exact={true}>
-            <FeedOrderView arr={orders} />
+            <ProfileOrdersView/>
           </Route>
           <ProtectedRoute path="/profile/orders" exact={true}>
             <OrderList

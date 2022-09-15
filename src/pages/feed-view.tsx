@@ -1,16 +1,19 @@
-import { InnerFeed } from "../components/inner-feed/inner-feed";
+import { InnerFeedOrderView } from "../components/inner-feed-order-view/inner-feed-order-view";
 import {
   FEED_CONNECTION_INIT,
   FEED_CONNECTION_CLOSE,
 } from "../services/action/ws-feed-action"; 
 import { wssBaseURL, WSFeedURL } from "../services/url"; 
-import { useDispatch } from "../interface-and-types/hooks";
+import { useDispatch, useSelector } from "../interface-and-types/hooks";
 import { useEffect } from "react";
- 
-export const Feed = () => {
+
+
+export const FeedView: React.FC = () => {
+
+  const { orders } = useSelector((store) => store.wsFeed);
 
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
     dispatch({
       type: FEED_CONNECTION_INIT,
@@ -21,12 +24,6 @@ export const Feed = () => {
     };
   }, [dispatch]);
 
-  return (
-    <>
-      <div className="headerOnMain">
-        <h1>Лента заказов</h1>
-      </div>
-      <InnerFeed />
-    </>
-  );
+
+  return <InnerFeedOrderView arr={orders}/>
 };
