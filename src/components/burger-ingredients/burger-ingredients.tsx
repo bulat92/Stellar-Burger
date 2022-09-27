@@ -3,15 +3,14 @@ import style from "./burger-ingredients.module.css";
 import { TypesOfIngredients } from "./types-of-ingredients/types-of-ingredients";
 import { TabList } from "./tab-list/tab-list"; 
 import { useInView } from "react-intersection-observer";
-import { useSelector } from "../../interface-and-types/hooks"; 
-import { IIngredient } from '../../interface-and-types/interface';
+import { useSelector } from "../../interface-and-types/hooks";  
 import { CustomDragLayer } from './custom-drag-layer';
 import { Preloader } from '../preloader/preloader';
 
 
 export const BurgerIngredients:FC = () => {
  
-  const { ingredients, ingredientsRequest } = useSelector((store: any) => store.burgers);
+  const { ingredients, ingredientsRequest } = useSelector((store ) => store.burgers);
  
   const mainSection = useRef(null),
     [currentTab, setCurrentTab] = useState("bun");
@@ -54,7 +53,7 @@ export const BurgerIngredients:FC = () => {
           <TypesOfIngredients
             ref={bunsRef}
             id="bun"
-            arr={ingredients.filter((el: IIngredient) => {
+            arr={ingredients.filter((el ) => {
               if (el.type === "bun") return el;
             })}
           >
@@ -64,7 +63,7 @@ export const BurgerIngredients:FC = () => {
           <TypesOfIngredients
             ref={saucesRef}
             id="sauce"
-            arr={ingredients.filter((el: IIngredient) => {
+            arr={ingredients.filter((el ) => {
               if (el.type === "sauce") return el;
             })}
           >
@@ -74,7 +73,7 @@ export const BurgerIngredients:FC = () => {
           <TypesOfIngredients
             ref={mainsRef}
             id="main"
-            arr={ingredients.filter((el: IIngredient) => {
+            arr={ingredients.filter((el ) => {
               if (el.type === "main") return el;
             })}
           >

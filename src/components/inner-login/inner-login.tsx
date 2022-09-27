@@ -4,7 +4,7 @@ import {
   Button,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch } from "../../interface-and-types/hooks";
 import { useState } from "react";
 import { loginFetch } from "../../services/action/login-action";
 
@@ -14,8 +14,7 @@ export const LoginInner = () => {
   const [email, setEmail] = useState<string>("damask161092@gmail.com");
 
   const onSubmit = (e: React.SyntheticEvent) => {
-    e.preventDefault();
-    // @ts-ignore
+    e.preventDefault(); 
     dispatch(loginFetch(email, password));
   };
 
@@ -23,15 +22,17 @@ export const LoginInner = () => {
     <section className={style.LoginInner}>
       <p className={style.loginHeader}>Вход</p>
       <form className={style.boxInputs} onSubmit={onSubmit}>
-        <div className={style.mbInput}>
+        <div className={style.mbInput} data-test='email-input'>
           <Input
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             name={"login"}
             placeholder={"E-mail"}
+
+            data-test="login"
           />
         </div>
-        <div className={style.mbInput}>
+        <div className={style.mbInput} data-test='password-input'>
           <Input
             icon={"ShowIcon"}
             value={password}
@@ -39,6 +40,8 @@ export const LoginInner = () => {
             name={"password"}
             type={"password"}
             placeholder={"Пароль"}
+
+            data-test="password"
           />
         </div>
         <Button type="primary" size="medium">

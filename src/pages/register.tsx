@@ -1,9 +1,9 @@
 import { RegisterInner } from "../components/inner-register/inner-register";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "../interface-and-types/hooks";
 import { Redirect } from "react-router-dom";
 
 export const Register = () => {
-  const {success} = useSelector((store: any) => store.login);
+  const {success} = useSelector((store ) => store.login);
 
   if (success) {
     return (

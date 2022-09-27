@@ -14,9 +14,9 @@ export const InnerIngredientView = () => {
     dispatch(fetchGetIngredients());
   }, []);
 
-  const { id } = useParams<any>();
+  const { id } = useParams<{id: string}>();
 
-  const { ingredients } = useSelector((store: any) => store.burgers);
+  const { ingredients } = useSelector((store ) => store.burgers);
 
   const content = useMemo(() => {
     let IngredientForDetails = false;

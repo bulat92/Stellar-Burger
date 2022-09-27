@@ -20,6 +20,7 @@ export const AuthTokenFetch = (): AppThunk => (dispatch: AppDispatch) => {
       type: LOGIN_FETCH_REQUEST,
     });
 
+    console.log()
 
     const requestHeaders: HeadersInit = new Headers();
     requestHeaders.set("Content-Type", "application/json");
@@ -29,7 +30,7 @@ export const AuthTokenFetch = (): AppThunk => (dispatch: AppDispatch) => {
     if(notUndefined !== undefined){// если не Undefined то добавится в заголовок 
       requestHeaders.set('Authorization', notUndefined  )
     }
-
+ 
     fetch(`${baseURL}${userURL}`, {
       method: "GET",
       headers: requestHeaders,
@@ -83,4 +84,3 @@ export const AuthTokenFetch = (): AppThunk => (dispatch: AppDispatch) => {
         }
       });
   };
-

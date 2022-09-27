@@ -4,32 +4,27 @@ import {
   Button,
   CurrencyIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "../../../interface-and-types/hooks";
 import { fetchMakeOrder } from "../../../services/action/fetch-make-order";
-import { useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 import React from "react";
 import { IIngredient } from "../../../interface-and-types/interface";
 
-///////////////////////////////////////////////////////////////////////////////////////////
-declare module "react" {
-  interface FunctionComponent<P = {}> {
-    (props: PropsWithChildren<P>, context?: any): ReactElement<any, any> | null;
-  }
-}
-/////////////////////////////////////////////////////////////////////////////////////////
-
 export const TotalAndOrderButton: React.FC = (): JSX.Element => {
-  const { success } = useSelector((store: any) => store.login);
+  const { success } = useSelector((store) => store.login);
   const history = useHistory();
   const location = useLocation();
 
   const { OrderIngredients, bun } = useSelector(
-    (store: any) => store.burgerConstructorValues
+    (store) => store.burgerConstructorValues
   );
 
   const totalNumber = useMemo(() => {
-    const bunPrice = bun.type === "bun" ? Number(bun.price) * 2 : 0;
+    let bunPrice = 0;
+
+    if (bun) {
+      bunPrice = bun.type === "bun" ? Number(bun.price) * 2 : 0;
+    }
 
     return (
       OrderIngredients.reduce(
@@ -37,23 +32,25 @@ export const TotalAndOrderButton: React.FC = (): JSX.Element => {
         0
       ) + bunPrice
     );
-  }, [OrderIngredients][bun]);
+  }, [OrderIngredients, bun]);
 
   const dispatch = useDispatch();
 
-  const idIngredients = [
-    ...OrderIngredients.map((el: IIngredient) => {
+  let idIngredients = [
+    ...OrderIngredients.map((el) => {
       return el._id;
     }),
-    bun._id,
   ];
+
+  if (bun) {
+    idIngredients.push(bun._id);
+  }
 
   const onClick = () => {
     if (!success) {
       history.replace({ pathname: "/login" });
     } else {
-      if (OrderIngredients.length > 0 && bun.type === "bun") {
-        // @ts-ignore
+      if (OrderIngredients.length > 0 && bun) {
         dispatch(fetchMakeOrder(idIngredients));
 
         history.replace({

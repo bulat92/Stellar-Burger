@@ -1,5 +1,5 @@
 import { rootReducer } from "../services/reducers/index";
-import { allActionTypes } from "../services/action/allActionTypes";
+import { allActionTypes } from "../services/action/all-action-types";
 
 import { ThunkAction } from "redux-thunk";
 

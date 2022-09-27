@@ -88,7 +88,7 @@ export const DotsAndConstructorElement: React.FC<
     item: () => {
       return { id: el._id, index, name: el.name, price: el.price, image: el.image_mobile };
     },
-    collect: (monitor: any) => ({
+    collect: (monitor ) => ({
       isDragging: monitor.isDragging(),
     }),
   });
@@ -108,6 +108,8 @@ export const DotsAndConstructorElement: React.FC<
       ref={ref}
       style={{ ...style, opacity }}
       data-handler-id={handlerId}
+      data-test-number={`constructorElement${index}`}
+      data-test='constructorElement'
     >
       <DragIcon type="primary" />
       <ConstructorElement

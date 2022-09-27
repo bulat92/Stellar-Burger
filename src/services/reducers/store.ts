@@ -1,7 +1,7 @@
-import thunk from "redux-thunk";
-import { compose, createStore, applyMiddleware } from "redux";
-import { rootReducer } from "./index"; 
-import { socketMiddleware } from "../socket-middleware/socketMiddleware";
+ import { applyMiddleware } from "redux";
+import { rootReducer } from "./index";
+import { socketMiddleware } from "../socket-middleware/socket-middleware";
+import { configureStore } from "@reduxjs/toolkit"; 
 
 import {
   ORDERS_CONNECTION_INIT,
@@ -39,24 +39,18 @@ const feedWsActions = {
   onClose: FEED_CONNECTION_CLOSED,
   onError: FEED_CONNECTION_ERROR,
   onMessage: FEED_GET_MESSAGE,
-};
+}; 
 
-
-declare global {
-  interface Window {
-    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose | any;
-  }
-}
-
-const composeEnhancers =
-  typeof window === "object" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
-    : compose;
-
-const enhancer = composeEnhancers(
-  applyMiddleware(thunk,
+export const store = configureStore({
+  reducer: rootReducer,
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+      immutableCheck: false
+    }),
+  devTools: process.env.NODE_ENV !== 'production',
+  enhancers: [applyMiddleware( 
     socketMiddleware(ordersWsActions),
-    socketMiddleware(feedWsActions))
-);
-
-export const store = createStore(rootReducer, enhancer);
+    socketMiddleware(feedWsActions)
+  )]
+});

@@ -50,6 +50,7 @@ export const loginFetch = (email: string, password: string): AppThunk => (dispat
         setCookie("refreshToken", response.refreshToken);
       }
 
+      console.log(response.accessToken)
 
       dispatch({
         type: LOGIN_FETCH_SUCCESS,

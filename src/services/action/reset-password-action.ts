@@ -20,7 +20,8 @@ export type TResetPasswordReducer =
   | IResetPasswordSuccess;
 
 export const resetPasswordFetch =
-  (password: string, token: string): AppThunk => (dispatch: AppDispatch) => {
+  (password: string, token: string): AppThunk =>
+  (dispatch: AppDispatch) => {
     dispatch({
       type: RESET_PASSWORD_FETCH_REQUEST,
     });

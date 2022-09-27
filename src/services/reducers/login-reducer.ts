@@ -14,7 +14,7 @@ interface IInitialState {
   failed: boolean;
 }
 
-const initialState: IInitialState = {
+export const initialState: IInitialState = {
   email: "",
   name: "",
   success: false,

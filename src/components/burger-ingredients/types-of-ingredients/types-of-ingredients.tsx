@@ -8,7 +8,7 @@ interface ITypesOfIngredients {
   children: string;
   id: string;
   arr: IIngredient[];
-  ref: any
+  ref: HTMLDivElement
 }
 
  
@@ -20,7 +20,7 @@ export const TypesOfIngredients = forwardRef<HTMLHeadingElement, ITypesOfIngredi
 
       <div className={style.typesBox}>
         { arr.map((el:  IIngredient, index:  number) => (
-          <Ingredients el={el} key={index} />
+          <Ingredients el={el} index={index} key={el._id} dataTestText={`${children}`}/>
         ))}
       </div>
     </div>

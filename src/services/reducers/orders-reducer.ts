@@ -14,7 +14,7 @@ export type TOrdersState = {
   error: unknown;
 };
 
-const initialState: TOrdersState = {
+export const initialState: TOrdersState = {
   data: [],
   isOpen: false,
   error: null,
