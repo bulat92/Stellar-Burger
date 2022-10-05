@@ -24,6 +24,20 @@ React Hooks,
 React DnD
 
 http://stellarburger.bulatmustafin.nomoredomains.sbs
+
+Для запуска проекта нужно ввести команды 
+
+“git clone  https://github.com/bulat92/Stellar-Burger” 
+
+“git init” 
+
+Для запуска тестов состояния нужно ввести команду
+
+	“npm test” (Пока что не работают в ветке forToolkit) 
+
+Для запуска cypress тестов нужно ввести 
+
+	“npx cypress open” 
  
  
  
