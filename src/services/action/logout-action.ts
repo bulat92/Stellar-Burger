@@ -3,16 +3,15 @@ import { checkResponse } from "../check-response/check-response";
 import { deleteCookie, getCookie } from "../cookie/cookie-functions";
 import { AppDispatch, AppThunk } from "../../interface-and-types/types";
 
-import { LOGOUT_FETCH } from "../action/login-action";
+import { logoutRequest } from "../reducers/login-reducer";
 
 export const logoutFetch = (): AppThunk => (dispatch: AppDispatch) => {
   const refreshToken = getCookie("refreshToken");
-  deleteCookie("refreshToken");
+  
   deleteCookie("token");
+  deleteCookie("refreshToken");
 
-  dispatch({
-    type: LOGOUT_FETCH,
-  });
+  dispatch(logoutRequest());
 
   if (refreshToken) {
     fetch(`${baseURL}${logoutURL}`, {
@@ -28,7 +27,7 @@ export const logoutFetch = (): AppThunk => (dispatch: AppDispatch) => {
       .then((response) => {
         if (!response.success) {
           console.log("Logout не сработал");
-        }
+        } 
       })
       .catch((e) => {
         console.log(e);

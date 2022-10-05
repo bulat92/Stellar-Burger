@@ -1,13 +1,7 @@
-import {
-  ADD_INGREDIENT,
-  DELETE_INGREDIENT,
-  ADD_BUN,
-  SORT_INGREDIENT,
-  IBurgerConstructorReducer
-} from "../action/burger-constructor";
-import { IIngredient } from '../../interface-and-types/interface';
+import { IIngredient } from "../../interface-and-types/interface";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface IInitialState{
+interface IInitialState {
   OrderIngredients: ReadonlyArray<IIngredient>;
   readonly bun: IIngredient | null;
 }
@@ -15,44 +9,35 @@ interface IInitialState{
 export const initialState: IInitialState = {
   OrderIngredients: [],
 
-  bun: null
+  bun: null,
 };
 
-export const burgerConstructorReducer = (state = initialState, action: IBurgerConstructorReducer) => {
-  switch (action.type) {
-    case ADD_INGREDIENT: {
-      return {
-        ...state,
-        OrderIngredients: [...state.OrderIngredients, action.item],
-      };
-    }
-    case ADD_BUN: {
-      return {
-        ...state,
-        bun: action.item,
-      };
-    }
-    case DELETE_INGREDIENT: {
-      return {
-        ...state,
-        OrderIngredients: [
-          ...state.OrderIngredients.filter(
-            (el, index) => index != action.index
-          ),
-        ],
-      };
-    }
-    case SORT_INGREDIENT: {
-      const ingredients = [...state.OrderIngredients];
-      ingredients.splice(action.hoverIndex , 0, ingredients.splice(action.dragIndex, 1)[0]);
-      return {
-        ...state,
-        OrderIngredients: ingredients
-    }
-  }
-    default: {
-      return state ;
-    }
-  }
-};
- 
+const burgerConstructor = createSlice({
+  name: "burgerConstructor",
+  initialState,
+  reducers: {
+    addIngredients: (state, action: PayloadAction<IIngredient>) => {
+      state.OrderIngredients.push(action.payload);
+    },
+    addBun: (state, action: PayloadAction<IIngredient>) => {
+      state.bun = action.payload;
+    },
+    deleteIngredient: (state, action: PayloadAction<number>) => {
+      state.OrderIngredients.filter((el, index) => index !== action.payload);
+    },
+    sortIngredient: (
+      state,
+      action: PayloadAction<{ hoverIndex: number; dragIndex: number }>
+    ) => {
+      state.OrderIngredients.splice(
+        action.payload.hoverIndex,
+        0,
+        state.OrderIngredients.splice(action.payload.dragIndex, 1)[0]
+      );
+    },
+  },
+});
+
+export const { addIngredients, addBun, sortIngredient, deleteIngredient } =
+  burgerConstructor.actions;
+export default burgerConstructor.reducer;

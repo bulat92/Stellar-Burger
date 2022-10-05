@@ -3,15 +3,15 @@ import { TotalAndOrderButton } from "./total-and-order-button/total-and-order-bu
 import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
 import { v4 as uuidv4 } from "uuid";
 import { useDrop } from "react-dnd";
-import { useSelector, useDispatch } from '../../interface-and-types/hooks';
-import {
-  ADD_INGREDIENT,
-  ADD_BUN,
-} from "../../services/action/burger-constructor";
+import { useSelector, useDispatch } from "../../interface-and-types/hooks";
 import { DotsAndConstructorElement } from "./dots-and-constructor-element/dots-and-constructor-element";
 import { IIngredient } from "../../interface-and-types/interface";
 import React from "react";
-import { CustomDragLayer } from './custom-drag-layer/custom-drag-layer';
+import { CustomDragLayer } from "./custom-drag-layer/custom-drag-layer";
+import {
+  addIngredients,
+  addBun,
+} from "../../services/reducers/burger-constructor";
 
 export const BurgerConstructor: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
@@ -20,21 +20,9 @@ export const BurgerConstructor: React.FC = (): JSX.Element => {
     accept: "ingredients",
     drop(item: IIngredient) {
       if (item.type !== "bun") {
-        dispatch({
-          type: ADD_INGREDIENT,
-          item: {
-            ...item,
-            id: uuidv4(),
-          },
-        });
+        dispatch(addIngredients({ ...item, id: uuidv4() }));
       } else {
-        dispatch({
-          type: ADD_BUN,
-          item: {
-            ...item,
-            id: uuidv4(),
-          },
-        });
+        dispatch(addBun({ ...item, id: uuidv4() }));
       }
     },
   });
@@ -42,11 +30,13 @@ export const BurgerConstructor: React.FC = (): JSX.Element => {
   const { OrderIngredients, bun } = useSelector(
     (store) => store.burgerConstructorValues
   );
-    
- 
 
   return (
-    <section className={`${style.BurgerConstructor}`} ref={ref} data-test='drop-in-constructor'>
+    <section
+      className={`${style.BurgerConstructor}`}
+      ref={ref}
+      data-test="drop-in-constructor"
+    >
       <CustomDragLayer />
       <div className={`${style.constructorElement} mr-4`}>
         {bun ? (
@@ -64,7 +54,7 @@ export const BurgerConstructor: React.FC = (): JSX.Element => {
       <div className={`${style.scrollWindow} mt-4 mb-4`}>
         <div className={`mr-2 ${style.scrollWindow_into}`}>
           {OrderIngredients.length !== 0 ? (
-            OrderIngredients.map((el , index ) => (
+            OrderIngredients.map((el, index) => (
               <DotsAndConstructorElement el={el} key={el.id} index={index} />
             ))
           ) : (

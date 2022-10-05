@@ -10,7 +10,7 @@ import { Preloader } from '../preloader/preloader';
 
 export const BurgerIngredients:FC = () => {
  
-  const { ingredients, ingredientsRequest } = useSelector((store ) => store.burgers);
+  const { ingredients, ingredientsRequest } = useSelector((store ) => store.burgerIngrediends);
  
   const mainSection = useRef(null),
     [currentTab, setCurrentTab] = useState("bun");

@@ -1,8 +1,4 @@
-import {
-  AUTH_TOKEN_FETCH_SUCCESS,
-  AUTH_TOKEN_FETCH_REQUEST,
-  AUTH_TOKEN_FETCH_FAILED,
-} from "../action/auth-token-action";
+import { createSlice } from "@reduxjs/toolkit";
 
 export type TAuthTokenReducerState = {
   successRefreshToken: boolean;
@@ -10,46 +6,31 @@ export type TAuthTokenReducerState = {
   failed: boolean;
 };
 
-export interface TAuthTokenReducer {
-  readonly type:
-    | typeof AUTH_TOKEN_FETCH_SUCCESS
-    | typeof AUTH_TOKEN_FETCH_REQUEST
-    | typeof AUTH_TOKEN_FETCH_FAILED;
-}
-
 const initialState: TAuthTokenReducerState = {
   successRefreshToken: false,
   request: false,
   failed: false,
 };
 
-export const authTokenReducer = (state = initialState, action: TAuthTokenReducer) => {
-  switch (action.type) {
-    case AUTH_TOKEN_FETCH_REQUEST: {
-      return {
-        ...state,
-        request: true,
-      };
-    }
-    case AUTH_TOKEN_FETCH_SUCCESS: {
-      return {
-        ...state,
-        request: false,
-        failed: false,
+export const authTokenReducer = createSlice({
+  name: "authTokenReducer",
+  initialState,
+  reducers: {
+    authTokenRequest: (state) => {
+      state.request = true;
+    },
+    authTokenSuccess: (state) => {
+      state.request = false;
+      state.failed = false;
 
-        successRefreshToken: true,
-      };
-    }
-    case AUTH_TOKEN_FETCH_FAILED: {
-      return {
-        ...state,
-        failed: true,
+      state.successRefreshToken = true;
+    },
+    authTokenFailed: (state) => {
+      state.failed = true;
+    },
+  },
+});
 
-        successRefreshToken: false,
-      };
-    }
-    default: {
-      return state;
-    }
-  }
-};
+export const { authTokenRequest, authTokenSuccess, authTokenFailed } =
+  authTokenReducer.actions;
+export default authTokenReducer.reducer;

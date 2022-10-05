@@ -23,8 +23,8 @@ import { OrderInfo } from "../modal/modal-overlay/order-info/order-info";
 import { FeedView } from "../../pages/feed-view";
 
 export const App = (): JSX.Element => {
-  const { success } = useSelector((store) => store.login);
-  const { successRefreshToken } = useSelector((store) => store.authToken);
+  const { success, logoutRequest } = useSelector((store) => store.login);
+  
 
   const { orders } = useSelector((store) => store.wsFeed);
   const { data } = useSelector((store) => store.WSOrders);
@@ -35,10 +35,10 @@ export const App = (): JSX.Element => {
   const dispatch = useDispatch();
  
   useEffect(() => {
-    if (!success && getCookie("token")) {
-      dispatch(AuthTokenFetch());
+    if (!success && getCookie("token") && logoutRequest) {
+      dispatch(AuthTokenFetch()); 
     }
-  }, [success, successRefreshToken]);
+  }, []);
 
   useEffect(() => {
     dispatch(fetchGetIngredients());

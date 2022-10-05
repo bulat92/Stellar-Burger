@@ -7,13 +7,14 @@ import { Check } from "./check";
 import { IIngredient } from "../../../../interface-and-types/interface";
 import { ingredientsWS } from "../../../../services/action/ws-feed-action";
 import React from "react";
+import { Preloader } from "../../../preloader/preloader";
 
 export const OrderInfo: React.FC<{ arr: ingredientsWS[] }> = ({
   arr,
 }): JSX.Element => {
   const { id } = useParams<{ id: string }>();
 
-  const { ingredients } = useSelector((store) => store.burgers);
+  const { ingredients } = useSelector((store) => store.burgerIngrediends);
 
   const orderForInfo = useMemo(() => {
     return arr.find((el) => el._id === id);
@@ -83,7 +84,7 @@ export const OrderInfo: React.FC<{ arr: ingredientsWS[] }> = ({
           </div>
         </div>
       ) : (
-        ""
+        <Preloader />
       )}
     </>
   );

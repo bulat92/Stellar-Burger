@@ -3,9 +3,10 @@ import { useSelector } from "../../../../interface-and-types/hooks";
 import { useMemo } from "react";
 import { useParams } from "react-router-dom";
 import { IIngredient } from "../../../../interface-and-types/interface";
+import { Preloader } from '../../../preloader/preloader'
 
 export const IngredientDetails = () => {
-  const { ingredients } = useSelector((store) => store.burgers);
+  const { ingredients } = useSelector((store) => store.burgerIngrediends);
 
   const { id } = useParams<{ id: string }>();
 
@@ -15,7 +16,7 @@ export const IngredientDetails = () => {
 
   return (
     <>
-      {IngredientForDetails && (
+      {IngredientForDetails ? (
         <div className={style.IngredientDetails}>
           <img className="mb-4" src={IngredientForDetails.image_large} />
           <p className={style.ingredientName}>{IngredientForDetails.name}</p>
@@ -50,7 +51,7 @@ export const IngredientDetails = () => {
             </span>
           </div>
         </div>
-      )}
+      ) : <Preloader />}
     </>
   );
 };

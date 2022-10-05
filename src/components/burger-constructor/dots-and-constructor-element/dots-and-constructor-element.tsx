@@ -6,14 +6,13 @@ import {
   ConstructorElement,
   DragIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import {
-  DELETE_INGREDIENT,
-  SORT_INGREDIENT,
-} from "../../../services/action/burger-constructor";
 import { useDrag, useDrop } from "react-dnd";
 import { IIngredient } from "../../../interface-and-types/interface";
-import { getEmptyImage } from 'react-dnd-html5-backend';
-
+import { getEmptyImage } from "react-dnd-html5-backend";
+import {
+  deleteIngredient,
+  sortIngredient,
+} from "../../../services/reducers/burger-constructor";
 
 interface TDotsAndConstructorElement {
   el: IIngredient;
@@ -70,11 +69,7 @@ export const DotsAndConstructorElement: React.FC<
         return;
       }
       // Время, чтобы фактически выполнить действие
-      dispatch({
-        type: SORT_INGREDIENT,
-        dragIndex: dragIndex,
-        hoverIndex: hoverIndex,
-      });
+      dispatch(sortIngredient({ dragIndex, hoverIndex }));
       // Примечание: здесь мы изменяем элемент монитора!
       // Вообще лучше избегать мутаций,
       // но здесь хорошо ради производительности
@@ -86,21 +81,26 @@ export const DotsAndConstructorElement: React.FC<
   const [{ isDragging }, drag, preview] = useDrag({
     type: "inConstructor",
     item: () => {
-      return { id: el._id, index, name: el.name, price: el.price, image: el.image_mobile };
+      return {
+        id: el._id,
+        index,
+        name: el.name,
+        price: el.price,
+        image: el.image_mobile,
+      };
     },
-    collect: (monitor ) => ({
+    collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),
   });
 
   useEffect(() => {
-    preview(getEmptyImage(), { captureDraggingState: true })
-  }, [index, preview])
+    preview(getEmptyImage(), { captureDraggingState: true });
+  }, [index, preview]);
 
   const opacity = isDragging ? 0 : 1;
 
   drag(drop(ref));
-  
 
   return (
     <div
@@ -109,7 +109,7 @@ export const DotsAndConstructorElement: React.FC<
       style={{ ...style, opacity }}
       data-handler-id={handlerId}
       data-test-number={`constructorElement${index}`}
-      data-test='constructorElement'
+      data-test="constructorElement"
     >
       <DragIcon type="primary" />
       <ConstructorElement
@@ -118,7 +118,7 @@ export const DotsAndConstructorElement: React.FC<
         price={el.price}
         thumbnail={el.image_mobile}
         handleClose={() => {
-          dispatch({ type: DELETE_INGREDIENT, index: index });
+          dispatch(deleteIngredient(index));
         }}
       />
     </div>

@@ -16,7 +16,7 @@ export const InnerIngredientView = () => {
 
   const { id } = useParams<{id: string}>();
 
-  const { ingredients } = useSelector((store ) => store.burgers);
+  const { ingredients } = useSelector((store ) => store.burgerIngrediends);
 
   const content = useMemo(() => {
     let IngredientForDetails = false;

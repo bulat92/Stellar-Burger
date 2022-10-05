@@ -1,9 +1,4 @@
-import {
-  FORGOT_PASSWORD_FETCH_SUCCESS,
-  FORGOT_PASSWORD_FETCH_REQUEST,
-  FORGOT_PASSWORD_FETCH_FAILED,
-  TForgotPasswordReducer
-} from "../action/forgot-password-action";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface IInitialState {
   successForgotPassword: boolean;
@@ -20,32 +15,28 @@ export const initialState: IInitialState = {
   failed: false,
 };
 
-export const forgotPasswordReducer = (state = initialState, action: TForgotPasswordReducer) => {
-  switch (action.type) {
-    case FORGOT_PASSWORD_FETCH_REQUEST: {
-      return {
-        ...state,
-        request: true,
-      };
-    }
-    case FORGOT_PASSWORD_FETCH_SUCCESS: {
-      return {
-        ...state,
-        request: false,
-        failed: false,
+export const forgotPasswordReducer = createSlice({
+  name: "forgotPasswordReducer",
+  initialState,
+  reducers: {
+    forgotPasswordRequest: (state) => {
+      state.request = true;
+    },
+    forgotPasswordFailed: (state) => {
+      state.failed = true;
+    },
+    forgotPasswordSuccess: (state, action: PayloadAction<string>) => {
+      state.request = false;
+      state.failed = false;
+      state.successForgotPassword = false;
+      state.message = action.payload;
+    },
+  },
+});
 
-        successForgotPassword: true,
-        message: action.message,
-      };
-    }
-    case FORGOT_PASSWORD_FETCH_FAILED: {
-      return {
-        ...state,
-        failed: true,
-      };
-    }
-    default: {
-      return state;
-    }
-  }
-};
+export const {
+  forgotPasswordRequest,
+  forgotPasswordFailed,
+  forgotPasswordSuccess,
+} = forgotPasswordReducer.actions;
+export default forgotPasswordReducer.reducer;

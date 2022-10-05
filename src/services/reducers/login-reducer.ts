@@ -1,10 +1,4 @@
-import {
-  LOGIN_FETCH_SUCCESS,
-  LOGIN_FETCH_REQUEST,
-  LOGIN_FETCH_FAILED,
-  LOGOUT_FETCH,
-  TLoginReducer
-} from "../action/login-action";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface IInitialState {
   email: string;
@@ -12,6 +6,7 @@ interface IInitialState {
   success: boolean;
   request: boolean;
   failed: boolean;
+  logoutRequest: boolean;
 }
 
 export const initialState: IInitialState = {
@@ -21,42 +16,46 @@ export const initialState: IInitialState = {
 
   request: false,
   failed: false,
+
+  logoutRequest: true,
+
 };
 
-export const loginReducer = (state = initialState, action: TLoginReducer) => {
-  switch (action.type) {
-    case LOGIN_FETCH_REQUEST: {
-      return {
-        ...state,
-        request: true,
-      };
-    }
-    case LOGIN_FETCH_SUCCESS: {
-      return {
-        ...state,
-        request: false,
-        failed: false,
+export const loginReducer = createSlice({
+  name: "loginReducer",
+  initialState,
+  reducers: {
+    loginRequest: (state) => {
+      state.request = true;
+    },
+    loginRequestSuccess: (
+      state,
+      action: PayloadAction<{ name: string; email: string }>
+    ) => {
+      state.request = false;
+      state.failed = false;
 
-        success: true,
-        name: action.name,
-        email: action.email,
-      };
-    }
-    case LOGIN_FETCH_FAILED: {
-      return {
-        ...state,
-        failed: true,
-      };
-    }
-    case LOGOUT_FETCH: {
-      return {
-        success: false,
-        name: false,
-        email: false,
-      };
-    }
-    default: {
-      return state;
-    }
-  }
-};
+      state.success = true;
+      state.logoutRequest = true;
+      state.name = action.payload.name;
+      state.email = action.payload.email;
+    },
+    loginRequestFailed: (state) => {
+      state.failed = true;
+    },
+    logoutRequest: (state) => {
+      state.email = "";
+      state.name = "";
+      state.success = false;
+      state.logoutRequest = false;
+    },
+  },
+});
+
+export const {
+  loginRequest,
+  loginRequestSuccess,
+  loginRequestFailed,
+  logoutRequest,
+} = loginReducer.actions;
+export default loginReducer.reducer;

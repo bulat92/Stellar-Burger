@@ -9,6 +9,7 @@ import { ProtectedRoute } from "../protected-route/protected-route";
 import { ProfileOrdersView } from "../../pages/profile-orders-view";
 import { Modal } from "../modal/modal";
 import { OrderInfo } from "../modal/modal-overlay/order-info/order-info";
+import { useMemo } from "react";
 
  
 export const ProfileInner = () => {
@@ -28,6 +29,19 @@ export const ProfileInner = () => {
   const onClose = () => {
     history.goBack();
   };
+
+  const descriptionPage = useMemo(() => {
+
+    let description: string = '';
+
+    if (history.location.pathname === "/profile/orders") {
+      description = 'В этом разделе вы можете посмотреть свою историю заказов'
+    }else{
+      description = 'В этом разделе вы можете изменить свои персональные данные'
+    }
+    return description
+  },[history.location.pathname])
+
 
   return (
     <section className={style.ProfileInner}>
@@ -52,7 +66,7 @@ export const ProfileInner = () => {
           Выход
         </p>
         <p className={style.profileDescription}>
-          В этом разделе вы можете изменить свои персональные данные
+          {descriptionPage}
         </p>
       </div>
       <div>

@@ -1,38 +1,18 @@
 import { registerURL, baseURL } from "../url";
 import { checkResponse } from "../check-response/check-response";
 import {
-  LOGIN_FETCH_SUCCESS,
-  LOGIN_FETCH_REQUEST,
-  LOGIN_FETCH_FAILED,
-} from "./login-action";
+  loginRequest,
+  loginRequestSuccess,
+  loginRequestFailed,
+} from "../reducers/login-reducer";
 import { setCookie } from "../cookie/cookie-functions";
 import { AppDispatch, AppThunk } from "../../interface-and-types/types";
 
-export const REGISTER_FETCH_SUCCESS = "REGISTER_SUCCESS",
-  REGISTER_FETCH_REQUEST = "REGISTER_REQUEST",
-  REGISTER_FETCH_FAILED = "REGISTER_FAILED";
-
-
-interface IRequestFetchRequestORFailed{
-  readonly type: typeof REGISTER_FETCH_REQUEST | typeof REGISTER_FETCH_FAILED;
-}
-interface IRequestFetchSuccess{
-  readonly type: typeof REGISTER_FETCH_SUCCESS;
-  readonly name: string;
-  readonly email: string;
-  readonly success: boolean;
-}
-
-export type TRegisterReducer = IRequestFetchRequestORFailed | IRequestFetchSuccess;
-
-
-
+  
 
 export const registerFetch =
   (email: string, password: string, name: string): AppThunk => (dispatch: AppDispatch) => {
-    dispatch({
-      type: LOGIN_FETCH_REQUEST,
-    });
+    dispatch(loginRequest());
     fetch(`${baseURL}${registerURL}`, {
       method: "POST",
       headers: {
@@ -48,13 +28,9 @@ export const registerFetch =
         return checkResponse(response);
       })
       .then((response) => {
-        dispatch({
-          type: LOGIN_FETCH_SUCCESS,
-          success: response.success,
-
-          name: response.user.name,
-          email: response.user.email,
-        });
+        const name = response.user.name,
+          email = response.user.email;
+        dispatch(loginRequestSuccess({ name, email }));
         return response;
       })
       .then((response) => {
@@ -66,8 +42,6 @@ export const registerFetch =
         }
       })
       .catch((e) => {
-        dispatch({
-          type: LOGIN_FETCH_FAILED,
-        });
+        dispatch(loginRequestFailed());
       });
   };

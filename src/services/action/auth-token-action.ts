@@ -1,86 +1,67 @@
 import { userURL, baseURL, tokenURL } from "../url";
 import { checkResponse } from "../check-response/check-response";
 import { getCookie, setCookie } from "../cookie/cookie-functions";
-import {
-  LOGIN_FETCH_SUCCESS,
-  LOGIN_FETCH_REQUEST,
-  LOGIN_FETCH_FAILED,
-} from "./login-action";
 import { AppDispatch, AppThunk } from "../../interface-and-types/types";
-
-export const AUTH_TOKEN_FETCH_SUCCESS = "AUTH_TOKEN_FETCH_SUCCESS",
-  AUTH_TOKEN_FETCH_REQUEST = "AUTH_TOKEN_FETCH_REQUEST",
-  AUTH_TOKEN_FETCH_FAILED = "AUTH_TOKEN_FETCH_FAILED";
-
-  
+import {
+  authTokenRequest,
+  authTokenSuccess,
+  authTokenFailed,
+} from "../reducers/auth-token-reducers";
+import {
+  loginRequest,
+  loginRequestSuccess,
+  loginRequestFailed,
+} from "../reducers/login-reducer";
 
 export const AuthTokenFetch = (): AppThunk => (dispatch: AppDispatch) => {
-   
-    dispatch({
-      type: LOGIN_FETCH_REQUEST,
-    });
+  dispatch(loginRequest());
 
-    console.log()
+  const requestHeaders: HeadersInit = new Headers();
+  requestHeaders.set("Content-Type", "application/json");
+  const token = getCookie("token");
 
-    const requestHeaders: HeadersInit = new Headers();
-    requestHeaders.set("Content-Type", "application/json");
-    const notUndefined = getCookie("token");
-
-     
-    if(notUndefined !== undefined){// если не Undefined то добавится в заголовок 
-      requestHeaders.set('Authorization', notUndefined  )
-    }
- 
-    fetch(`${baseURL}${userURL}`, {
-      method: "GET",
-      headers: requestHeaders,
+  if (token !== undefined) {
+    // если не Undefined то добавится в заголовок
+    requestHeaders.set("Authorization", token);
+  } 
+  fetch(`${baseURL}${userURL}`, {
+    method: "GET",
+    headers: requestHeaders,
+  })
+    .then(checkResponse)
+    .then((response) => {
+      const name = response.user.name,
+        email = response.user.email;
+      dispatch(loginRequestSuccess({ name, email }));
     })
-      .then(checkResponse)
-      .then((response) => {
-        dispatch({
-          type: LOGIN_FETCH_SUCCESS,
- 
-          success: response.success,
-          name: response.user.name,
-          email: response.user.email
-        });
-      })
-      .catch((e) => {
-        console.log(e);
-        dispatch({
-          type: LOGIN_FETCH_FAILED,
-        });
-        if (e.message === "jwt expired") {
-          dispatch({
-            type: AUTH_TOKEN_FETCH_REQUEST,
-          });
-          fetch(`${baseURL}${tokenURL}`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json;charset=utf-8",
-            },
-            body: JSON.stringify({
-              token: getCookie("refreshToken"),
-            }),
+    .catch((e) => {
+      console.log(e);
+      dispatch(loginRequestFailed());
+      if (e.message === "jwt expired") {
+        dispatch(authTokenRequest());
+        fetch(`${baseURL}${tokenURL}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json;charset=utf-8",
+          },
+          body: JSON.stringify({
+            token: getCookie("refreshToken"),
+          }),
+        })
+          .then(checkResponse)
+          .then((response) => {
+            dispatch(authTokenSuccess());
+            if (response.accessToken) {
+              setCookie("token", response.accessToken);
+            }
+            if (response.refreshToken) {
+              setCookie("refreshToken", response.refreshToken);
+            }
           })
-            .then(checkResponse)
-            .then((response) => {
-              dispatch({
-                type: AUTH_TOKEN_FETCH_SUCCESS,
-              });
-              if (response.accessToken) {
-                setCookie("token", response.accessToken);
-              }
-              if (response.refreshToken) {
-                setCookie("refreshToken", response.refreshToken);
-              }
-            })
-            .catch((e) => {
-              console.log(e);
-              dispatch({
-                type: AUTH_TOKEN_FETCH_FAILED,
-              });
-            });
-        }
-      });
-  };
+          .catch((e) => {
+            console.log(e);
+            dispatch(authTokenFailed());
+          });
+      }
+    });
+};

@@ -1,10 +1,4 @@
-import {
-  TFetchMakeOrder,
-  POST_ORDER_SUCCESS,
-  POST_ORDER_REQUEST,
-  POST_ORDER_CLEARING,
-  POST_ORDER_FAILED,
-} from "../action/fetch-make-order";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface IInitialState {
   orderNumber: string;
@@ -17,38 +11,33 @@ export const initialState: IInitialState = {
   orderNumberRequest: false,
   orderNumberFailed: false,
 };
-export const orderReducer = (state = initialState, action: TFetchMakeOrder) => {
-  switch (action.type) {
-    case POST_ORDER_REQUEST: {
-      return {
-        ...state,
-        orderNumberRequest: true,
-      };
-    }
-    case POST_ORDER_SUCCESS: {
-      return {
-        ...state,
-        orderNumberRequest: false,
-        orderNumberFailed: false,
-        orderNumber: action.number,
-      };
-    }
-    case POST_ORDER_FAILED: {
-      return {
-        ...state,
-        orderNumberFailed: true,
-      };
-    }
-    case POST_ORDER_CLEARING: {
-      return {
-        ...state,
-        orderNumber: "",
-        orderNumberRequest: false,
-        orderNumberFailed: false,
-      };
-    }
-    default: {
-      return state;
-    }
-  }
-};
+export const orderReducer = createSlice({
+  name: "orderReducer",
+  initialState,
+  reducers: {
+    postOrderRequest: (state) => {
+      state.orderNumberRequest = true;
+    },
+    postOrderSuccess: (state, action: PayloadAction<string>) => {
+      state.orderNumberRequest = false;
+      state.orderNumberFailed = false;
+      state.orderNumber = action.payload;
+    },
+    postOrderFailed: (state) => {
+      state.orderNumberFailed = true;
+    },
+    postOrderClearing: (state) => {
+      state.orderNumberRequest = false;
+      state.orderNumberFailed = false;
+      state.orderNumber = "";
+    },
+  },
+});
+
+export const {
+  postOrderRequest,
+  postOrderFailed,
+  postOrderClearing,
+  postOrderSuccess,
+} = orderReducer.actions;
+export default orderReducer.reducer;

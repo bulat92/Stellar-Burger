@@ -5,9 +5,12 @@ export function getCookie(name: string): string | undefined {
     return matches ? decodeURIComponent(matches[1]) : undefined;
   }
   
-  export function setCookie(name: string, value?: string | null, props?: any): void {
-    
+  export function setCookie(name: string, value?: string | null, props?: any): void { 
     props = props || {};
+    props = {
+      path: "/",
+      ...props,
+    };
     let exp = props.expires;
     if (typeof exp == 'number' && exp) {
       const d = new Date();
@@ -32,5 +35,5 @@ export function getCookie(name: string): string | undefined {
   }
   
   export function deleteCookie(name: string) {
-    setCookie(name, null, { expires: -1 });
+    setCookie(name, null, { expires: -1 }); 
   }

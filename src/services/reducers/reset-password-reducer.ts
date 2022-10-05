@@ -1,10 +1,4 @@
-import {
-  RESET_PASSWORD_FETCH_SUCCESS,
-  RESET_PASSWORD_FETCH_REQUEST,
-  RESET_PASSWORD_FETCH_FAILED,
-  TResetPasswordReducer,
-} from "../action/reset-password-action";
-
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 interface IInitialState {
   successReset: boolean;
 
@@ -19,34 +13,27 @@ export const initialState: IInitialState = {
   failed: false,
 };
 
-export const resetPasswordReducer = (
-  state = initialState,
-  action: TResetPasswordReducer
-) => {
-  switch (action.type) {
-    case RESET_PASSWORD_FETCH_REQUEST: {
-      return {
-        ...state,
-        request: true,
-      };
-    }
-    case RESET_PASSWORD_FETCH_SUCCESS: {
-      return {
-        ...state,
-        request: false,
-        failed: false,
+export const resetPasswordReducer = createSlice({
+  name: "resetPasswordReducer",
+  initialState,
+  reducers: {
+    resetPasswordRequest: (state) => {
+      state.request = true;
+    },
+    resetPasswordSuccess: (state, action: PayloadAction<boolean>) => {
+      state.request = false;
+      state.failed = false;
+      state.successReset = action.payload;
+    },
+    resetPasswordFailed: (state) => {
+      state.failed = true;
+    },
+  },
+});
 
-        successReset: action.success,
-      };
-    }
-    case RESET_PASSWORD_FETCH_FAILED: {
-      return {
-        ...state,
-        failed: true,
-      };
-    }
-    default: {
-      return state;
-    }
-  }
-};
+export const {
+  resetPasswordRequest,
+  resetPasswordSuccess,
+  resetPasswordFailed,
+} = resetPasswordReducer.actions;
+export default resetPasswordReducer.reducer;

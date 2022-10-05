@@ -1,4 +1,4 @@
- import { applyMiddleware } from "redux";
+import { applyMiddleware } from "redux";
 import { rootReducer } from "./index";
 import { socketMiddleware } from "../socket-middleware/socket-middleware";
 import { configureStore } from "@reduxjs/toolkit"; 
@@ -9,8 +9,7 @@ import {
   ORDERS_CONNECTION_ERROR,
   ORDERS_CONNECTION_CLOSED,
   ORDERS_CONNECTION_CLOSE,
-  ORDERS_GET_MESSAGE,
-  TOrdersActions,
+  ORDERS_GET_MESSAGE, 
 } from "../action/ws-order-action";
 
 import {
@@ -19,8 +18,7 @@ import {
   FEED_CONNECTION_ERROR,
   FEED_CONNECTION_CLOSED,
   FEED_CONNECTION_CLOSE,
-  FEED_GET_MESSAGE,
-  TFeedActions,
+  FEED_GET_MESSAGE, 
 } from "../action/ws-feed-action";
 
 const ordersWsActions = {
@@ -53,4 +51,4 @@ export const store = configureStore({
     socketMiddleware(ordersWsActions),
     socketMiddleware(feedWsActions)
   )]
-});
+}); 

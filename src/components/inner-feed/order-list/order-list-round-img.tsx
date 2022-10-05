@@ -7,7 +7,7 @@ export const OrderListRoundImg: React.FC<{ arr: string[] }> = ({ arr }) => {
   const ordersImg: string[] = [];
   let orderTotal: number = 0;
 
-  const { ingredients } = useSelector((store) => store.burgers);
+  const { ingredients } = useSelector((store) => store.burgerIngrediends);
 
   arr.forEach((elOrder) => {
     ingredients.forEach((element) => {
