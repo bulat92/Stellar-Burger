@@ -1,4 +1,4 @@
-import style from "../header-Items.module.css";
+import style from "./header-Items.module.css";
 import { NavLink } from "react-router-dom";
 import React from 'react';
 

@@ -33,7 +33,10 @@ nav{
     color: #8585AD;
     width: 170px;
     height: 56px;
-    font-size: 16px;
+    font-size: 16px; 
+}
+a[href="/profile"] div.boxItemsChild{
+    justify-content: flex-end;
 }
 .boxItemsChild:hover{
     color: white;

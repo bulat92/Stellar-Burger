@@ -11,6 +11,8 @@
  
 .scrollWindow{
     width: 600px;
+    max-width: 600px;
+    
     max-height: 46vh;
     overflow-y: scroll;
     overflow-x: hidden;
@@ -18,21 +20,21 @@
 .scrollWindow_into{
     display: flex;
     flex-direction: column;
+    align-items: flex-end;
     gap: 10px;
 }
 .empty{
     height: 80px;
-    max-width: 488px;
+    width: 536px;
     border-radius: 40px;
     background:  #2f2f38;
     display: flex;
     justify-content: center;
-    align-items: center;
-    margin-left: 100px;
+    align-items: center; 
 }
 .emptyTop{
     height: 80px;
-    width: 488px;
+    width: 536px;
     border-radius: 60px 60px 25px 25px;
     background:  #2f2f38;
     display: flex;
@@ -42,11 +44,16 @@
 }
 .emptyBottom{
     height: 80px;
-    width: 488px;
+    max-width: 536px;
+    width: 536px;
     border-radius: 25px 25px 60px 60px;
     background:  #2f2f38;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-left: 90px;
+}
+.constructorElement div{
+    max-width: 536px;
+    width: 536px;
 }

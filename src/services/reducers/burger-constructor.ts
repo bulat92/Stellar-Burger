@@ -23,7 +23,7 @@ const burgerConstructor = createSlice({
       state.bun = action.payload;
     },
     deleteIngredient: (state, action: PayloadAction<number>) => {
-      state.OrderIngredients.filter((el, index) => index !== action.payload);
+      state.OrderIngredients = state.OrderIngredients.filter((el, index) => index !== action.payload);
     },
     sortIngredient: (
       state,

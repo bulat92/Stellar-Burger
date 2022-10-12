@@ -1,5 +1,9 @@
-import { burgersReducer, initialState } from "../burger-ingredients";
-import * as types from "../../action/burger-ingredients";
+import burgerIngrediends, {
+  getIngrediendsRequest,
+  getIngrediends,
+  getIngrediendsFailed,
+  initialState,
+} from "../burger-ingrediends";
 
 const arrayForTest = [
   {
@@ -33,32 +37,21 @@ const arrayForTest = [
 ];
 
 describe("burger-ingredients reducer", () => {
-  it("should return the initial state", () => {
-    expect(burgersReducer(undefined, {})).toEqual(initialState);
+  test("should return the initial state", () => {
+    expect(burgerIngrediends(undefined, { type: undefined })).toEqual(
+      initialState
+    );
   });
 
-  it("should change ingredientsRequest only", () => {
-    expect(
-      burgersReducer(initialState, {
-        type: types.GET_INGREDIENTS_REQUEST,
-      })
-    ).toEqual({
+  test("should change ingredientsRequest only", () => {
+    expect(burgerIngrediends(initialState, getIngrediendsRequest())).toEqual({
       ...initialState,
       ingredientsRequest: true,
     });
   });
-  it("should add array with two ingredients", () => {
+  test("should add array with two ingredients", () => {
     expect(
-      burgersReducer(
-        {
-          ...initialState,
-          ingredientsRequest: true,
-        },
-        {
-          type: types.GET_INGREDIENTS,
-          ingredients: arrayForTest,
-        }
-      )
+      burgerIngrediends(initialState, getIngrediends(arrayForTest))
     ).toEqual({
       ...initialState,
       ingredients: arrayForTest,

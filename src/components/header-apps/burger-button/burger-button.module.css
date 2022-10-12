@@ -1,0 +1,50 @@
+.BurgerButton {
+  width: 40px;
+  height: 25px;
+
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.divBun {
+  width: 35px;
+  height: 6px;
+  background: white;
+  border-radius: 50px 50px 0% 0%;
+}
+.divBun:first-child {
+  border-radius: 50px 50px 0% 0%;
+}
+.divBun:last-child {
+  border-radius: 0% 0% 50px 50px;
+}
+.divLayer {
+  width: 40px;
+  height: 3px;
+  border-radius: 5px;
+  background: white;
+
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+.divLayer:nth-child(2) {
+  animation-name: layer;
+}
+.divLayer:nth-child(4) {
+  margin-left: -2px;
+  animation-name: layer;
+}
+@keyframes layer {
+  0% {
+    margin-left: -2px;
+  }
+
+  50% {
+    margin-right: -2px;
+  }
+
+  100% {
+    margin-left: -2px;
+  }
+}

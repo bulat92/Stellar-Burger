@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import style from "./header-Items.module.css";
-import { ButtonsWithIcons } from "./buttons-with-icons/buttons-with-icons";
+import { ButtonsWithIcons } from "./buttons-with-icons";
 import {
   ProfileIcon,
   ListIcon,
   BurgerIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useLocation } from "react-router-dom";
+import { BurgerButton } from '../burger-button/burger-button';
+import { MenuButton } from '../menu-button/menu-button';
 
 export const HeaderItems = () => {
   type TTState = "secondary" | "primary";
@@ -79,6 +81,8 @@ export const HeaderItems = () => {
       >
         Личный кабинет
       </ButtonsWithIcons>
+      <BurgerButton/>
+      <MenuButton/>
     </nav>
   );
 };

@@ -1,5 +1,9 @@
-import { burgerConstructorReducer, initialState } from "../burger-constructor";
-import * as types from "../../action/burger-constructor";
+import burgerConstructor, {
+  addIngredients,
+  addBun,
+  deleteIngredient,
+  initialState,
+} from "../burger-constructor";
 
 const objectForTest = {
   _id: "60666c42cc7b410027a1a9b1",
@@ -17,47 +21,33 @@ const objectForTest = {
 };
 
 describe("burger-constructor reducer", () => {
-  it("should return the initial state", () => {
-    expect(burgerConstructorReducer(undefined, {})).toEqual(initialState);
+  test("should return the initial state", () => {
+    expect(burgerConstructor(undefined, {})).toEqual(initialState);
   });
 
-  it("should add bun", () => {
-    expect(
-      burgerConstructorReducer(initialState, {
-        type: types.ADD_BUN,
-        item: objectForTest,
-      })
-    ).toEqual({
+  test("should add bun", () => {
+    expect(burgerConstructor(initialState, addBun(objectForTest))).toEqual({
       ...initialState,
 
       bun: objectForTest,
     });
   });
-  it("should add ingredient in order list", () => {
+  test("should add ingredient in order list", () => {
     expect(
-      burgerConstructorReducer(
-        initialState,
-        {
-          type: types.ADD_INGREDIENT,
-          item: objectForTest,
-        }
-      )
+      burgerConstructor(initialState, addIngredients(objectForTest))
     ).toEqual({
       ...initialState,
       OrderIngredients: [objectForTest],
     });
   });
-  it("should delete ingredient in order list", () => {
+  test("should delete ingredient in order list", () => {
     expect(
-      burgerConstructorReducer(
+      burgerConstructor(
         {
           ...initialState,
           OrderIngredients: [objectForTest],
         },
-        {
-          type: types.DELETE_INGREDIENT,
-          index: 0,
-        }
+        deleteIngredient(0)
       )
     ).toEqual(initialState);
   });
