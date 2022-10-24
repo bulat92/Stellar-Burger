@@ -1,20 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface IInitialState {
-  changedEmail: string;
-  changedName: string;
-  changedPassword: string;
-
+interface IInitialState { 
   successProfileFetch: boolean;
 
   request: boolean;
   failed: boolean;
 }
 
-export const initialState: IInitialState = {
-  changedEmail: "",
-  changedName: "",
-  changedPassword: "",
+export const initialState: IInitialState = { 
   successProfileFetch: false,
 
   request: false,
@@ -22,7 +15,7 @@ export const initialState: IInitialState = {
 };
 
 export const profileReducer = createSlice({
-  name: "burgerIngrediends",
+  name: "profileReducer",
   initialState,
   reducers: {
     profileRequest: (state) => {
@@ -34,7 +27,7 @@ export const profileReducer = createSlice({
 
       state.successProfileFetch = action.payload;
     },
-    getIngrediendsFailed: (state) => {
+    profileRequestFailed: (state) => {
       state.failed = true;
     },
   },
@@ -43,6 +36,6 @@ export const profileReducer = createSlice({
 export const {
   profileRequest,
   profileSuccess,
-  getIngrediendsFailed,
+  profileRequestFailed,
 } = profileReducer.actions;
 export default profileReducer.reducer;

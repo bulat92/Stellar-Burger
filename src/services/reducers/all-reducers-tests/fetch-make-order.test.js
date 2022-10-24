@@ -1,5 +1,7 @@
-import { orderReducer, initialState } from "../fetch-make-order";
-import * as types from "../../action/fetch-make-order";
+import orderReducer, { 
+  postOrderSuccess,
+  initialState
+} from "../fetch-make-order"; 
 
 describe("burger-ingredients reducer", () => {
   it("should return the initial state", () => {
@@ -8,10 +10,7 @@ describe("burger-ingredients reducer", () => {
 
   it("should get order number", () => {
     expect(
-      orderReducer(initialState, {
-        type: types.POST_ORDER_SUCCESS,
-        number: 123456789,
-      })
+      orderReducer(initialState, postOrderSuccess(123456789))
     ).toEqual({
       ...initialState,
       orderNumber: 123456789,

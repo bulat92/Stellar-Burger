@@ -1,53 +1,28 @@
-import { profileReducer, initialState } from "../profile-reducer";
-import * as types from "../../action/profile-action";
+import profileReducer,{
+  profileRequest,
+  profileSuccess, 
+  initialState
+} from "../profile-reducer";
 
 describe("profile reducer", () => {
-  it("should return the initial state", () => {
+  test("should return the initial state", () => {
     expect(profileReducer(undefined, {})).toEqual(initialState);
   });
 
-  it("should set successProfileFetch", () => {
+  test("should set successProfileFetch", () => {
     expect(
-      profileReducer(initialState, {
-        type: types.PROFILE_FETCH_SUCCESS,
-        success: true,
-      })
+      profileReducer(initialState, profileSuccess(true))
     ).toEqual({
       ...initialState,
       successProfileFetch: true,
     });
   });
-  it("should set name", () => {
+  test("should set request value", () => {
     expect(
-      profileReducer(initialState, {
-        type: types.SET_CHANGED_NAME,
-        name: "bulat",
-      })
+      profileReducer(initialState,profileRequest(true))
     ).toEqual({
       ...initialState,
-      changedName: "bulat",
-    });
-  });
-  it("should set password", () => {
-    expect(
-      profileReducer(initialState, {
-        type: types.SET_CHANGED_PASSWORD,
-        password: "bulat",
-      })
-    ).toEqual({
-      ...initialState,
-      changedPassword: "bulat",
-    });
-  });
-  it("should set email", () => {
-    expect(
-      profileReducer(initialState, {
-        type: types.SET_CHANGED_EMAIL,
-        email: "email",
-      })
-    ).toEqual({
-      ...initialState,
-      changedEmail: "email",
+      request: true,
     });
   });
 });

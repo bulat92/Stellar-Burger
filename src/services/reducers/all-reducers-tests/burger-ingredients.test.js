@@ -1,7 +1,6 @@
 import burgerIngrediends, {
   getIngrediendsRequest,
-  getIngrediends,
-  getIngrediendsFailed,
+  getIngrediends, 
   initialState,
 } from "../burger-ingrediends";
 

@@ -5,7 +5,7 @@ import { AppDispatch, AppThunk } from "../../interface-and-types/types";
 import {
   profileRequest,
   profileSuccess,
-  getIngrediendsFailed,
+  profileRequestFailed,
 } from '../reducers/profile-reducer';
   
 interface IProfileFetchSuccess {
@@ -50,6 +50,6 @@ export const profileSaveCancelData =
       })
       .catch((e) => {
         console.log(e);
-        dispatch(getIngrediendsFailed());
+        dispatch(profileRequestFailed());
       });
   };

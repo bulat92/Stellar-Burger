@@ -28,7 +28,7 @@ export const forgotPasswordReducer = createSlice({
     forgotPasswordSuccess: (state, action: PayloadAction<string>) => {
       state.request = false;
       state.failed = false;
-      state.successForgotPassword = false;
+      state.successForgotPassword = true;
       state.message = action.payload;
     },
   },
