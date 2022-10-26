@@ -6,6 +6,7 @@ import {
 import { wssBaseURL, WSFeedURL } from "../services/url"; 
 import { useDispatch } from "../interface-and-types/hooks";
 import { useEffect } from "react";
+import { PageHeader } from '../components/page-header/page-header'
  
 export const Feed = () => {
 
@@ -23,9 +24,7 @@ export const Feed = () => {
 
   return (
     <>
-      <div className="headerOnMain">
-        <h1>Лента заказов</h1>
-      </div>
+      <PageHeader>Лента заказов</PageHeader>
       <InnerFeed />
     </>
   );

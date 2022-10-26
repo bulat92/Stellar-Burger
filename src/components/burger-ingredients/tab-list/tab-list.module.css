@@ -1,8 +1,14 @@
-.list{
-    margin-bottom: 40px;   
-    max-width: 600px;
-    display: flex;
+.list {
+  margin-bottom: 40px;
+  max-width: 600px;
+  display: flex;
 }
-.list div{
-    width: calc(100%/3);
+.list div {
+  width: calc(100% / 3);
+}
+@media screen and (max-width: 1280px) {
+  .list {
+    width: 40vw;
+    max-width: 40vw;
+  }
 }

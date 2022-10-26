@@ -1,0 +1,17 @@
+.headerOnMain {
+  width: 1280px;
+  margin: 0 auto;
+}
+.childrenH {
+  height: 40px;
+  font-weight: 700;
+  font-size: 36px;
+  color: #f2f2f3;
+  margin-bottom: 20px;
+}
+@media screen and (max-width: 1280px) {
+  .headerOnMain{
+    width: 90%;
+    margin-left: 10vw;
+  }
+}

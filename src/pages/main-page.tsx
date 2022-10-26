@@ -3,6 +3,7 @@ import { BurgerConstructor } from "../components/burger-constructor/burger-const
 import { BurgerIngredients } from "../components/burger-ingredients/burger-ingredients"; 
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { DndProvider } from "react-dnd";
+import { PageHeader } from '../components/page-header/page-header'
 
 export const MainPage = () => {
 
@@ -15,9 +16,7 @@ export const MainPage = () => {
 
   return (
     <>
-      <div className="headerOnMain">
-        <h1>Собери бургер</h1>
-      </div>
+      <PageHeader>Собери бургер</PageHeader>
       <main style={style}>
         <DndProvider backend={HTML5Backend}>
           <BurgerIngredients />

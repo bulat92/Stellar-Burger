@@ -1,15 +1,23 @@
-.BurgerIngredients{
-    /* left */
-    max-width: 600px;
-    box-sizing: border-box;
-    
-    height: 65vh;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    /* interface/bg */
-    margin-right: 20px;
+.BurgerIngredients {
+  /* left */
+  max-width: 600px;
+  box-sizing: border-box;
 
-    background: #131316;
-    /* interface/accent */
+  height: 65vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  /* interface/bg */
+  margin-right: 20px;
+
+  background: #131316;
+  /* interface/accent */
 }
- 
+
+@media screen and (max-width: 1280px) {
+  .BurgerIngredients {
+    max-width: 40vw;
+  }
+  .mainSectionOfBurgerIngredients {
+    margin-left: 10vw;
+  }
+}

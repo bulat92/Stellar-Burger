@@ -1,5 +1,5 @@
 import style from "./header-app.module.css";
-import { LogoHead } from "./Logo-head";
+import { LogoHead } from "./logo-head/logo-head";
 import { HeaderItems } from "./header-items/header-Items";
  
 export const AppHeader = () => {

@@ -45,7 +45,7 @@ export const BurgerIngredients:FC = () => {
  
 
   return (
-    <section>
+    <section className={style.mainSectionOfBurgerIngredients}>
       <CustomDragLayer />
       <TabList sectionScrollFunc={sectionScrollFunc} currentTab={currentTab} />
       {!ingredientsRequest ? (
