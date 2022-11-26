@@ -6,9 +6,7 @@ import {
   ListIcon,
   BurgerIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useLocation } from "react-router-dom";
-import { BurgerButton } from '../burger-button/burger-button';
-import { MenuButton } from '../menu-button/menu-button';
+import { useLocation } from "react-router-dom";  
 
 export const HeaderItems = () => {
   type TTState = "secondary" | "primary";
@@ -50,7 +48,7 @@ export const HeaderItems = () => {
   }, [location.pathname, BurgerIconType, ListIconType, ProfileIconType]);
 
   return (
-    <nav className={style.nav}>
+    <nav className={style.navMain}>
       <div className={style.boxItems}>
         <ButtonsWithIcons
           icon={<BurgerIcon type={BurgerIconType} />}
@@ -80,9 +78,7 @@ export const HeaderItems = () => {
         exactBool={false}
       >
         Личный кабинет
-      </ButtonsWithIcons>
-      <BurgerButton/>
-      <MenuButton/>
+      </ButtonsWithIcons> 
     </nav>
   );
 };

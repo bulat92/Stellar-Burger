@@ -1,0 +1,23 @@
+.navSmartphoneMenu {
+  display: none;
+  height: 0;
+  overflow: hidden;
+  padding: 0 2.5vw;
+  color: #8585ad;
+  
+}
+.li {
+  display: flex;
+  align-items: center;
+  transition: all 0.5s ease-out;
+  list-style-type: none;
+}
+.li ul li{ 
+  list-style-type: none;
+}
+@media screen and (max-width: 375px) {
+  .navSmartphoneMenu {
+    display: flex;
+    height: 0;
+  }
+}

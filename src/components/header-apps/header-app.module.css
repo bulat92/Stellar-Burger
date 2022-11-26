@@ -24,3 +24,14 @@ header {
     height: 140px;
   }
 }
+@media screen and (max-width: 375px) {
+  header {
+    height: 64px;
+
+    justify-content: space-between;
+    align-items: center;
+
+    width: 95vw;
+    margin: 0 2.5vw;
+  } 
+}

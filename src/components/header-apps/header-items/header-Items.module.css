@@ -1,4 +1,4 @@
-nav {
+.navMain {
   position: absolute;
   display: flex;
   justify-content: space-between;
@@ -11,7 +11,7 @@ nav {
 .boxItems {
   display: flex;
 }
-.nav a {
+.navMain a {
   text-decoration: none;
 }
 .profileIcon {
@@ -49,7 +49,7 @@ a[href="/profile"] div.boxItemsChild {
 }
 
 @media screen and (max-width: 768px) {
-  nav {
+  .navMain {
     flex-direction: column;
     height: 140px;
   }
@@ -60,4 +60,9 @@ a[href="/profile"] div.boxItemsChild {
   .profileIcon svg {
     height: 3vw;
   }
+}
+@media screen and (max-width: 375px) {
+  .navMain {
+    display: none;
+  } 
 }

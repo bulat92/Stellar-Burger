@@ -12,3 +12,14 @@
     max-width: 40vw;
   }
 }
+@media screen and (max-width: 375px) {
+  .list {
+    width: 95vw;
+    max-width: 95vw;
+  }
+  .list div {
+    width: calc(95vw / 3);
+    min-width: auto;
+    padding: 1vw;
+  }
+}

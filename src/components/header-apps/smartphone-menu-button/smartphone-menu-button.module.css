@@ -1,0 +1,21 @@
+.MenuButton {
+  width: 18px;
+  height: 12px;
+
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.layer {
+  width: 18px;
+  height: 2px;
+  background: white;
+  border-radius: 2px;
+  transition: all .3s ease-out;
+}
+@media screen and (max-width: 375px) {
+  .MenuButton {
+    display: flex;
+  }
+}

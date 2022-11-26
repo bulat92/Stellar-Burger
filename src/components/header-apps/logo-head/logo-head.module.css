@@ -6,11 +6,14 @@
   align-items: center;
   box-sizing: border-box;
   cursor: pointer; 
+
+  
 }
 .logo { 
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center; 
+  z-index: 1;
 }
 @media screen and (max-width: 1280px) {
     .logo svg{
@@ -21,4 +24,13 @@
     .logo svg{
         width: 50vw;
     } 
+}
+@media screen and (max-width: 375px) {
+  .boxLogo {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+
+    overflow: hidden;
+  } 
 }

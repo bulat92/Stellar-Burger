@@ -21,3 +21,15 @@
     margin-left: 10vw;
   }
 }
+@media screen and (max-width: 375px) {
+  .MenuButton {
+    display: flex;
+  } 
+  .BurgerIngredients {
+    max-width: 95vw;
+    margin: 0;
+  }
+  .mainSectionOfBurgerIngredients {
+    margin: 0 2.5vw;
+  }
+}
