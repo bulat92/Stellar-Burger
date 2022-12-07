@@ -10,12 +10,12 @@ import { ProfileOrdersView } from "../../pages/profile-orders-view";
 import { Modal } from "../modal/modal";
 import { OrderInfo } from "../modal/modal-overlay/order-info/order-info";
 import { useMemo } from "react";
+import { PageHeader } from "../page-header/page-header";
 
- 
 export const ProfileInner = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-   
+
   const { data } = useSelector((store) => store.WSOrders);
 
   const location = useLocation<{ background: Location }>();
@@ -30,18 +30,20 @@ export const ProfileInner = () => {
     history.goBack();
   };
 
-  const descriptionPage = useMemo(() => {
-
-    let description: string = '';
+  const [descriptionPage, header] = useMemo(() => {
+    let description: string = "";
+    let header: string = "";
 
     if (history.location.pathname === "/profile/orders") {
-      description = 'В этом разделе вы можете посмотреть свою историю заказов'
-    }else{
-      description = 'В этом разделе вы можете изменить свои персональные данные'
+      description = "В этом разделе вы можете посмотреть свою историю заказов";
+      header = "Историй заказов";
+    } else {
+      description =
+        "В этом разделе вы можете изменить свои персональные данные";
+        header = 'Профиль'
     }
-    return description
-  },[history.location.pathname])
-
+    return [description, header];
+  }, [history.location.pathname]);
 
   return (
     <section className={style.ProfileInner}>
@@ -65,21 +67,20 @@ export const ProfileInner = () => {
         <p className={style.profileTab} onClick={logout}>
           Выход
         </p>
-        <p className={style.profileDescription}>
-          {descriptionPage}
-        </p>
+        <p className={style.profileDescription}>{descriptionPage}</p>
       </div>
       <div>
+        <div className={style.smartPhoneHeader}><PageHeader>{header}</PageHeader></div>
         <Switch>
           <ProtectedRoute path="/profile" exact={true}>
             <ProfileForm />
           </ProtectedRoute>
           <ProtectedRoute path="/profile/orders/:id" exact={true}>
-            <ProfileOrdersView/>
+            <ProfileOrdersView />
           </ProtectedRoute>
 
           <Route path="/feed/:id" exact={true}>
-            <ProfileOrdersView/>
+            <ProfileOrdersView />
           </Route>
           <ProtectedRoute path="/profile/orders" exact={true}>
             <OrderList

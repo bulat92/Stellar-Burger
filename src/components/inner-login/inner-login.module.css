@@ -12,23 +12,46 @@
   color: white;
   margin-bottom: 24px;
 }
-.mbInput{
+.mbInput {
   margin-bottom: 24px;
-} 
-.boxOptions{
-    margin-top: 80px;
 }
-.option{
-    color: #8585ad;
-    text-decoration: none;
+.boxOptions {
+  margin-top: 80px;
+}
+.option {
+  color: #8585ad;
+  text-decoration: none;
 
-    display: flex;
+  display: flex;
 }
-.option a{
-    text-decoration: none;
-    color: #4C4CFF;
+.option a {
+  text-decoration: none;
+  color: #4c4cff;
 }
-.boxInputs{
+.boxInputs {
   composes: LoginInner;
   margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .option {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+@media screen and (max-width: 375px) {
+  .LoginInner {
+    padding: 0 2.5vw;
+
+    margin-top: 20px;
+  }
+  div.mbInput div{
+    max-width: 95vw; 
+  }
+  .loginHeader { 
+    margin-bottom: 15px;
+  }
+  .boxOptions {
+    margin-top: 40px;
+  }
 }

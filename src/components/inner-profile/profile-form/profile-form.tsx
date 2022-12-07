@@ -70,6 +70,7 @@ useEffect(() => {
           value={emailInput}
           name={"login"}
           placeholder={"Логин"}
+          
         />
       </div>
       <div className={style.mbInput}>
@@ -78,7 +79,7 @@ useEffect(() => {
           onChange={(e) => setPassword(e.target.value)}
           value={password}
           type={"password"}
-          placeholder={"Пароль"}
+          placeholder={"Пароль"} 
         />
       </div>
       <div className={style.buttonBox}>

@@ -30,3 +30,23 @@
   composes: RegisterInner;
   margin: 0;
 }
+@media screen and (max-width: 768px) {
+  .option {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+@media screen and (max-width: 375px) {
+  div.mbInput div{
+    max-width: 95vw; 
+  }
+  .RegisterInner { 
+    margin-top: 20px;
+  }
+  .registrationHeader { 
+    margin-bottom: 15px;
+  }
+  .option{ 
+    margin-top: 40px; 
+}
+}

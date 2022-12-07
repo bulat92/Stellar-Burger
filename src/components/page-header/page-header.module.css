@@ -15,3 +15,14 @@
     margin-left: 10vw;
   }
 }
+@media screen and (max-width: 375px) {
+  .headerOnMain{
+    width: 100%; 
+    margin-bottom: 15px;
+    margin-left: 0;
+    text-align: center;
+  }
+  .childrenH {
+    width: 95vw;
+  }
+}

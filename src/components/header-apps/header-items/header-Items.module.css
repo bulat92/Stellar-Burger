@@ -35,8 +35,14 @@ a[href="/profile"] div.boxItemsChild {
 .boxItemsChild:hover {
   color: white;
 }
+.boxItemsChild:hover .profileIcon svg{ 
+  fill: white
+}
 .activeClassName div {
   color: white;
+}
+.activeClassName div i svg { 
+  fill: white;
 }
 @media screen and (max-width: 1280px) {
   .boxItemsChild {
@@ -64,5 +70,5 @@ a[href="/profile"] div.boxItemsChild {
 @media screen and (max-width: 375px) {
   .navMain {
     display: none;
-  } 
+  }
 }

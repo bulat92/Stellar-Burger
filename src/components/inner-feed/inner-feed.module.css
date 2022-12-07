@@ -8,3 +8,8 @@
 .classWidth{
    width: 504px;
 }
+@media screen and (max-width: 1280px) {
+    .InnerFeed{ 
+        max-width: 90vw; 
+    }
+  }

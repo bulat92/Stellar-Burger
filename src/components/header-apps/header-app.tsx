@@ -23,7 +23,7 @@ export const AppHeader = () => {
           setSwitch={setSmartphoneMenuSwitchFunc}
         />
       </header>
-      <SmartphoneMenu Switch={SmartphoneMenuSwitch} />
+      <SmartphoneMenu Switch={SmartphoneMenuSwitch} setSwitch={setSmartphoneMenuSwitchFunc}/>
     </div>
   );
 };

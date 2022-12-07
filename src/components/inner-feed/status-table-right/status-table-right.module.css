@@ -1,26 +1,38 @@
-.StatusTableRight{
-    width: 584px;
+.StatusTableRight {
+  width: 584px;
 }
-.ordersStatusBox{
-    display: flex;
-    justify-content: space-between;
-    height: 270px;
+.ordersStatusBox {
+  display: flex;
+  justify-content: space-between;
+  height: 270px;
 
-    margin-bottom: 60px;
+  margin-bottom: 60px;
 }
-.ready{
-    width: 70%;
-    color: #00CCCC;
-    height: 100%;
+.ready {
+  width: 70%;
+  color: #00cccc;
+  height: 100%;
 }
-.inWork{
-    width: 30%;
-    height: 100%;
+.inWork {
+  width: 30%;
+  height: 100%;
 }
-.listReady{
-    display: flex;
-    flex-wrap: wrap;
+.listReady {
+  display: flex;
+  flex-wrap: wrap;
 }
-.listReady p{
-    width: 25%;
+.listReady p {
+  width: 25%;
+}
+@media screen and (max-width: 1280px) {
+  .ordersStatusBox {
+    flex-direction: column;
+    justify-content: center;
+  }
+  .StatusTableRight, .ready, .inWork {
+    width: 35vw;
+  } 
+  .listReady p {
+    max-width: calc(35vw/4);
+  }
 }

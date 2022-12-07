@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import style from "./header-Items.module.css";
 import { ButtonsWithIcons } from "./buttons-with-icons";
 import {
@@ -6,54 +5,13 @@ import {
   ListIcon,
   BurgerIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useLocation } from "react-router-dom";  
 
 export const HeaderItems = () => {
-  type TTState = "secondary" | "primary";
-
-  const [BurgerIconType, setBurgerIconType] = useState<TTState>("secondary");
-  const [ListIconType, setListIconType] = useState<TTState>("secondary");
-  const [ProfileIconType, setProfileIconType] = useState<TTState>("secondary");
-
-  const location = useLocation();
-
-  useEffect(() => {
-    switch (location.pathname) {
-      case "/":
-        setBurgerIconType("primary");
-        setListIconType("secondary");
-        setProfileIconType("secondary");
-        break;
-      case "/feed":
-        setBurgerIconType("secondary");
-        setListIconType("primary");
-        setProfileIconType("secondary");
-        break;
-      case "/profile/orders":
-        setBurgerIconType("secondary");
-        setListIconType("secondary");
-        setProfileIconType("primary");
-        break;
-      case "/profile":
-        setBurgerIconType("secondary");
-        setListIconType("secondary");
-        setProfileIconType("primary");
-        break;
-      default:
-        setBurgerIconType("secondary");
-        setListIconType("secondary");
-        setProfileIconType("secondary");
-        break;
-    }
-  }, [location.pathname, BurgerIconType, ListIconType, ProfileIconType]);
-
   return (
     <nav className={style.navMain}>
       <div className={style.boxItems}>
         <ButtonsWithIcons
-          icon={<BurgerIcon type={BurgerIconType} />}
-          onMouseOver={() => setBurgerIconType("primary")}
-          onMouseOut={() => setBurgerIconType("secondary")}
+          icon={<BurgerIcon type={"secondary"} />}
           linkAddress={""}
           exactBool={true}
         >
@@ -61,9 +19,7 @@ export const HeaderItems = () => {
         </ButtonsWithIcons>
 
         <ButtonsWithIcons
-          icon={<ListIcon type={ListIconType} />}
-          onMouseOver={() => setListIconType("primary")}
-          onMouseOut={() => setListIconType("secondary")}
+          icon={<ListIcon type={"secondary"} />}
           linkAddress={"feed"}
           exactBool={true}
         >
@@ -71,14 +27,12 @@ export const HeaderItems = () => {
         </ButtonsWithIcons>
       </div>
       <ButtonsWithIcons
-        icon={<ProfileIcon type={ProfileIconType} />}
-        onMouseOver={() => setProfileIconType("primary")}
-        onMouseOut={() => setProfileIconType("secondary")}
+        icon={<ProfileIcon type={"secondary"} />}
         linkAddress={"profile"}
         exactBool={false}
       >
         Личный кабинет
-      </ButtonsWithIcons> 
+      </ButtonsWithIcons>
     </nav>
   );
 };

@@ -1,21 +1,20 @@
-.orderList{
-    height: 72vh;
-    overflow: scroll;
-    overflow-x: hidden;
+.orderList {
+  height: 72vh;
+  overflow: scroll;
+  overflow-x: hidden;
 }
-.orderList a{
+.orderList a {
   text-decoration: none;
   color: inherit;
 }
-.orderCard{
-    border-radius: 40px;
-    background: #1C1C21;
-    padding: 24px;
-     
+.orderCard {
+  border-radius: 40px;
+  background: #1c1c21;
+  padding: 24px;
 }
-.idAndDate{
-    display: flex;
-    justify-content: space-between;
+.idAndDate {
+  display: flex;
+  justify-content: space-between;
 }
 .imageIngredientsAndCostBox {
   display: flex;
@@ -28,9 +27,13 @@
 .roundImagesBOX {
   display: flex;
   margin-left: 20px;
+  width: 75%;
+  overflow: auto;
+  padding-left: 20px;
+  margin-left: -0.1px;
 }
 .roundImages {
-  border-radius: 50%; 
+  border-radius: 50%;
 
   width: 60px;
   height: 60px;
@@ -48,9 +51,30 @@
   align-items: center;
   width: 64px;
   height: 64px;
+  min-width: 64px;
+  min-height: 64px;
   border-radius: 50%;
   background: linear-gradient(63.18deg, #801ab3 0%, #4c4cff 100%);
 }
-.statusOrderColor{
-  color: #00CCCC;
+.statusOrderColor {
+  color: #00cccc;
+}
+@media screen and (max-width: 1280px) {
+  .orderCard {
+    max-width: 50vw;
+  }
+}
+@media screen and (max-width: 600px) {
+  .orderCard {
+    max-width: 90vw;
+  }
+}
+@media screen and (max-width: 375px) {
+  .orderList {
+    overflow: visible;
+    margin-right: 0;
+  }
+  .orderCard {
+    max-width: 95vw;
+  }
 }

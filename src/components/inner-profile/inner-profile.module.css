@@ -1,11 +1,12 @@
 .ProfileInner {
-  max-width: 1280px;
+  max-width: 100%;
   margin: 0 auto;
   margin-top: 100px;
 
   display: flex;
-} 
-.classWidth{
+  justify-content: center;
+}
+.classWidth {
   width: 880px;
 }
 .profileTab {
@@ -82,5 +83,45 @@
 
   background: linear-gradient(63.18deg, #801ab3 0%, #4c4cff 100%);
   border-radius: 64px;
- 
+}
+.smartPhoneHeader {
+  display: none;
+}
+@media screen and (max-width: 1280px) {
+  .boxTabs {
+    margin-right: 5vw;
+  }
+  .profileDescription,
+  .profileTab {
+    width: 30vw;
+  }
+}
+@media screen and (max-width: 600px) {
+  .ProfileInner {
+    flex-direction: column;
+    align-items: center;
+  }
+  .boxTabs {
+    margin-right: 0;
+  }
+  .mbInput div {
+    max-width: 95vw;
+  }
+  .profileDescription,
+  .profileTab {
+    width: 95vw;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+  }
+}
+@media screen and (max-width: 375px) {
+  .boxTabs {
+    display: none;
+  }
+  .smartPhoneHeader {
+    display: flex;
+    margin-top: -100px;
+    margin-bottom: 35px;
+  }
 }
