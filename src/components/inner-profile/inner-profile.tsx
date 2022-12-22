@@ -84,7 +84,7 @@ export const ProfileInner = () => {
           </Route>
           <ProtectedRoute path="/profile/orders" exact={true}>
             <OrderList
-              classWidth={`${style.classWidth} mr-2`}
+              classWidth={`${style.classWidth}`}
               arr={data}
               statusSwitch={true}
             />

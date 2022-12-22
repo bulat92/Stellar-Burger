@@ -119,9 +119,17 @@
   .boxTabs {
     display: none;
   }
+  .mbInput{
+    display: flex;
+    justify-content: center;
+  }
   .smartPhoneHeader {
     display: flex;
     margin-top: -100px;
     margin-bottom: 35px;
   }
+  .buttonBox {
+    display: flex;
+    align-items: center; 
+  } 
 }

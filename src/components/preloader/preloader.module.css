@@ -2,17 +2,27 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
+  position: absolute;
 
-  width: 600px;
-  height: 600px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+
+  width: 100vw;
+  height: 100vh;    
+
+  z-index: 20;
+
+  background: #131316;
 }
 .svg {
   width: 400px;
   height: 400px;
   animation: 2s infinite;
   animation-timing-function: linear;
-  position: absolute;
+  position: absolute;  
+  border-radius: 50%;
 }
 .blue {
   animation-name: blue;
@@ -31,9 +41,10 @@ circle {
   stroke-dashoffset: 314;
   stroke-dasharray: 314;
   stroke-linecap: round;
-  cy: 50%;
-  cx: 50%; 
-  stroke-width: 2%;
+  
+  cy: 200px;
+  cx: 200px; 
+  stroke-width: 4px;
 }
 
 .blue circle {
@@ -85,3 +96,4 @@ circle {
     transform: rotate(0deg);
   }
 }
+ 

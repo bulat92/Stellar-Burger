@@ -36,3 +36,7 @@
     max-width: calc(35vw/4);
   }
 }
+@media screen and (max-width: 375px) {
+  
+}
+

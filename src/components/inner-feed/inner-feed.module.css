@@ -1,15 +1,15 @@
-.InnerFeed{
-    margin: 0 auto;
-    max-width: 1280px;
+.InnerFeed {
+  margin: 0 auto;
+  max-width: 1280px;
 
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
-.classWidth{
-   width: 504px;
+.classWidth {
+  width: 504px;
 }
 @media screen and (max-width: 1280px) {
-    .InnerFeed{ 
-        max-width: 90vw; 
-    }
+  .InnerFeed {
+    max-width: 90vw;
   }
+}

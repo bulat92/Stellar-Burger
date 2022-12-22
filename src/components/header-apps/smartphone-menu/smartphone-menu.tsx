@@ -44,7 +44,7 @@ export const SmartphoneMenu: React.FC<{
   return (
     <nav
       className={style.navSmartphoneMenu}
-      style={{ height: !Switch ? "0" : "60vh" }}
+      style={{ height: !Switch ? "0" : "90vh" }}
     >
       <ul>
         <li

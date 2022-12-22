@@ -11,6 +11,7 @@
   border-radius: 40px;
   background: #1c1c21;
   padding: 24px;
+  margin-right: calc(var(--offset-base-size) * 2)
 }
 .idAndDate {
   display: flex;
@@ -76,5 +77,6 @@
   }
   .orderCard {
     max-width: 95vw;
+    margin-right: 0;
   }
 }
