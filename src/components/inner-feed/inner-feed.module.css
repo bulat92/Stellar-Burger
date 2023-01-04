@@ -8,8 +8,41 @@
 .classWidth {
   width: 504px;
 }
+.tabBox{
+  display: none; 
+}
 @media screen and (max-width: 1280px) {
   .InnerFeed {
     max-width: 90vw;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .tabBox{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  .InnerFeed {  
+    justify-content: center;
+  }
+  .classWidth {
+    width: 80vw;
+  }
+}
+@media screen and (max-width: 600px) { 
+  .classWidth { 
+    max-width: 90vw; 
+  }
+  .InnerFeed {
+    max-width: 100vw;
+  }
+}
+@media screen and (max-width: 375px) {
+  .tabBox div{ 
+    width: 50vw;
+  }
+  .classWidth {
+    width: 95vw; 
+    margin-right: 0;
   }
 }

@@ -27,16 +27,46 @@
 @media screen and (max-width: 1280px) {
   .ordersStatusBox {
     flex-direction: column;
-    justify-content: center;
   }
-  .StatusTableRight, .ready, .inWork {
+  .StatusTableRight,
+  .ready,
+  .inWork {
     width: 35vw;
-  } 
+  }
   .listReady p {
-    max-width: calc(35vw/4);
+    max-width: calc(35vw / 4);
+  }
+}
+@media screen and (max-width: 1000px) {
+  .StatusTableRight {
+    width: 80vw;
+  }
+  .listReady p {
+    min-width: 85px;
+  }
+  .listReady {
+    min-width: calc(85px * 4);
+  }
+  .inWork {
+    width: 80vw;
+    height: 20vh; 
+  }
+  .inWork p{
+    min-width: 85px;
+  }
+  .bigP {
+    letter-spacing: -10px; 
   }
 }
 @media screen and (max-width: 375px) {
-  
+  .StatusTableRight {
+    width: 95vw;
+  }
+  .listReady p {
+    min-width: 22vw;
+  }
+  .listReady {
+    width: 95vw;
+    justify-content: center;
+  }
 }
-

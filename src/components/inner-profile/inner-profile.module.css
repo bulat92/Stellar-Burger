@@ -95,6 +95,9 @@
   .profileTab {
     width: 30vw;
   }
+  .classWidth {
+    max-width: 50vw;
+  }
 }
 @media screen and (max-width: 600px) {
   .ProfileInner {
@@ -114,6 +117,9 @@
     display: flex;
     justify-content: center;
   }
+  .classWidth {
+    max-width: 90vw;
+  }
 }
 @media screen and (max-width: 375px) {
   .boxTabs {
@@ -132,4 +138,8 @@
     display: flex;
     align-items: center; 
   } 
+  .classWidth {
+    max-width: 95vw;
+    margin-right: 0;
+  }
 }

@@ -40,9 +40,9 @@ export const StatusTableRight = () => {
         </div>
       </div>
       <p className="text text_type_main-medium">Выполнено за все время:</p>
-      <p className="text text_type_digits-large mb-15">{total}</p>
+      <p className={`text text_type_digits-large mb-15 ${style.bigP}`}>{total}</p>
       <p className="text text_type_main-medium">Выполнено за сегодня:</p>
-      <p className="text text_type_digits-large">{totalToday}</p></> ) : <Preloader/>}
+      <p className={` text text_type_digits-large ${style.bigP}`}>{totalToday}</p></> ) : <Preloader/>}
     </section>
   );
 };
