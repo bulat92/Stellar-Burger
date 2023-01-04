@@ -16,7 +16,7 @@
 
 В проектной работе я использовал: Redux Toolkit, React Routing, WebSocket, React Hooks, React DnD
 
-http://stellarburger.bulatmustafin.nomoredomains.sbs
+https://ce06827.tmweb.ru/
 
 Для запуска проекта нужно ввести команды
 
