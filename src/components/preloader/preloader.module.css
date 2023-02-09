@@ -2,26 +2,28 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
+  position: relative;
 
-  left: 0;
-  right: 0;
-  bottom: 0;
-  top: 0;
+  width: 100%;
+  height: 100%;
+  min-width: 200px;
+  min-height: 400px;
+}
+.internalPreloader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 
-  width: 100vw;
-  height: 100vh;    
-
-  z-index: 20;
-
-  background: #131316;
+  max-width: 600px;
+  max-height: 600px;
 }
 .svg {
-  width: 400px;
-  height: 400px;
+  width: 100px;
+  height: 100px;
   animation: 2s infinite;
   animation-timing-function: linear;
-  position: absolute;  
+  position: absolute;
   border-radius: 50%;
 }
 .blue {
@@ -38,35 +40,34 @@
 }
 circle {
   fill: none;
-  stroke-dashoffset: 314;
-  stroke-dasharray: 314;
+  stroke-dashoffset: 84;
+  stroke-dasharray: 84;
   stroke-linecap: round;
-  
-  cy: 200px;
-  cx: 200px; 
-  stroke-width: 4px;
+
+  cy: 50px;
+  cx: 50px;
 }
 
 .blue circle {
   stroke: #4c4cff;
   filter: drop-shadow(0 0 10px #4c4cff);
 
-  r: 120px;
-  stroke-width: 10px;
+  r: 40px;
+  stroke-width: 2px;
 }
 .purple circle {
   filter: drop-shadow(0 0 10px #801ab3);
   stroke: #801ab3;
 
-  r: 100px;
-  stroke-width: 10px;
+  r: 25px;
+  stroke-width: 2px;
 }
-.mixColor circle { 
+.mixColor circle {
   filter: drop-shadow(0 0 10px #6633d9);
   stroke: #6633d9;
 
-  r: 80px;
-  stroke-width: 10px;
+  r: 20px;
+  stroke-width: 2px;
 }
 
 @keyframes blue {
@@ -96,4 +97,3 @@ circle {
     transform: rotate(0deg);
   }
 }
- 

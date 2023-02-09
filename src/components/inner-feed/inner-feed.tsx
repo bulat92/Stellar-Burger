@@ -43,7 +43,7 @@ export const InnerFeed = () => {
               arr={orders}
               statusSwitch={false}
             />
-            <StatusTableRight />{" "}
+            <StatusTableRight />
           </>
         )}
       </section>

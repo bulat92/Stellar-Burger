@@ -1,60 +1,96 @@
-.orderForInfo{
-    display: flex;
-    flex-direction: column;
-    width: 640px;
+.orderForInfo {
+  display: flex;
+  flex-direction: column;
+  width: 640px;
 }
 
-.headerNumber{
-    width: 100%;
-    text-align: center;
+.headerNumber {
+  width: 100%;
+  text-align: center;
 }
-.status{
-    color: #00CCCC;
+.status {
+  color: #00cccc;
 }
-.dataAndTotalBox{
-    width: 100%;
+.dataAndTotalBox {
+  width: 100%;
 
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
-.roundImagesAndCostBox{
-    max-height: 40vh;
-    overflow-y: scroll; 
+.roundImagesAndCostBox {
+  max-height: 40vh;
+  overflow-y: scroll;
+  margin: 0;
+  background: #1c1c21;
 }
-.oneIngredientBox{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.oneIngredientBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-.roundImagesAndNameBox{
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
+.roundImagesAndNameBox {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
-.costAndCountBox{
-    display: flex;
+.costAndCountBox {
+  display: flex;
 }
 .roundImages {
-    border-radius: 50%;
-    border-color: #801ab3 0% #4c4cff 100%;
-  
-    width: 60px;
-    height: 60px;
-    background-position: center;
-    background-color: #1c1c21;
-    background-size: 190%;
-    background-repeat: no-repeat;
-  
-    flex-direction: row-reverse;
+  border-radius: 50%;
+  border-color: #801ab3 0% #4c4cff 100%;
+
+  width: 60px;
+  height: 60px;
+  background-position: center;
+  background-color: #131316;
+  background-size: 190%;
+  background-repeat: no-repeat;
+
+  flex-direction: row-reverse;
+}
+.roundImagesBorder {
+  margin-left: -20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(63.18deg, #801ab3 0%, #4c4cff 100%);
+}
+@media screen and (max-width: 720px) {
+  .headerNumber {
+    text-align: start;
   }
-  .roundImagesBorder {
-    margin-left: -20px;
+  .orderForInfo {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    background: linear-gradient(63.18deg, #801ab3 0%, #4c4cff 100%);
+    flex-direction: column;
+    width: 100%;
   }
-  
+  .dataAndTotalBox {
+    position: fixed;
+    z-index: 30;
+
+    bottom: 0;
+    height: 60px;
+    width: 95vw;
+    background: #1c1c21;
+
+    align-items: center;
+  }
+  .roundImagesAndCostBox {
+    max-height: 60vh;
+  }
+  .headerNumber {
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+  .status {
+    margin-bottom: 30px;
+    font-size: 20px;
+  }
+  .name{
+    font-size: 20px;
+  }
+}

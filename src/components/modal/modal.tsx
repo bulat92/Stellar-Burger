@@ -32,10 +32,12 @@ export const Modal: React.FC<TModal> = ({
   const reactModals = document.getElementById("react-modals") as HTMLDivElement;
   return ReactDOM.createPortal(
     <>
-      <div className={style.Modal} data-test='modal'>
+      <div className={style.Modal} data-test="modal">
         <div className={style.modalHeader}>
-          <h2 className={style.h2} >{title}</h2>
-          <div onClick={onClose} data-test='modal-Close' ><CloseIcon type="primary" /></div>
+          <h2 className={style.h2}>{title}</h2>
+          <div onClick={onClose} data-test="modal-Close" className={style.closeIcon}>
+            <CloseIcon type="primary" />
+          </div>
         </div>
         {children}
       </div>

@@ -20,7 +20,7 @@ export const OrderList: React.FC<{
 
   return (
     <>
-      { arr !== undefined ? (<section className={style.orderList}>
+      { arr.length > 0 ? (<section className={style.orderList}>
         {arr.map((el: ingredientsWS, index) => (
           <Link
             to={{

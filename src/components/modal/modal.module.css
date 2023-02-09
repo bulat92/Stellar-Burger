@@ -1,28 +1,51 @@
-.Modal{
-    width: 720px;
-    border-radius: 40px;
-    background: #1C1C21;
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: absolute;
-    z-index: 101;
-    top: 50%;  
-    left: 50%; 
-    transform: translate(-50%, -50%);
+.Modal {
+  width: 720px;
+  border-radius: 40px;
+  background: #1c1c21;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  z-index: 102;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+
+  box-sizing: border-box;
 }
-.modalHeader{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
- 
-    font-weight: 700;
-    font-size: 26px;
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+
+  font-weight: 700;
+  font-size: 26px;
 }
-.h2{
-    max-width: 600px;
-    height: 64px;
+.h2 {
+  max-width: 600px;
+  height: 64px;
+
+  display: flex;
+  align-items: center;
 }
- 
+.closeIcon {
+  display: flex;
+  align-items: center;
+}
+@media screen and (max-width: 720px) {
+  .Modal {
+    width: calc(100vw - (100vw - 100%));
+    position: fixed;
+    height: 100%;
+    border-radius: 0;
+    padding: 2.5vw;
+    max-height: calc(100vh - (100vh - 100%)); 
+  }
+  .h2 {
+    font-size: 25px;
+    width: 80%;
+  }
+}

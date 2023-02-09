@@ -1,27 +1,38 @@
-.IngredientDetails{
-    display: flex;
-    text-align: center;
-    flex-direction: column;
-    width: 520px;
-    color: #8585AD;
-    margin-bottom: 20px;
+.IngredientDetails {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  width: 520px;
+  color: #8585ad;
+  margin-bottom: 20px;
 }
-.ingredientName{ 
-    font-family: 'JetBrains Mono';
-    font-weight: 700;
-    font-size: 24px;
-    text-align: center;
-    margin-bottom: 32px;
-    color: white;
+.ingredientName {
+  font-family: "JetBrains Mono";
+  font-weight: 700;
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 32px;
+  color: white;
 }
-.img{
+.infoBox {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.infoBoxP {
+  text-align: center;
+}
 
-}
-.infoBox{
-    display: flex;
-    justify-content: space-between;
+@media screen and (max-width: 600px) {
+  .infoBox {
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  .IngredientDetails {
     width: 100%;
-}
-.infoBoxP{
-    text-align: center;
+  }
+
+  .infoBox span {
+    margin-bottom: 30px;
+  }
 }
