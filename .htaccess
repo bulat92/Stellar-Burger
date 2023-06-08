@@ -1,7 +1,0 @@
-<BrowserRouter>
-  <Routes>
-    <Route exact path="/" element={<HomePage />} />
-    <Route path="cart" element={<CartPage />} />
-    <Route path="settings" element={<SettingsPage />} />
-  </Routes>
-</BrowserRouter>
