@@ -1,11 +1,7 @@
-<IfModule mod_rewrite.c>
-
-  RewriteEngine On
-  RewriteBase /
-  RewriteRule ^index\.html$ - [L]
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteCond %{REQUEST_FILENAME} !-l
-  RewriteRule . /index.html [L]
-
-</IfModule>
+<BrowserRouter>
+  <Routes>
+    <Route exact path="/" element={<HomePage />} />
+    <Route path="cart" element={<CartPage />} />
+    <Route path="settings" element={<SettingsPage />} />
+  </Routes>
+</BrowserRouter>
